@@ -1,0 +1,8 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+// Import Bootstrap and variable modifications
+@import './load-and-modify-bootstrap';
+
+// Import our own styling (one or several files)
+@import './own-styling.scss';

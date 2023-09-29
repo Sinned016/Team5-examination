@@ -1,0 +1,7 @@
+// Variable overrides changing the look of Bootstrap
+// "theming Bootstrap"
+$body-bg: black;
+$body-color: #eee;
+// $font-family-base: 'Roboto Slab';
+// Import Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
