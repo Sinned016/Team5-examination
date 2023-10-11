@@ -15,7 +15,6 @@ router.get("/movies", async (req, res) => {
     }
 })
 
-// GladiatorId = 65157cedcc65c28c5afd3ef9
 router.get("/movie/:id", async (req, res) => {
     const movieId = req.params.id
 
