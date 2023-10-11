@@ -15,6 +15,8 @@ router.get("/movies", async (req, res) => {
     }
 })
 
+
+// get a specific movie
 router.get("/movie/:id", async (req, res) => {
     const movieId = req.params.id
 
