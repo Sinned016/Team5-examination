@@ -6,8 +6,14 @@ const router = express.Router();
 
 router.get("/movies", async (req, res) => {
 
-    const movies = await fetchCollection("movies").find().toArray();
-    res.send(movies)
+    try {
+        const movies = await fetchCollection("movies").find().toArray();
+        res.send(movies)
+    } catch(err) {
+        res.status(500)
+        res.send(err.clientMessage)
+    }
+
 })
 
 
