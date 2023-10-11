@@ -14,7 +14,7 @@ function fetchDatabase() {
     return db;
   }
 
-  const url = `mongodb+srv://sinned:wnIMWE2VVZo0mYTt@team5.b809lmc.mongodb.net/`;
+  const url = `mongodb+srv://username:password@team5.b809lmc.mongodb.net/`;
   const client = new MongoClient(url);
 
   db = client.db("filmvisarna"); // Samling av collections (skapas dynamisk, har ej skapats explicit i atlas)
