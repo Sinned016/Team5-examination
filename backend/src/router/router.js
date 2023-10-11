@@ -1,6 +1,5 @@
 import express from "express"
 import { fetchCollection } from "../mongo/mongoClient.js";
-fetchCollection
 
 const router = express.Router();
 
@@ -13,7 +12,6 @@ router.get("/movies", async (req, res) => {
         res.status(500)
         res.send(err.clientMessage)
     }
-
 })
 
 
