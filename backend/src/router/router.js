@@ -16,22 +16,25 @@ router.get("/movies", async (req, res) => {
 })
 
 
-// get a specific movie
+// get a specific movie and screenings for that movie
 router.get("/movie/:id", async (req, res) => {
-    const movieId = req.params.id
+    const movieId = req.params.id;
 
     if(ObjectId.isValid(movieId)) {
 
-        const movie = await fetchCollection("movies").findOne({_id: new ObjectId(movieId)})
+        const movie = await fetchCollection("movies").findOne({_id: new ObjectId(movieId)});
 
         if(movie == null) {
-            res.status(404).send({error: "Could not fetch the document"})
+            res.status(404).send({error: "Could not fetch the document"});
         } else {
-            res.status(200).send(movie)
+            movie.screenings = await fetchCollection("screenings").find({movieId: movie._id}).toArray();
+            res.status(200).send(movie);
         }
     } else {
-        res.status(404).send({error: "ObjectId is not valid"})
+        res.status(404).send({error: "ObjectId is not valid"});
     }
 })
+
+
 
 export default router;
