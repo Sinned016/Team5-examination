@@ -1,6 +1,5 @@
 import express from "express"
 import router from "./src/router/router.js";
-
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -13,7 +12,7 @@ const app = express();
 app.use(express.json({limit: '1MB'}));
 
 app.listen(port, () => {
-    console.log(`backend started on http://localhost:$`)
+    console.log(`backend started on http://localhost:${port}`);
 })
 
 // test route
@@ -26,10 +25,11 @@ app.get("/health", (req, res) => {
     res.send({ state: "up", message: "Server is healthy" });
 });
 
-app.use("/api", router)
+app.use("/api", router);
 
 
 // serve the dist folder (the production code for our frontend)
 // that you generate by writing "npm run build"
 const distFolder = join (__dirname, '../', 'dist');
 app.use(express.static(distFolder));
+
