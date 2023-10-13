@@ -36,5 +36,16 @@ router.get("/movie/:id", async (req, res) => {
 })
 
 
+// Getting all bookings with the same mail as the logged in user (might change to Id later on)
+router.get("/bookings/:email", async (req, res) => {
+    const loggedInUserMail = req.params.email;
+
+    try {
+        const bookings = await fetchCollection("bookings").find({email: loggedInUserMail}).toArray();
+        res.status(200).send(bookings)
+    } catch(err) {
+        res.status(500).send(err.clientMessage)
+    }
+})
 
 export default router;
