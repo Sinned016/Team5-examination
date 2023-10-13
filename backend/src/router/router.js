@@ -14,11 +14,6 @@ router.get("/movies", async (req, res) => {
   }
 });
 
-import express from "express";
-import { fetchCollection } from "../mongo/mongoClient.js";
-
-const router = express.Router();
-
 //GET screenings
 router.get("/screenings", async (req, res) => {
   try {
