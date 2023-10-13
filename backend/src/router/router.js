@@ -15,7 +15,6 @@ router.get("/movies", async (req, res) => {
     }
 })
 
-
 // get a specific movie and screenings for that movie
 router.get("/movie/:id", async (req, res) => {
     const movieId = req.params.id;
@@ -35,6 +34,16 @@ router.get("/movie/:id", async (req, res) => {
     }
 })
 
-
+//GET screenings
+router.get("/screenings", async (req, res) => {
+    try {
+        const screenings = await fetchCollection("screenings").find().toArray();
+        res.send(screenings);
+    } catch(err) {
+        res.status(500);
+        res.send(err.clientMessage);
+    }
+})
 
 export default router;
+
