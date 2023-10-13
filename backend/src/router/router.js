@@ -35,19 +35,28 @@ router.get("/movie/:id", async (req, res) => {
     }
 })
 
+
 // Updating specific screenings seats
 router.put("/update/screening/:id", async (req, res) => {
     const screeningId = new ObjectId(req.params.id);
+    const bookedSeats = req.body;
     console.log(screeningId);
-    //const bookedSeats = [ [1, 6], [1, 7] ];
-
+    
+    // [4, 5], 
+    // [4, 6],
+    // [4, 7],
+    // [4, 8]
+    
+    // I get an error and it only loops through the first 2
     if(ObjectId.isValid(screeningId)) {
 
-        const screening = await fetchCollection("screenings").updateOne({_id: screeningId}, {$set: {"seats.1.5": 1}});
-        res.send(screening);
+        for (let i = 0; i < bookedSeats.length; i++) {
+            const bookedSeatsString = `seats.${bookedSeats[i][0]}.${bookedSeats[i][1]}`
+            const screening = await fetchCollection("screenings").updateOne({_id: screeningId}, {$set: {[bookedSeatsString]: 1}});
+            res.send(screening);
+        }
     }
 })
-
 
 
 export default router;
