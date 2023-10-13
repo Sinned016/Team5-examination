@@ -35,6 +35,19 @@ router.get("/movie/:id", async (req, res) => {
     }
 })
 
+// Updating specific screenings seats
+router.put("/update/screening/:id", async (req, res) => {
+    const screeningId = new ObjectId(req.params.id);
+    console.log(screeningId);
+    //const bookedSeats = [ [1, 6], [1, 7] ];
+
+    if(ObjectId.isValid(screeningId)) {
+
+        const screening = await fetchCollection("screenings").updateOne({_id: screeningId}, {$set: {"seats.1.5": 1}});
+        res.send(screening);
+    }
+})
+
 
 
 export default router;
