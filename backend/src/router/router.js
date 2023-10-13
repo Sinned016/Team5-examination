@@ -4,14 +4,13 @@ import { fetchCollection } from "../mongo/mongoClient.js";
 
 const router = express.Router();
 
+// get all movies
 router.get("/movies", async (req, res) => {
-
     try {
         const movies = await fetchCollection("movies").find().toArray();
-        res.send(movies)
+        res.status(200).send(movies)
     } catch(err) {
-        res.status(500)
-        res.send(err.clientMessage)
+        res.status(500).send(err.clientMessage)
     }
 })
 
