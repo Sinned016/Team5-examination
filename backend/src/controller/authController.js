@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { fetchCollection } from "../mongo/mongoClient.js";
-// create/insert a new user document in MongoDB, including email, hashed password and role.
+// create a new user with email, hashed password and role if the email is not existing.
 async function createUser(email, password) {
   const salt = await bcrypt.genSalt();
   const hashedPassword = await bcrypt.hash(password, salt);
