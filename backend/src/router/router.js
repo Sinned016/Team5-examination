@@ -35,6 +35,25 @@ router.get("/movie/:id", async (req, res) => {
     }
 })
 
+// POST booking information
+router.post("/book/screening", (req, res) => {
+    const bookingInformation = req.body;
 
+    if (bookingInformation.email == undefined || 
+        bookingInformation.bookingNumber == undefined || 
+        bookingInformation.seats == undefined || 
+        bookingInformation.price == undefined || 
+        bookingInformation.screening_id == undefined)
+        
+    return res.status(400).send("Missing information"); // 400: bad request
 
+    let result = fetchCollection("bookings").insertOne({
+        email: bookingInformation.email,
+        bookingNumber: bookingInformation.bookingNumber,
+        seats: bookingInformation.bookedSeats,
+        price: bookingInformation.price,
+        screening_id: bookingInformation.screening_id
+    })
+ })
+ 
 export default router;
