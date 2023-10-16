@@ -48,6 +48,8 @@ async function login(req, res) {
       const role = user.role;
       const accessToken = jwtUtil.generate(email, role);
       return res.status(200).send({ message: "Successfully Logged in", accessToken });
+    } else {
+      return res.status(400).send("Bad credentials. Invalid email/password");
     }
   }
 }
