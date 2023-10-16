@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-
-const JWT_SECRET_KEY = "Iwillnottellyouwhatfsfsfsfsf";
+import * as env from "dotenv";
+env.config();
 
 function generate(email, role) {
   // registered claims (pre defined payload variables)
@@ -15,14 +15,14 @@ function generate(email, role) {
     role: role,
   };
 
-  let token = jwt.sign(payload, JWT_SECRET_KEY, payloadOptions); //sign method sign on payload&secret key, also set expires time
+  let token = jwt.sign(payload, process.env.JWT_SECRET_KEY, payloadOptions); //sign method sign on payload&secret key, also set expires time
 
   return token; // synchronous, return token as string
 }
 
 function verify(token) {
   try {
-    return jwt.verify(token, JWT_SECRET_KEY); // verify signature and return payload
+    return jwt.verify(token, process.env.JWT_SECRET_KEY); // verify signature and return payload
   } catch (err) {
     let error = new Error(); // custom verification error
 

@@ -3,6 +3,8 @@ import router from "./src/router/router.js";
 import authRouter from "./src/router/authRouter.js";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import * as env from "dotenv";
+env.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
