@@ -1,7 +1,12 @@
 import express from "express"
 import router from "./src/router/router.js";
+import dotenv from "dotenv"
+import process from "process"
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+
+dotenv.config();
+console.log(process.env.USERNAME);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

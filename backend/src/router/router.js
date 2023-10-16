@@ -8,11 +8,11 @@ const router = express.Router();
 router.get("/movies", async (req, res) => {
     try {
         const movies = await fetchCollection("movies").find().toArray();
-        res.status(200).send(movies)
+        res.status(200).send(movies);
     } catch(err) {
-        res.status(500).send(err.clientMessage)
+        res.status(500).send(err.clientMessage);
     }
-})
+});
 
 
 // get a specific movie and screenings for that movie
@@ -32,7 +32,7 @@ router.get("/movie/:id", async (req, res) => {
     } else {
         res.status(404).send({error: "ObjectId is not valid"});
     }
-})
+});
 
 
 // Updating specific screenings seats
@@ -41,21 +41,28 @@ router.put("/update/screening/:id", async (req, res) => {
     const bookedSeats = req.body;
     console.log(screeningId);
     
-    // [4, 5], 
+    
+    // [4, 5],
     // [4, 6],
     // [4, 7],
     // [4, 8]
-    
-    if(ObjectId.isValid(screeningId)) {
 
-        for (let i = 0; i < bookedSeats.length; i++) {
-            const bookedSeatsString = `seats.${bookedSeats[i][0]}.${bookedSeats[i][1]}`
-            await fetchCollection("screenings").updateOne({_id: screeningId}, {$set: {[bookedSeatsString]: 1}});
+    if (ObjectId.isValid(screeningId)) {
+        try {
+            for (let i = 0; i < bookedSeats.length; i++) {
+                const bookedSeatsString = `seats.${bookedSeats[i][0]}.${bookedSeats[i][1]}`;
+                await fetchCollection("screenings").updateOne({_id: screeningId}, {$set: {[bookedSeatsString]: 1}});
+            }
+            res.status(200).send({hello: `You booked ${bookedSeats.length} seats!`});
+    
+        } catch(err) {
+            res.status(500).send(err.clientMessage);
         }
 
-        res.send({hello: `You booked ${bookedSeats.length} seats!`})
+    } else {
+        res.status(404).send({error: "ObjectId is not valid"});
     }
-})
+});
 
 
 // Getting all bookings with the same mail as the logged in user (might change to Id later on)
@@ -64,10 +71,10 @@ router.get("/bookings/:email", async (req, res) => {
 
     try {
         const bookings = await fetchCollection("bookings").find({email: loggedInUserMail}).toArray();
-        res.status(200).send(bookings)
+        res.status(200).send(bookings);
     } catch(err) {
-        res.status(500).send(err.clientMessage)
+        res.status(500).send(err.clientMessage);
     }
-})
+});
 
 export default router;
