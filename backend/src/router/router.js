@@ -4,14 +4,13 @@ import { fetchCollection } from "../mongo/mongoClient.js";
 
 const router = express.Router();
 
+// get all movies
 router.get("/movies", async (req, res) => {
-
     try {
         const movies = await fetchCollection("movies").find().toArray();
-        res.send(movies)
+        res.status(200).send(movies)
     } catch(err) {
-        res.status(500)
-        res.send(err.clientMessage)
+        res.status(500).send(err.clientMessage)
     }
 })
 
@@ -36,5 +35,16 @@ router.get("/movie/:id", async (req, res) => {
 })
 
 
+// Getting all bookings with the same mail as the logged in user (might change to Id later on)
+router.get("/bookings/:email", async (req, res) => {
+    const loggedInUserMail = req.params.email;
+
+    try {
+        const bookings = await fetchCollection("bookings").find({email: loggedInUserMail}).toArray();
+        res.status(200).send(bookings)
+    } catch(err) {
+        res.status(500).send(err.clientMessage)
+    }
+})
 
 export default router;
