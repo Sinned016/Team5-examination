@@ -1,8 +1,6 @@
 import bcrypt from "bcrypt";
 import { fetchCollection } from "../mongo/mongoClient.js";
-import jwt from "jsonwebtoken";
-
-const JWT_SECRET_KEY = "iwillnottellyoufsfsfsfssfwrwrjwrojjhfsjfhsfj";
+import jwtUtil from "../util/jwtUtil.js";
 
 // create a new user with email, hashed password and role if the email is not existing.
 async function createUser(email, password) {
@@ -41,15 +39,16 @@ async function authenticate(email, password) {
 async function login(req, res) {
   const { email, password } = req.body;
 
-  if (email == undefined || password == undefined) return res.sendStatus(400);
-
-  const isMatch = await authenticate(email, password);
-
-  if (isMatch) {
-    const accessToken = jwt.sign({ email }, JWT_SECRET_KEY);
-    return res.status(200).send({ accessToken });
+  if (email == undefined || password == undefined) {
+    res.status(400).send("Bad credentials");
   } else {
-    return res.status(400).send("Bad credentials");
+    const isMatch = await authenticate(email, password);
+    if (isMatch) {
+      const user = await fetchCollection("users").findOne({ email });
+      const role = user.role;
+      const accessToken = jwtUtil.generate(email, role);
+      return res.status(200).send({ message: "Successfully Logged in", accessToken });
+    }
   }
 }
 export default { register, login };
