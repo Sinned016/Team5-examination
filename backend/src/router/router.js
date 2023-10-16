@@ -4,18 +4,6 @@ import { fetchCollection } from "../mongo/mongoClient.js";
 
 const router = express.Router();
 
-// get all movies
-router.get("/movies", async (req, res) => {
-<<<<<<< HEAD
-  try {
-    const movies = await fetchCollection("movies").find().toArray();
-    res.send(movies);
-  } catch (err) {
-    res.status(500);
-    res.send(err.clientMessage);
-  }
-});
-
 //GET screenings
 router.get("/screenings", async (req, res) => {
   try {
@@ -26,16 +14,16 @@ router.get("/screenings", async (req, res) => {
     res.send(err.clientMessage);
   }
 });
-=======
-    try {
-        const movies = await fetchCollection("movies").find().toArray();
-        res.status(200).send(movies)
-    } catch(err) {
-        res.status(500).send(err.clientMessage)
-    }
-})
 
->>>>>>> dev
+// get all movies
+router.get("/movies", async (req, res) => {
+  try {
+    const movies = await fetchCollection("movies").find().toArray();
+    res.status(200).send(movies);
+  } catch (err) {
+    res.status(500).send(err.clientMessage);
+  }
+});
 
 // get a specific movie and screenings for that movie
 router.get("/movie/:id", async (req, res) => {
@@ -59,56 +47,55 @@ router.get("/movie/:id", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-export default router;
-=======
 // Getting all bookings with the same mail as the logged in user (might change to Id later on)
 router.get("/bookings/:email", async (req, res) => {
-    const loggedInUserMail = req.params.email;
+  const loggedInUserMail = req.params.email;
 
-    try {
-        const bookings = await fetchCollection("bookings").find({email: loggedInUserMail}).toArray();
-        res.status(200).send(bookings)
-    } catch(err) {
-        res.status(500).send(err.clientMessage)
-    }
-})
+  try {
+    const bookings = await fetchCollection("bookings")
+      .find({ email: loggedInUserMail })
+      .toArray();
+    res.status(200).send(bookings);
+  } catch (err) {
+    res.status(500).send(err.clientMessage);
+  }
+});
 
 // POST booking information
 router.post("/book/screening", async (req, res) => {
-    const bookingInformation = req.body;
+  const bookingInformation = req.body;
 
-    // check for required fields
-    if (bookingInformation.email == undefined || 
-        bookingInformation.bookingNumber == undefined || 
-        bookingInformation.seats == undefined || 
-        bookingInformation.price == undefined || 
-        bookingInformation.screening_id == undefined) {
-        
-        return res.status(400).send("Missing information"); // 400: bad request
+  // check for required fields
+  if (
+    bookingInformation.email == undefined ||
+    bookingInformation.bookingNumber == undefined ||
+    bookingInformation.seats == undefined ||
+    bookingInformation.price == undefined ||
+    bookingInformation.screening_id == undefined
+  ) {
+    return res.status(400).send("Missing information"); // 400: bad request
+  }
+
+  try {
+    // insert the new booking into the database
+    let result = await fetchCollection("bookings").insertOne({
+      email: bookingInformation.email,
+      bookingNumber: bookingInformation.bookingNumber,
+      seats: bookingInformation.seats,
+      price: bookingInformation.price,
+      screening_id: bookingInformation.screening_id,
+    });
+
+    // if successful, return the new booking
+    if (result.insertedCount > 0) {
+      return res.status(201).send(result.ops[0]); // 201: created
+    } else {
+      return res.status(500).send("An error occurred while booking"); // 500: internal server error
     }
-
-    try {
-        // insert the new booking into the database
-        let result = await fetchCollection("bookings").insertOne({
-            email: bookingInformation.email,
-            bookingNumber: bookingInformation.bookingNumber,
-            seats: bookingInformation.seats,
-            price: bookingInformation.price,
-            screening_id: bookingInformation.screening_id
-        });
-
-        // if successful, return the new booking
-        if (result.insertedCount > 0) {
-            return res.status(201).send(result.ops[0]); // 201: created
-        } else {
-            return res.status(500).send("An error occurred while booking"); // 500: internal server error
-        }
-    } catch (error) {
-        // if an error occurred, return it
-        return res.status(500).send(error.message); // 500: internal server error
-    }
+  } catch (error) {
+    // if an error occurred, return it
+    return res.status(500).send(error.message); // 500: internal server error
+  }
 });
- 
+
 export default router;
->>>>>>> dev
