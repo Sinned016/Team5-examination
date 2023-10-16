@@ -4,7 +4,7 @@ import { fetchCollection } from "../mongo/mongoClient.js";
 
 const router = express.Router();
 
-router.delete("/bookings/:bookingId", async (req, res) => {
+router.delete("/bookinggit /:bookingId", async (req, res) => {
   const bookingId = req.params.bookingId;
   const userEmail = req.body.userEmail; // Assuming you send the user's email in the request body
 
