@@ -42,8 +42,47 @@ router.get("/movie/:id", async (req, res) => {
         .toArray();
       res.status(200).send(movie);
     }
-  } else {
-    res.status(404).send({ error: "ObjectId is not valid" });
+  }
+});
+
+// Making a booking and updating seats in screenings / Dennis / Mikael
+router.put("/update/screening/:id", async (req, res) => {
+  const screeningId = new ObjectId(req.params.id);
+  const bookingInformation = req.body;
+  if (
+    bookingInformation.email == undefined ||
+    bookingInformation.bookingNumber == undefined ||
+    bookingInformation.bookedSeats == undefined
+  ) {
+    return res.status(400).send("Missing information"); // 400: bad request
+  }
+
+  if (ObjectId.isValid(screeningId)) {
+    // Räkna ut pris i backend
+    const result = await fetchCollection("bookings").insertOne({
+      email: bookingInformation.email,
+      bookingNumber: bookingInformation.bookingNumber,
+      price: bookingInformation.price,
+      screeningId: screeningId,
+    });
+
+    if (!result.acknowledged) {
+      res.status(404).send({ error: "Could not POST the document" });
+    } else {
+      for (let i = 0; i < bookingInformation.bookedSeats.length; i++) {
+        const bookedSeatsString = `seats.${bookingInformation.bookedSeats[i][0]}.${bookingInformation.bookedSeats[i][1]}`;
+        await fetchCollection("screenings").updateOne(
+          { _id: screeningId },
+          { $set: { [bookedSeatsString]: result.insertedId } }
+        );
+      }
+
+      res
+        .status(200)
+        .send({
+          hello: `You booked ${bookingInformation.bookedSeats.length} seats!`,
+        });
+    }
   }
 });
 
@@ -58,43 +97,6 @@ router.get("/bookings/:email", async (req, res) => {
     res.status(200).send(bookings);
   } catch (err) {
     res.status(500).send(err.clientMessage);
-  }
-});
-
-// POST booking information
-router.post("/book/screening", async (req, res) => {
-  const bookingInformation = req.body;
-
-  // check for required fields
-  if (
-    bookingInformation.email == undefined ||
-    bookingInformation.bookingNumber == undefined ||
-    bookingInformation.seats == undefined ||
-    bookingInformation.price == undefined ||
-    bookingInformation.screening_id == undefined
-  ) {
-    return res.status(400).send("Missing information"); // 400: bad request
-  }
-
-  try {
-    // insert the new booking into the database
-    let result = await fetchCollection("bookings").insertOne({
-      email: bookingInformation.email,
-      bookingNumber: bookingInformation.bookingNumber,
-      seats: bookingInformation.seats,
-      price: bookingInformation.price,
-      screening_id: bookingInformation.screening_id,
-    });
-
-    // if successful, return the new booking
-    if (result.insertedCount > 0) {
-      return res.status(201).send(result.ops[0]); // 201: created
-    } else {
-      return res.status(500).send("An error occurred while booking"); // 500: internal server error
-    }
-  } catch (error) {
-    // if an error occurred, return it
-    return res.status(500).send(error.message); // 500: internal server error
   }
 });
 
