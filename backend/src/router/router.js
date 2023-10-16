@@ -71,8 +71,8 @@ router.post("/book/screening", async (req, res) => {
         });
 
         // if successful, return the new booking
-        if (result.insertedCount > 0) {
-            return res.status(201).send(result.ops[0]); // 201: created
+        if (result.acknowledged) {
+            return res.status(201).send(result); // 201: created
         } else {
             return res.status(500).send("An error occurred while booking"); // 500: internal server error
         }
