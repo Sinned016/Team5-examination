@@ -85,7 +85,7 @@ router.post("/book/screening", async (req, res) => {
       price: bookingInformation.price,
       screening_id: bookingInformation.screening_id,
     });
-
+    
     // if successful, return the new booking
     if (result.insertedCount > 0) {
       return res.status(201).send(result.ops[0]); // 201: created
