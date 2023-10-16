@@ -99,40 +99,12 @@ router.post("/book/screening", async (req, res) => {
 });
 
 // Trying delete
-// router.delete("/bookings/:bookingId", async (req, res) => {
-//   const bookingId = req.params.bookingId;
-//   const userEmail = req.body.userEmail; // Assuming we send the user's email in the request body
-
-//   if (!ObjectId.isValid(bookingId)) {
-//     res.status(400).send({ error: "Invalid bookingId" });
-//     return;
-//   }
-
-//   try {
-//     const result = await fetchCollection("bookings").deleteOne({
-//       _id: new ObjectId(bookingId),
-//       userEmail: userEmail,
-//     });
-
-//     if (result.deletedCount === 1) {
-//       res.status(204).send(); // Return a 204 No Content status on successful deletion
-//     } else {
-//       res.status(404).send({ error: "Booking not found" });
-//     }
-//   } catch (err) {
-//     res.status(500).send({ error: "Error deleting booking" });
-//   }
-// });
-
-// export default router;
-
 router.delete("/bookings/:bookingId", async (req, res) => {
   const bookingId = req.params.bookingId;
-  const userEmail = req.body.userEmail;
+  const userEmail = req.body.userEmail; // Assuming we send the user's email in the request body
 
-  // Input validation
-  if (!ObjectId.isValid(bookingId) || !userEmail) {
-    res.status(400).send({ error: "Invalid input data" });
+  if (!ObjectId.isValid(bookingId)) {
+    res.status(400).send({ error: "Invalid bookingId" });
     return;
   }
 
@@ -148,7 +120,6 @@ router.delete("/bookings/:bookingId", async (req, res) => {
       res.status(404).send({ error: "Booking not found" });
     }
   } catch (err) {
-    console.error(err); // Log the detailed error for debugging
     res.status(500).send({ error: "Error deleting booking" });
   }
 });
