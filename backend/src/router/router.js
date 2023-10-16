@@ -100,7 +100,7 @@ router.post("/book/screening", async (req, res) => {
 
 // Trying delete
 router.delete("/bookings/:bookingId", async (req, res) => {
-  console.log("DELETE request received")
+  console.log("DELETE request recieved");
   const bookingId = req.params.bookingId;
   const userEmail = req.body.userEmail; // Assuming we send the user's email in the request body
 
