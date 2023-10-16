@@ -36,24 +36,39 @@ router.get("/movie/:id", async (req, res) => {
 })
 
 // POST booking information
-router.post("/book/screening", (req, res) => {
+router.post("/book/screening", async (req, res) => {
     const bookingInformation = req.body;
 
+    // check for required fields
     if (bookingInformation.email == undefined || 
         bookingInformation.bookingNumber == undefined || 
         bookingInformation.seats == undefined || 
         bookingInformation.price == undefined || 
-        bookingInformation.screening_id == undefined)
+        bookingInformation.screening_id == undefined) {
         
-    return res.status(400).send("Missing information"); // 400: bad request
+        return res.status(400).send("Missing information"); // 400: bad request
+    }
 
-    let result = fetchCollection("bookings").insertOne({
-        email: bookingInformation.email,
-        bookingNumber: bookingInformation.bookingNumber,
-        seats: bookingInformation.bookedSeats,
-        price: bookingInformation.price,
-        screening_id: bookingInformation.screening_id
-    })
- })
+    try {
+        // insert the new booking into the database
+        let result = await fetchCollection("bookings").insertOne({
+            email: bookingInformation.email,
+            bookingNumber: bookingInformation.bookingNumber,
+            seats: bookingInformation.seats,
+            price: bookingInformation.price,
+            screening_id: bookingInformation.screening_id
+        });
+
+        // if successful, return the new booking
+        if (result.insertedCount > 0) {
+            return res.status(201).send(result.ops[0]); // 201: created
+        } else {
+            return res.status(500).send("An error occurred while booking"); // 500: internal server error
+        }
+    } catch (error) {
+        // if an error occurred, return it
+        return res.status(500).send(error.message); // 500: internal server error
+    }
+});
  
 export default router;
