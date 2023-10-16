@@ -49,20 +49,19 @@ router.put("/update/screening/:id", async (req, res) => {
     if (
         bookingInformation.email == undefined ||
         bookingInformation.bookingNumber == undefined ||
-        bookingInformation.seats == undefined ||
-        bookingInformation.price == undefined ||
-        bookingInformation.screening_id == undefined
+        bookingInformation.bookedSeats == undefined
       ) {
         return res.status(400).send("Missing information"); // 400: bad request
       }
 
     if (ObjectId.isValid(screeningId)) {
 
+        // Räkna ut pris i backend
         const result = await fetchCollection("bookings").insertOne({
             email: bookingInformation.email,
             bookingNumber: bookingInformation.bookingNumber,
             price: bookingInformation.price,
-            screening_id: bookingInformation.screening_id
+            screeningId: screeningId
         });
 
         if (!result.acknowledged) {
