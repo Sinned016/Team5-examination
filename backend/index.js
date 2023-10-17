@@ -1,13 +1,10 @@
 import express from "express";
 import router from "./src/router/router.js";
-import dotenv from "dotenv"
-//import process from "process"
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 import authRouter from "./src/router/authRouter.js";
-
-dotenv.config();
-//console.log(process.env.USERNAME);
+import * as env from "dotenv";
+env.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

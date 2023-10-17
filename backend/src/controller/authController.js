@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
 import { fetchCollection } from "../mongo/mongoClient.js";
+import jwtUtil from "../util/jwtUtil.js";
+
 // create a new user with email, hashed password and role if the email is not existing.
 async function createUser(email, password) {
   const salt = await bcrypt.genSalt();
@@ -26,4 +28,29 @@ async function register(req, res) {
   }
 }
 
-export default { register };
+// Authenticate when user login
+async function authenticate(email, password) {
+  const result = await fetchCollection("users").findOne({ email });
+  if (result == undefined) return false;
+  const isMatch = await bcrypt.compare(password, result.password);
+  return isMatch;
+}
+
+async function login(req, res) {
+  const { email, password } = req.body;
+
+  if (email == undefined || password == undefined) {
+    res.status(400).send("Bad credentials");
+  } else {
+    const isMatch = await authenticate(email, password);
+    if (isMatch) {
+      const user = await fetchCollection("users").findOne({ email });
+      const role = user.role;
+      const accessToken = jwtUtil.generate(email, role);
+      return res.status(200).send({ message: "Successfully Logged in", accessToken });
+    } else {
+      return res.status(400).send("Bad credentials. Invalid email/password");
+    }
+  }
+}
+export default { register, login };

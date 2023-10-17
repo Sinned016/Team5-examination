@@ -42,6 +42,26 @@ router.get("/movie/:id", async (req, res) => {
         .toArray();
       res.status(200).send(movie);
     }
+  } else {
+    res.status(404).send({ error: "Could not fetch the document" });
+  }
+});
+
+// get specific screening that the user picks with movie details
+router.get("/screening/:id", async (req, res) => {
+  const screeningId = req.params.id;
+
+  if (ObjectId.isValid(screeningId)) {
+    try {
+      const screening = await fetchCollection(
+        "screeningsWithMovieDetails"
+      ).findOne({ _id: new ObjectId(screeningId) });
+      res.status(200).send(screening);
+    } catch (err) {
+      res.status(500).send(err.clientMessage);
+    }
+  } else {
+    res.status(404).send({ error: "Could not fetch the document" });
   }
 });
 
@@ -49,20 +69,33 @@ router.get("/movie/:id", async (req, res) => {
 router.put("/update/screening/:id", async (req, res) => {
   const screeningId = new ObjectId(req.params.id);
   const bookingInformation = req.body;
+
+  // Räknar ut pris i backend
+  function addTotalPrice(barn, vuxen, pensionär) {
+    const childPrice = barn * 80;
+    const adultPrice = vuxen * 140;
+    const seniorPrice = pensionär * 120;
+    return childPrice + adultPrice + seniorPrice;
+  }
+
+  const fullPrice = addTotalPrice(
+    bookingInformation.barn,
+    bookingInformation.vuxen,
+    bookingInformation.pensionär
+  );
+
   if (
     bookingInformation.email == undefined ||
-    bookingInformation.bookingNumber == undefined ||
     bookingInformation.bookedSeats == undefined
   ) {
     return res.status(400).send("Missing information"); // 400: bad request
   }
 
   if (ObjectId.isValid(screeningId)) {
-    // Räkna ut pris i backend
     const result = await fetchCollection("bookings").insertOne({
       email: bookingInformation.email,
       bookingNumber: bookingInformation.bookingNumber,
-      price: bookingInformation.price,
+      price: fullPrice,
       screeningId: screeningId,
     });
 
@@ -77,9 +110,11 @@ router.put("/update/screening/:id", async (req, res) => {
         );
       }
 
-      res.status(200).send({
-        hello: `You booked ${bookingInformation.bookedSeats.length} seats!`,
-      });
+      res
+        .status(200)
+        .send({
+          hello: `You booked ${bookingInformation.bookedSeats.length} seats! Price: ${fullPrice}`,
+        });
     }
   }
 });
@@ -89,7 +124,7 @@ router.get("/bookings/:email", async (req, res) => {
   const loggedInUserMail = req.params.email;
 
   try {
-    const bookings = await fetchCollection("bookings")
+    const bookings = await fetchCollection("bookingWithTicketsAndScreening")
       .find({ email: loggedInUserMail })
       .toArray();
     res.status(200).send(bookings);
