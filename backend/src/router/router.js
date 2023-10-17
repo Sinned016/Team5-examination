@@ -46,9 +46,19 @@ router.get("/movie/:id", async (req, res) => {
 router.put("/update/screening/:id", async (req, res) => {
     const screeningId = new ObjectId(req.params.id);
     const bookingInformation = req.body;
+    
+  // Räknar ut pris i backend
+    function addTotalPrice(barn, vuxen, pensionär) {
+      const childPrice = barn * 80;
+      const adultPrice = vuxen * 140;
+      const seniorPrice = pensionär * 120;
+      return childPrice + adultPrice + seniorPrice;
+    }
+
+    const fullPrice = addTotalPrice(bookingInformation.barn, bookingInformation.vuxen, bookingInformation.pensionär)
+
     if (
         bookingInformation.email == undefined ||
-        bookingInformation.bookingNumber == undefined ||
         bookingInformation.bookedSeats == undefined
       ) {
         return res.status(400).send("Missing information"); // 400: bad request
@@ -56,11 +66,10 @@ router.put("/update/screening/:id", async (req, res) => {
 
     if (ObjectId.isValid(screeningId)) {
 
-        // Räkna ut pris i backend
         const result = await fetchCollection("bookings").insertOne({
             email: bookingInformation.email,
             bookingNumber: bookingInformation.bookingNumber,
-            price: bookingInformation.price,
+            price: fullPrice,
             screeningId: screeningId
         });
 
@@ -73,7 +82,7 @@ router.put("/update/screening/:id", async (req, res) => {
                 await fetchCollection("screenings").updateOne({_id: screeningId}, {$set: {[bookedSeatsString]: result.insertedId}});
             }
 
-            res.status(200).send({hello: `You booked ${bookingInformation.bookedSeats.length} seats!`});
+            res.status(200).send({hello: `You booked ${bookingInformation.bookedSeats.length} seats! Price: ${fullPrice}`});
         }
     }
 });
