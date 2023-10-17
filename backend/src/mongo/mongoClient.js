@@ -14,7 +14,8 @@ function fetchDatabase() {
     return db;
   }
 
-  const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@fe22-cluster.bj36kwm.mongodb.net/?retryWrites=true&w=majority`;
+  const url = `mongodb+srv://sinned:wnIMWE2VVZo0mYTt@team5.b809lmc.mongodb.net/
+  `;
   const client = new MongoClient(url);
 
   db = client.db(appDatabaseName);
