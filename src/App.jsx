@@ -5,10 +5,10 @@ import { Outlet } from "react-router-dom";
 export default function App() {
   const [socket, setSocket] = useState(null);
 
-  // Setup the socket
+  // Setup a socket connection
   useEffect(() => {
-    const newSocket = socketIOClient("http://localhost:5003");
-    setSocket(newSocket);
+    const newSocket = socketIOClient("http://localhost:5003"); // Initialize the socket, establish socket connection to server
+    setSocket(newSocket); // Hold the active socket connection
 
     // Clean up: Disconnect the socket as the component unmounts
     return () => newSocket.disconnect();

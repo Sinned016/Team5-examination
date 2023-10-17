@@ -17,7 +17,7 @@ const httpServer = createServer(app);
 // Create a socket.io server instance on httpServer
 const io = new Server(httpServer, {
   cors: {
-    origin: "*", // The origin that is allowed to access the server
+    origin: "*", // Allowing any origin to connect to this socket.io server
   },
 });
 
@@ -25,11 +25,14 @@ httpServer.listen(port, () => {
   console.log(`backend started on http://localhost:${port}`);
 });
 
+// Listening for new connections from clients
+// Each connection presented by the 'socket' object which has a unique 'id'
 io.on("connection", (socket) => {
   console.log("A user connected: " + socket.id);
-
+  // Event listeners for individual sockets, we have different events to listen on (adjustable to our case)
+  // The server takes "seatInfo" and sends the same event to all other connected clients
   socket.on("seat-selected", (seatInfo) => {
-    socket.broadcast.emit("seat-selected", seatInfo);
+    socket.broadcast.emit("seat-selected", seatInfo); // 'broadcast.emit' method sends the event and seatInfo to every client except for the sender
   });
 
   socket.on("seat-unselected", (seatInfo) => {
@@ -44,6 +47,8 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("seat-cancelled", seatInfo);
   });
 
+  // Handling disconnections
+  // When a client disconnects, the server logs a message which user/socket's unique id has disconnected
   socket.on("disconnect", () => {
     console.log("A user disconnected: " + socket.id);
   });
