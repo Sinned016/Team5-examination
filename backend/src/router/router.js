@@ -110,7 +110,7 @@ router.put("/update/screening/:id", async (req, res) => {
       res
         .status(200)
         .send({
-          hello: `You booked ${bookingInformation.bookedSeats.length} seats! Price: ${fullPrice}`,
+          hello: `You booked ${bookingInformation.bookedSeats.length} seats! Price: ${fullPrice}`
         });
     }
   }
@@ -131,23 +131,31 @@ router.get("/bookings/:email", async (req, res) => {
 });
 
 router.delete("/bookings/:id", async (req, res) => {
-  //Ändrat bookingID till :_id
-  const bookingId = req.params.id; //Ändrat bookingID till _id
-  const userEmail = req.body.userEmail;
-  console.log(bookingId)
-  console.log(userEmail)
+
+  const bookingId = req.params.id;
 
   if (ObjectId.isValid(bookingId)) {
 
-    const booking = await fetchCollection("bookings").deleteOne({ _id: new ObjectId(bookingId) })
+    const booking = await fetchCollection("bookings").deleteOne({ _id: new ObjectId(bookingId) });
 
     if(booking.deletedCount == 0) {
-      res.status(404).send({error: "Could not delete the booking"})
+      res.status(404).send({error: "Could not delete the booking"});
     } else {
-      res.status(200).send(booking)
+
+      const screening = await fetchCollection("screenings").findOne({ _id: new ObjectId(req.body.screeningId) });
+  
+      for (let i = 0; i < screening.seats.length; i++) {
+        for (let j = 0; j < screening.seats[i].length; j++) {
+          const seat = screening.seats[i][j];
+
+          if (seat && ObjectId.isValid(seat) && new ObjectId(seat).equals(new ObjectId(bookingId))) {
+            const deleteBookedSeat = `seats.${[i]}.${[j]}`;
+            await fetchCollection("screenings").updateOne({ _id: new ObjectId(req.body.screeningId) }, { $set: {[deleteBookedSeat]: 0 }});
+          }
+        }
+      }
+      res.status(200).send({result: "You deleted your booking and the seats are now free again!"});
     }
-
-
 
   } else {
     res.status(404).send({ error: "Could not fetch the document" });
