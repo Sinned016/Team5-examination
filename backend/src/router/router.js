@@ -126,14 +126,14 @@ router.get("/bookings/:email", async (req, res) => {
 
 router.delete("/bookings/:_id", async (req, res) => {
   //Ändrat bookingID till :_id
-  const bookingId = req.params._id; //Ändrat bookingID till _id
+  const bookingId = req.params.bookingId; //Ändrat bookingID till _id
   const userEmail = req.body.userEmail;
   try {
     // Start a transaction-like sequence
 
     // Delete from the first collection
     const deleteBooking = await fetchCollection("bookings").deleteOne({
-      _id: new ObjectId(bookingId),
+      bookingId: new ObjectId(bookingId),
       userEmail: userEmail,
     });
 
