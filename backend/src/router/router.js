@@ -77,11 +77,9 @@ router.put("/update/screening/:id", async (req, res) => {
         );
       }
 
-      res
-        .status(200)
-        .send({
-          hello: `You booked ${bookingInformation.bookedSeats.length} seats!`,
-        });
+      res.status(200).send({
+        hello: `You booked ${bookingInformation.bookedSeats.length} seats!`,
+      });
     }
   }
 });
@@ -100,28 +98,65 @@ router.get("/bookings/:email", async (req, res) => {
   }
 });
 
-// Trying delete
-router.delete("/bookings/:bookingId", async (req, res) => {
-  const bookingId = req.params.bookingId;
-  const userEmail = req.body.userEmail; // Assuming we send the user's email in the request body
+// // Trying delete, only one collection
+// router.delete("/bookings/:_id", async (req, res) => {
+//   const bookingId = req.params._id;
+//   const userEmail = req.body.userEmail; // Assuming we send the user's email in the request body
 
-  if (!ObjectId.isValid(bookingId)) {
-    res.status(400).send({ error: "Invalid bookingId" });
-    return;
-  }
+//   if (!ObjectId.isValid(bookingId)) {
+//     res.status(400).send({ error: "Invalid bookingId" });
+//     return;
+//   }
 
+//   try {
+//     const result = await fetchCollection("bookings").deleteOne({
+//       _id: new ObjectId(bookingId),
+//       userEmail: userEmail,
+//     });
+
+//     if (result.deletedCount === 1) {
+//       res.status(204).send(); // Return a 204 No Content status on successful deletion
+//     } else {
+//       res.status(404).send({ error: "Booking not found" });
+//     }
+//   } catch (err) {
+//     res.status(500).send({ error: "Error deleting booking" });
+//   }
+// });
+
+router.delete("/bookings/:_id", async (req, res) => {
+  //Ändrat bookingID till :_id
+  const bookingId = req.params._id; //Ändrat bookingID till _id
+  const userEmail = req.body.userEmail;
   try {
-    const result = await fetchCollection("bookings").deleteOne({
+    // Start a transaction-like sequence
+
+    // Delete from the first collection
+    const deleteBooking = await fetchCollection("bookings").deleteOne({
       _id: new ObjectId(bookingId),
       userEmail: userEmail,
     });
 
-    if (result.deletedCount === 1) {
-      res.status(204).send(); // Return a 204 No Content status on successful deletion
-    } else {
+    // Check if the first deletion was successful
+    if (deleteBooking.deletedCount !== 1) {
       res.status(404).send({ error: "Booking not found" });
+      return;
     }
+
+    // Delete from the second collection
+    const deleteScreenings = await fetchCollection("screenings").deleteMany({
+      bookingId: new ObjectId(bookingId),
+    });
+
+    // Check if the second deletion was successful
+    if (deleteScreenings.deletedCount < 1) {
+      // Handle the case when nothing was deleted in the second collection
+    }
+
+    // If both deletions were successful, send a 204 No Content response
+    res.status(204).send();
   } catch (err) {
+    console.error(err);
     res.status(500).send({ error: "Error deleting booking" });
   }
 });
