@@ -3,7 +3,7 @@ import * as env from "dotenv";
 env.config();
 
 let db = undefined;
-const appDatabaseName = "chat-project";
+const appDatabaseName = "filmvisarna";
 
 export function fetchCollection(name) {
   return fetchDatabase().collection(name);
