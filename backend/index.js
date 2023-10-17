@@ -4,6 +4,9 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import authRouter from "./src/router/authRouter.js";
+import * as env from "dotenv";
+env.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -67,6 +70,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api", router);
+app.use("/api", authRouter);
 
 // serve the dist folder (the production code for our frontend)
 // that you generate by writing "npm run build"
