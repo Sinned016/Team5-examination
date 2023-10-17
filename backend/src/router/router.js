@@ -25,6 +25,18 @@ router.get("/movies", async (req, res) => {
   }
 });
 
+
+// get all screenings with movie details
+router.get("/screeningsAndMovies", async (req, res) => {
+  try {
+      const screeningsWithMovieDetails = await fetchCollection("screeningsWithMovieDetails").find().toArray();
+      res.status(200).send(screeningsWithMovieDetails);
+  } catch(err) {
+      res.status(500).send(err.clientMessage);
+  }
+});
+
+
 // get a specific movie and screenings for that movie
 router.get("/movie/:id", async (req, res) => {
   const movieId = req.params.id;
@@ -66,6 +78,7 @@ router.get("/screening/:id", async (req, res) => {
 });
 
 // Making a booking and updating seats in screenings / Dennis / Mikael
+
 router.put("/update/screening/:id", async (req, res) => {
   const screeningId = new ObjectId(req.params.id);
   const bookingInformation = req.body;
