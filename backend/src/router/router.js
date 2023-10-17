@@ -39,8 +39,28 @@ router.get("/movie/:id", async (req, res) => {
       movie.screenings = await fetchCollection("screenings").find({ movieId: movie._id }).toArray();
       res.status(200).send(movie);
     }
-}});
+  } else {
+    res.status(404).send({error: 'Could not fetch the document'})
+  }
+});
 
+// get specific screening that the user picks with movie details
+router.get("/screening/:id", async (req, res) => {
+  const screeningId = req.params.id;
+
+  if(ObjectId.isValid(screeningId)) {
+    
+    try {
+      const screening = await fetchCollection("screeningsWithMovieDetails").findOne({ _id: new ObjectId(screeningId)});
+      res.status(200).send(screening);
+    } catch(err) {
+      res.status(500).send(err.clientMessage);
+    }
+
+  } else {
+    res.status(404).send({error: 'Could not fetch the document'});
+  }
+});
 
 // Making a booking and updating seats in screenings / Dennis / Mikael
 router.put("/update/screening/:id", async (req, res) => {
