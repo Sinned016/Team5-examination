@@ -84,7 +84,7 @@ router.get("/bookings/:email", async (req, res) => {
   const loggedInUserMail = req.params.email;
 
     try {
-        const bookings = await fetchCollection("bookings").find({email: loggedInUserMail}).toArray();
+        const bookings = await fetchCollection("bookingWithTicketsAndScreening").find({email: loggedInUserMail}).toArray();
         res.status(200).send(bookings);
     } catch(err) {
         res.status(500).send(err.clientMessage);
