@@ -46,6 +46,7 @@ router.get("/movie/:id", async (req, res) => {
 router.put("/update/screening/:id", async (req, res) => {
     const screeningId = new ObjectId(req.params.id);
     const bookingInformation = req.body;
+    
     if (
         bookingInformation.email == undefined ||
         bookingInformation.bookingNumber == undefined ||
