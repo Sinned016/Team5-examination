@@ -73,7 +73,7 @@ router.get("/screening/:id", async (req, res) => {
 });
 
 // Making a booking and updating seats in screenings / Dennis / Mikael
-router.put("/update/screening/:id", async (req, res) => {
+router.put("/update/screening/:id", async  (req, res) => {
     const screeningId = new ObjectId(req.params.id);
     const bookingInformation = req.body;
     
