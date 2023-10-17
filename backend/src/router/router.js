@@ -104,10 +104,7 @@ router.put("/update/screening/:id", async (req, res) => {
     } else {
       for (let i = 0; i < bookingInformation.bookedSeats.length; i++) {
         const bookedSeatsString = `seats.${bookingInformation.bookedSeats[i][0]}.${bookingInformation.bookedSeats[i][1]}`;
-        await fetchCollection("screenings").updateOne(
-          { _id: screeningId },
-          { $set: { [bookedSeatsString]: result.insertedId } }
-        );
+        await fetchCollection("screenings").updateOne({ _id: screeningId }, { $set: { [bookedSeatsString]: result.insertedId } });
       }
 
       res
@@ -133,40 +130,27 @@ router.get("/bookings/:email", async (req, res) => {
   }
 });
 
-router.delete("/bookings/:_id", async (req, res) => {
+router.delete("/bookings/:id", async (req, res) => {
   //Ändrat bookingID till :_id
-  const bookingId = req.params.bookingId; //Ändrat bookingID till _id
+  const bookingId = req.params.id; //Ändrat bookingID till _id
   const userEmail = req.body.userEmail;
-  try {
-    // Start a transaction-like sequence
+  console.log(bookingId)
+  console.log(userEmail)
 
-    // Delete from the first collection
-    const deleteBooking = await fetchCollection("bookings").deleteOne({
-      bookingId: new ObjectId(bookingId),
-      userEmail: userEmail,
-    });
+  if (ObjectId.isValid(bookingId)) {
 
-    // Check if the first deletion was successful
-    if (deleteBooking.deletedCount !== 1) {
-      res.status(404).send({ error: "Booking not found" });
-      return;
+    const booking = await fetchCollection("bookings").deleteOne({ _id: new ObjectId(bookingId) })
+
+    if(booking.deletedCount == 0) {
+      res.status(404).send({error: "Could not delete the booking"})
+    } else {
+      res.status(200).send(booking)
     }
 
-    // Delete from the second collection
-    const deleteScreenings = await fetchCollection("screenings").deleteMany({
-      bookingId: new ObjectId(bookingId),
-    });
 
-    // Check if the second deletion was successful
-    if (deleteScreenings.deletedCount < 1) {
-      // Handle the case when nothing was deleted in the second collection
-    }
 
-    // If both deletions were successful, send a 204 No Content response
-    res.status(204).send();
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ error: "Error deleting booking" });
+  } else {
+    res.status(404).send({ error: "Could not fetch the document" });
   }
 });
 
