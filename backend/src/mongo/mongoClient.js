@@ -14,8 +14,7 @@ function fetchDatabase() {
     return db;
   }
 
-  const url = `mongodb+srv://team5-user:Myz0fpusrD9YfT44@team5.b809lmc.mongodb.net/
-  `;
+  const url = `mongodb+srv://sinned:wnIMWE2VVZo0mYTt@team5.b809lmc.mongodb.net/`;
   const client = new MongoClient(url);
 
   db = client.db(appDatabaseName);
