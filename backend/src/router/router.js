@@ -77,9 +77,9 @@ router.get("/screening/:id", async (req, res) => {
   }
 });
 
-// Making a booking and updating seats in screenings / Dennis / Mikael
 
-router.put("/update/screening/:id", async (req, res) => {
+// Making a booking and updating seats in screenings / Dennis / Mikael
+router.put("/screening/:id", async (req, res) => {
   const screeningId = new ObjectId(req.params.id);
   const bookingInformation = req.body;
 
@@ -120,11 +120,7 @@ router.put("/update/screening/:id", async (req, res) => {
         await fetchCollection("screenings").updateOne({ _id: screeningId }, { $set: { [bookedSeatsString]: result.insertedId } });
       }
 
-      res
-        .status(200)
-        .send({
-          hello: `You booked ${bookingInformation.bookedSeats.length} seats! Price: ${fullPrice}`
-        });
+      res.status(200).send({hello: `You booked ${bookingInformation.bookedSeats.length} seats`, price: fullPrice});
     }
   }
 });
