@@ -4,6 +4,14 @@ import { fetchCollection } from "../mongo/mongoClient.js";
 
 const router = express.Router();
 
+// Räknar ut pris i backend
+function addTotalPrice(barn, vuxen, pensionär) {
+  const childPrice = barn * 80;
+  const adultPrice = vuxen * 140;
+  const seniorPrice = pensionär * 120;
+  return childPrice + adultPrice + seniorPrice;
+}
+
 //GET screenings
 router.get("/screenings", async (req, res) => {
   try {
@@ -83,12 +91,11 @@ router.put("/screening/:id", async (req, res) => {
   const screeningId = new ObjectId(req.params.id);
   const bookingInformation = req.body;
 
-  // Räknar ut pris i backend
-  function addTotalPrice(barn, vuxen, pensionär) {
-    const childPrice = barn * 80;
-    const adultPrice = vuxen * 140;
-    const seniorPrice = pensionär * 120;
-    return childPrice + adultPrice + seniorPrice;
+  if (
+    bookingInformation.email == undefined ||
+    bookingInformation.bookedSeats == undefined
+  ) {
+    return res.status(400).send("Missing information"); // 400: bad request
   }
 
   const fullPrice = addTotalPrice(
@@ -96,13 +103,6 @@ router.put("/screening/:id", async (req, res) => {
     bookingInformation.vuxen,
     bookingInformation.pensionär
   );
-
-  if (
-    bookingInformation.email == undefined ||
-    bookingInformation.bookedSeats == undefined
-  ) {
-    return res.status(400).send("Missing information"); // 400: bad request
-  }
 
   if (ObjectId.isValid(screeningId)) {
     const result = await fetchCollection("bookings").insertOne({
