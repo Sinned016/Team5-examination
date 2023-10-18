@@ -12,6 +12,20 @@ function addTotalPrice(barn, vuxen, pensionär) {
   return childPrice + adultPrice + seniorPrice;
 }
 
+// Generera bokningsID
+function generateId() {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const charactersLength = characters.length;
+  const numbers = '0123456789';
+  const numbersLength = numbers.length;
+
+  for (let i = 0; i < 2; i++) { result += characters.charAt(Math.floor(Math.random() * charactersLength)); }
+  for (let j = 0; j < 2; j++) { result += numbers.charAt(Math.floor(Math.random() * numbersLength)); }
+
+  return result;
+}
+
 //GET screenings
 router.get("/screenings", async (req, res) => {
   try {
@@ -91,22 +105,28 @@ router.put("/screening/:id", async (req, res) => {
   const screeningId = new ObjectId(req.params.id);
   const bookingInformation = req.body;
 
-  if (
-    bookingInformation.email == undefined ||
-    bookingInformation.bookedSeats == undefined
-  ) {
-    return res.status(400).send("Missing information"); // 400: bad request
-  }
-
   const fullPrice = addTotalPrice(
     bookingInformation.barn,
     bookingInformation.vuxen,
     bookingInformation.pensionär
   );
 
+  const bookingNumber = generateId();
+
+  if (
+    bookingInformation.email == undefined ||
+    bookingInformation.bookedSeats == undefined
+  ) {
+    return res.status(400).send("Missing information"); // 400: bad request
+  }
+<<<<<<< HEAD
+
+=======
+  
+>>>>>>> 2bb5ffbbeea79a2dbb69c013b272e90eabacda2c
   if (ObjectId.isValid(screeningId)) {
     const existingBooking = await fetchCollection("bookings").findOne({
-      bookingNumber: bookingInformation.bookingNumber
+      bookingNumber: bookingNumber
     });
 
     if (existingBooking) {
@@ -114,7 +134,7 @@ router.put("/screening/:id", async (req, res) => {
     } else {
           const bookedResult = await fetchCollection("bookings").insertOne({
           email: bookingInformation.email,
-          bookingNumber: bookingInformation.bookingNumber,
+          bookingNumber: bookingNumber,
           price: fullPrice,
           screeningId: screeningId,
         });
