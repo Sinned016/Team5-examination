@@ -6,7 +6,7 @@ function generateEmailTemplate(bookingInformation) {
   
         <table style="width: 50%; margin-top: 20px; border-collapse: collapse;">
           <tr style="background-color: #f5f5f5;">
-            <td style="padding: 10px; border: 1px solid #ddd;">Bokningsnummer/td>
+            <td style="padding: 10px; border: 1px solid #ddd;">Bokningsnummer</td>
             <td style="padding: 10px; border: 1px solid #ddd;">${bookingInformation.bookingNumber}</td>
           </tr>
           <tr>
