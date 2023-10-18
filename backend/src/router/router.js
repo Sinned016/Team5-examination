@@ -119,7 +119,11 @@ router.put("/screening/:id", async (req, res) => {
   ) {
     return res.status(400).send("Missing information"); // 400: bad request
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 2bb5ffbbeea79a2dbb69c013b272e90eabacda2c
   if (ObjectId.isValid(screeningId)) {
     const existingBooking = await fetchCollection("bookings").findOne({
       bookingNumber: bookingNumber
