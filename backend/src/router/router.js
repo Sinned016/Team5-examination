@@ -26,6 +26,17 @@ function generateId() {
   return result;
 }
 
+// get all movies
+router.get("/movies", async (req, res) => {
+  try {
+    const movies = await fetchCollection("movies").find().toArray();
+    res.status(200).send(movies);
+  } catch (err) {
+    res.status(500).send(err.clientMessage);
+  }
+});
+
+
 //GET screenings
 router.get("/screenings", async (req, res) => {
   try {
@@ -34,16 +45,6 @@ router.get("/screenings", async (req, res) => {
   } catch (err) {
     res.status(500);
     res.send(err.clientMessage);
-  }
-});
-
-// get all movies
-router.get("/movies", async (req, res) => {
-  try {
-    const movies = await fetchCollection("movies").find().toArray();
-    res.status(200).send(movies);
-  } catch (err) {
-    res.status(500).send(err.clientMessage);
   }
 });
 
