@@ -21,16 +21,16 @@ function generateEmailTemplate(bookedSeats, bookingNumber, fullPrice) {
   
         <table style="width: 50%; margin-top: 20px; border-collapse: collapse;">
           <tr style="background-color: #f5f5f5;">
-            <td style="padding: 10px; border: 1px solid #ddd;">Bokningsnummer</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">Bokningsnummer:</td>
             <td style="padding: 10px; border: 1px solid #ddd;">${bookingNumber}</td>
           </tr>
           <tr>
-            <td style="padding: 10px; border: 1px solid #ddd;">Plats</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">Plats:</td>
             <td style="padding: 10px; border: 1px solid #ddd;">${bookedSeats}</td>
           </tr>
           <tr style="background-color: #f5f5f5;">
-            <td style="padding: 10px; border: 1px solid #ddd;">Kostnad(betalning sker på plats)</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${fullPrice}</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">Kostnad(betalning sker på plats):</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${fullPrice} kr</td>
           </tr>
 
         </table>

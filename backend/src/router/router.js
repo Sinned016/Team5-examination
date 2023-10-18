@@ -116,11 +116,12 @@ router.put("/screening/:id", async (req, res) => {
 
   const bookingNumber = generateId();
 
+  // Generate email content - Josefine
   const htmlContent = emailService.generateEmailTemplate(
     bookingInformation.bookedSeats,
     bookingNumber,
     fullPrice
-  ); // Generate email content - Josefine
+  );
 
   if (bookingInformation.email == undefined || bookingInformation.bookedSeats == undefined) {
     return res.status(400).send("Missing information"); // 400: bad request
