@@ -91,11 +91,27 @@ router.put("/screening/:id", async (req, res) => {
     return childPrice + adultPrice + seniorPrice;
   }
 
+  // Generera bokningsID
+  function generateId() {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const charactersLength = characters.length;
+    const numbers = '0123456789';
+    const numbersLength = numbers.length;
+
+    for (let i = 0; i < 2; i++) { result += characters.charAt(Math.floor(Math.random() * charactersLength)); }
+    for (let j = 0; j < 2; j++) { result += numbers.charAt(Math.floor(Math.random() * numbersLength)); }
+
+    return result;
+}
+
   const fullPrice = addTotalPrice(
     bookingInformation.barn,
     bookingInformation.vuxen,
     bookingInformation.pensionär
   );
+
+  const bookingNumber = generateId();
 
   if (
     bookingInformation.email == undefined ||
@@ -107,7 +123,7 @@ router.put("/screening/:id", async (req, res) => {
   if (ObjectId.isValid(screeningId)) {
     const result = await fetchCollection("bookings").insertOne({
       email: bookingInformation.email,
-      bookingNumber: bookingInformation.bookingNumber,
+      bookingNumber: bookingNumber,
       price: fullPrice,
       screeningId: screeningId,
     });
