@@ -105,22 +105,36 @@ router.put("/screening/:id", async (req, res) => {
   );
 
   if (ObjectId.isValid(screeningId)) {
-    const result = await fetchCollection("bookings").insertOne({
-      email: bookingInformation.email,
-      bookingNumber: bookingInformation.bookingNumber,
-      price: fullPrice,
-      screeningId: screeningId,
+    const existingBooking = await fetchCollection("bookings").findOne({
+      bookingNumber: bookingInformation.bookingNumber
     });
 
-    if (!result.acknowledged) {
-      res.status(404).send({ error: "Could not POST the document" });
+    if (existingBooking) {
+      return res.status(404).send("A booking with this bookingNumber already exists")
     } else {
-      for (let i = 0; i < bookingInformation.bookedSeats.length; i++) {
-        const bookedSeatsString = `seats.${bookingInformation.bookedSeats[i][0]}.${bookingInformation.bookedSeats[i][1]}`;
-        await fetchCollection("screenings").updateOne({ _id: screeningId }, { $set: { [bookedSeatsString]: result.insertedId } });
-      }
+          const bookedResult = await fetchCollection("bookings").insertOne({
+          email: bookingInformation.email,
+          bookingNumber: bookingInformation.bookingNumber,
+          price: fullPrice,
+          screeningId: screeningId,
+        });
 
-      res.status(200).send({hello: `You booked ${bookingInformation.bookedSeats.length} seats`, price: fullPrice});
+        const insertedId = bookedResult.insertedId;
+
+        let results = []
+        for (let i = 0; i < bookingInformation.bookedSeats.length; i++) {
+          const bookedSeatsString = `seats.${bookingInformation.bookedSeats[i][0]}.${bookingInformation.bookedSeats[i][1]}`;
+          const result = await fetchCollection("screenings").updateOne(
+            { _id: screeningId, [bookedSeatsString]: 0 }, 
+            { $set: { [bookedSeatsString]: insertedId } });
+
+        if (result.modifiedCount === 1) {
+          results.push({result: `You booked seat ${bookingInformation.bookedSeats[i]}`, price: fullPrice});
+        } else {
+          results.push({error: `Seat ${bookingInformation.bookedSeats[i]} is already taken`});
+        }
+      }
+      res.send(results);
     }
   }
 });
