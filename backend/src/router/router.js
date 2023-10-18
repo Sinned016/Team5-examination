@@ -107,7 +107,6 @@ router.put("/screening/:id", async (req, res) => {
   const screeningId = new ObjectId(req.params.id);
   const bookingInformation = req.body;
   const userEmail = bookingInformation.email; // Get userEmail in order to send out an email confirmation to it - Josefine
-  const htmlContent = emailService.generateEmailTemplate(bookingInformation); // Generate email content - Josefine
 
   const fullPrice = addTotalPrice(
     bookingInformation.barn,
@@ -116,6 +115,12 @@ router.put("/screening/:id", async (req, res) => {
   );
 
   const bookingNumber = generateId();
+
+  const htmlContent = emailService.generateEmailTemplate(
+    bookingInformation.bookedSeats,
+    bookingNumber,
+    fullPrice
+  ); // Generate email content - Josefine
 
   if (bookingInformation.email == undefined || bookingInformation.bookedSeats == undefined) {
     return res.status(400).send("Missing information"); // 400: bad request
