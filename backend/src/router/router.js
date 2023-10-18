@@ -4,6 +4,28 @@ import { fetchCollection } from "../mongo/mongoClient.js";
 
 const router = express.Router();
 
+// Räknar ut pris i backend
+function addTotalPrice(barn, vuxen, pensionär) {
+  const childPrice = barn * 80;
+  const adultPrice = vuxen * 140;
+  const seniorPrice = pensionär * 120;
+  return childPrice + adultPrice + seniorPrice;
+}
+
+// Generera bokningsID
+function generateId() {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const charactersLength = characters.length;
+  const numbers = '0123456789';
+  const numbersLength = numbers.length;
+
+  for (let i = 0; i < 2; i++) { result += characters.charAt(Math.floor(Math.random() * charactersLength)); }
+  for (let j = 0; j < 2; j++) { result += numbers.charAt(Math.floor(Math.random() * numbersLength)); }
+
+  return result;
+}
+
 //GET screenings
 router.get("/screenings", async (req, res) => {
   try {
@@ -77,25 +99,19 @@ router.get("/screening/:id", async (req, res) => {
   }
 });
 
-// Making a booking and updating seats in screenings / Dennis / Mikael
 
-router.put("/update/screening/:id", async (req, res) => {
+// Making a booking and updating seats in screenings / Dennis / Mikael
+router.put("/screening/:id", async (req, res) => {
   const screeningId = new ObjectId(req.params.id);
   const bookingInformation = req.body;
-
-  // Räknar ut pris i backend
-  function addTotalPrice(barn, vuxen, pensionär) {
-    const childPrice = barn * 80;
-    const adultPrice = vuxen * 140;
-    const seniorPrice = pensionär * 120;
-    return childPrice + adultPrice + seniorPrice;
-  }
 
   const fullPrice = addTotalPrice(
     bookingInformation.barn,
     bookingInformation.vuxen,
     bookingInformation.pensionär
   );
+
+  const bookingNumber = generateId();
 
   if (
     bookingInformation.email == undefined ||
@@ -105,26 +121,39 @@ router.put("/update/screening/:id", async (req, res) => {
   }
 
   if (ObjectId.isValid(screeningId)) {
-    const result = await fetchCollection("bookings").insertOne({
-      email: bookingInformation.email,
-      bookingNumber: bookingInformation.bookingNumber,
-      price: fullPrice,
-      screeningId: screeningId,
+    const existingBooking = await fetchCollection("bookings").findOne({
+      bookingNumber: bookingNumber
     });
 
-    if (!result.acknowledged) {
-      res.status(404).send({ error: "Could not POST the document" });
+    if (existingBooking) {
+      return res.status(404).send("A booking with this bookingNumber already exists")
     } else {
-      for (let i = 0; i < bookingInformation.bookedSeats.length; i++) {
-        const bookedSeatsString = `seats.${bookingInformation.bookedSeats[i][0]}.${bookingInformation.bookedSeats[i][1]}`;
-        await fetchCollection("screenings").updateOne({ _id: screeningId }, { $set: { [bookedSeatsString]: result.insertedId } });
-      }
-
-      res
-        .status(200)
-        .send({
-          hello: `You booked ${bookingInformation.bookedSeats.length} seats! Price: ${fullPrice}`
+          const bookedResult = await fetchCollection("bookings").insertOne({
+          email: bookingInformation.email,
+          bookingNumber: bookingNumber,
+          price: fullPrice,
+          screeningId: screeningId,
         });
+
+        const insertedId = bookedResult.insertedId;
+
+        let results = {
+          fullprice: fullPrice,
+          bookedSeats: []
+        }
+        for (let i = 0; i < bookingInformation.bookedSeats.length; i++) {
+          const bookedSeatsString = `seats.${bookingInformation.bookedSeats[i][0]}.${bookingInformation.bookedSeats[i][1]}`;
+          const result = await fetchCollection("screenings").updateOne(
+            { _id: screeningId, [bookedSeatsString]: 0 }, 
+            { $set: { [bookedSeatsString]: insertedId } });
+
+        if (result.modifiedCount === 1) {
+          results.bookedSeats.push({result: `You booked seat ${bookingInformation.bookedSeats[i]}`});
+        } else {
+          results.bookedSeats.push({error: `Seat ${bookingInformation.bookedSeats[i]} is already taken`});
+        }
+      }
+      res.send(results);
     }
   }
 });
