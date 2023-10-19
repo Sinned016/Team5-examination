@@ -64,16 +64,16 @@ async function login(req, res) {
   const { email, password } = req.body;
 
   if (email == undefined || password == undefined) {
-    res.status(400).send("Bad credentials");
+    res.status(400).send("Dåliga referenser");
   } else {
     const isMatch = await authenticate(email, password);
     if (isMatch) {
       const user = await fetchCollection("users").findOne({ email });
       const role = user.role;
       const accessToken = jwtUtil.generate(email, role);
-      return res.status(200).send({ message: "Successfully Logged in", accessToken });
+      return res.status(200).send({ message: "Du loggade in!", accessToken });
     } else {
-      return res.status(400).send("Bad credentials. Invalid email/password");
+      return res.status(400).send("Dåliga referenser. Ogiltig e-postadress/lösenord");
     }
   }
 }
