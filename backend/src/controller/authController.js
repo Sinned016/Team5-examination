@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { fetchCollection } from "../mongo/mongoClient.js";
 import jwtUtil from "../util/jwtUtil.js";
+import e from "express";
 
 // create a new user with email, hashed password and role if the email is not existing.
 async function createUser(email, password) {
@@ -16,15 +17,38 @@ async function createUser(email, password) {
 // handle post request and validate the input
 async function register(req, res) {
   const { email, password } = req.body;
-  if (email == undefined || password == undefined)
-    return res.status(400).send("Missing email or password"); // 400: bad request
+  if (!email || typeof email !== "string") {
+    return res.status(400).send("Invalid email");
+  }
 
-  let result = await createUser(email, password);
+  if (!password || typeof password !== "string") {
+    return res.status(400).send("Invalid password");
+  }
 
-  if (result.upsertedCount == 1) {
-    return res.status(201).send("Account created successfully!"); // 201: created
-  } else {
-    return res.status(409).send("Account already exists"); // 409: conflict
+  if (password.length < 6) {
+    return res.status(400).send("Password too short. Should be at least 6 characters");
+  }
+
+  if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
+    return res
+      .status(400)
+      .send("The password must contain a capital letter, a lowercase letter and a digit!");
+  }
+
+  // Check if the password contains spaces
+  if (/\s/.test(password)) {
+    return res.status(400).send("Password should not contain spaces");
+  }
+
+  try {
+    const result = await createUser(email, password);
+    if (result.upsertedCount == 1) {
+      return res.status(201).send("Account created successfully!"); // 201: created
+    } else {
+      return res.status(409).send("Account already exists"); // 409: conflict
+    }
+  } catch (error) {
+    return res.status(500).send("Server error");
   }
 }
 
