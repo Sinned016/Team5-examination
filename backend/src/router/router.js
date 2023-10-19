@@ -154,7 +154,6 @@ router.put("/screening/:id", async (req, res) => {
           { _id: screeningId, [bookedSeatsString]: 0 },
           { $set: { [bookedSeatsString]: insertedId } }
         );
-
         if (result.modifiedCount === 1) {
           results.bookedSeats.push({
             result: `You booked seat ${bookingInformation.bookedSeats[i]}`,
@@ -166,29 +165,29 @@ router.put("/screening/:id", async (req, res) => {
         }
       }
       res.send(results);
-    }
-  }
-  // Send confirmation email to user when the seats are successfully booked
-  try {
-    const transporter = emailService.createTransporter();
-    let mailOptions = {
-      from: "filmvisarnateam@gmail.com",
-      to: userEmail,
-      subject: "Bokningsbekräftelse från Filmvisarna",
-      html: htmlContent,
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-        res.status(500).send("Failed to send email"); // 500 Internal Server Error
-      } else {
-        console.log("Email sent: " + info.response);
-        res.status(200).send("Booking and Email sent successfully");
+      // Send confirmation email to user when the seats are successfully booked
+      try {
+        const transporter = emailService.createTransporter();
+        let mailOptions = {
+          from: "filmvisarnateam@gmail.com",
+          to: userEmail,
+          subject: "Bokningsbekräftelse från Filmvisarna",
+          html: htmlContent,
+        };
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.log(error);
+            res.status(500).send("Failed to send email"); // 500 Internal Server Error
+          } else {
+            console.log("Email sent: " + info.response);
+            res.status(200).send("Booking and Email sent successfully");
+          }
+        });
+      } catch (error) {
+        console.error("Failed to send confirmation email:", error);
+        return res.status(500).send("Failed to send email");
       }
-    });
-  } catch (error) {
-    console.error("Failed to send confirmation email:", error);
-    return res.status(500).send("Failed to send email");
+    }
   }
 });
 
