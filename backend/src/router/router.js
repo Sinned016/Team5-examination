@@ -70,7 +70,7 @@ router.get("/movie/:id", async (req, res) => {
     });
 
     if (movie == null) {
-      res.status(404).send({ error: "Could not fetch the document" });
+      res.status(404).send({ error: "Det gick inte att hämta dokumentet" });
     } else {
       movie.screenings = await fetchCollection("screenings")
         .find({ movieId: movie._id })
@@ -78,7 +78,7 @@ router.get("/movie/:id", async (req, res) => {
       res.status(200).send(movie);
     }
   } else {
-    res.status(404).send({ error: "Could not fetch the document" });
+    res.status(404).send({ error: "Det gick inte att hämta dokumentet" });
   }
 });
 
@@ -96,7 +96,7 @@ router.get("/screening/:id", async (req, res) => {
       res.status(500).send(err.clientMessage);
     }
   } else {
-    res.status(404).send({ error: "Could not fetch the document" });
+    res.status(404).send({ error: "Kunde inte hämta dokumentet" });
   }
 });
 
@@ -118,7 +118,7 @@ router.put("/screening/:id", async (req, res) => {
     bookingInformation.email == undefined ||
     bookingInformation.bookedSeats == undefined
   ) {
-    return res.status(400).send("Missing information"); // 400: bad request
+    return res.status(400).send("Saknad information"); // 400: bad request
   }
 
   if (ObjectId.isValid(screeningId)) {
@@ -127,7 +127,7 @@ router.put("/screening/:id", async (req, res) => {
     });
 
     if (existingBooking) {
-      return res.status(404).send("A booking with this bookingNumber already exists")
+      return res.status(404).send("En bokning med detta bokningsnummer finns redan")
     } else {
           const bookedResult = await fetchCollection("bookings").insertOne({
           email: bookingInformation.email,
@@ -140,6 +140,8 @@ router.put("/screening/:id", async (req, res) => {
 
         let results = {
           fullprice: fullPrice,
+          bookingNumber: bookingNumber,
+          screeningId: screeningId,
           bookedSeats: []
         }
         for (let i = 0; i < bookingInformation.bookedSeats.length; i++) {
@@ -149,9 +151,9 @@ router.put("/screening/:id", async (req, res) => {
             { $set: { [bookedSeatsString]: insertedId } });
 
         if (result.modifiedCount === 1) {
-          results.bookedSeats.push({result: `You booked seat ${bookingInformation.bookedSeats[i]}`});
+          results.bookedSeats.push({result: `Du bokade säte ${bookingInformation.bookedSeats[i]}`});
         } else {
-          results.bookedSeats.push({error: `Seat ${bookingInformation.bookedSeats[i]} is already taken`});
+          results.bookedSeats.push({error: `Säte ${bookingInformation.bookedSeats[i]} är upptaget`});
         }
       }
       res.send(results);
@@ -183,7 +185,7 @@ router.delete("/bookings/:id", async (req, res) => {
     const booking = await fetchCollection("bookings").deleteOne({ _id: new ObjectId(bookingId) });
 
     if(booking.deletedCount == 0) {
-      res.status(404).send({error: "Could not delete the booking"});
+      res.status(404).send({error: "Det gick inte att ta bort bokningen"});
     } else {
 
       const screening = await fetchCollection("screenings").findOne({ _id: new ObjectId(req.body.screeningId) });
@@ -198,11 +200,11 @@ router.delete("/bookings/:id", async (req, res) => {
           }
         }
       }
-      res.status(200).send({result: "You deleted your booking and the seats are now free again!"});
+      res.status(200).send({result: "Du raderade din bokning och platserna är nu lediga"});
     }
 
   } else {
-    res.status(404).send({ error: "Could not fetch the document" });
+    res.status(404).send({ error: "Det gick inte att hämta dokumentet" });
   }
 });
 

@@ -17,14 +17,14 @@ async function createUser(email, password) {
 async function register(req, res) {
   const { email, password } = req.body;
   if (email == undefined || password == undefined)
-    return res.status(400).send("Missing email or password"); // 400: bad request
+    return res.status(400).send("E-postadress eller lösenord saknas"); // 400: bad request
 
   let result = await createUser(email, password);
 
   if (result.upsertedCount == 1) {
-    return res.status(201).send("Account created successfully!"); // 201: created
+    return res.status(201).send("Kontot har skapats!"); // 201: created
   } else {
-    return res.status(409).send("Account already exists"); // 409: conflict
+    return res.status(409).send("Kontot finns redan"); // 409: conflict
   }
 }
 
@@ -40,16 +40,16 @@ async function login(req, res) {
   const { email, password } = req.body;
 
   if (email == undefined || password == undefined) {
-    res.status(400).send("Bad credentials");
+    res.status(400).send("Dåliga referenser");
   } else {
     const isMatch = await authenticate(email, password);
     if (isMatch) {
       const user = await fetchCollection("users").findOne({ email });
       const role = user.role;
       const accessToken = jwtUtil.generate(email, role);
-      return res.status(200).send({ message: "Successfully Logged in", accessToken });
+      return res.status(200).send({ message: "Du loggade in!", accessToken });
     } else {
-      return res.status(400).send("Bad credentials. Invalid email/password");
+      return res.status(400).send("Dåliga referenser. Ogiltig e-postadress/lösenord");
     }
   }
 }
