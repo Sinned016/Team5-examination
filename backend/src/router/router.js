@@ -107,9 +107,9 @@ router.put("/screening/:id", async (req, res) => {
   const bookingInformation = req.body;
 
   const fullPrice = addTotalPrice(
-    bookingInformation.barn,
-    bookingInformation.vuxen,
-    bookingInformation.pensionär
+    bookingInformation.child,
+    bookingInformation.adult,
+    bookingInformation.senior
   );
 
   const bookingNumber = generateId();
