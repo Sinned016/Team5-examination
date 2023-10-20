@@ -137,6 +137,11 @@ router.put("/screening/:id", async (req, res) => {
     } else {
       const bookedResult = await fetchCollection("bookings").insertOne({
         email: bookingInformation.email,
+        movieTitle: bookingInformation.movieTitle,
+        theater: bookingInformation.theater,
+        date: bookingInformation.date,
+        time: bookingInformation.time,
+        seats: bookingInformation.bookedSeats,
         bookingNumber: bookingNumber,
         price: fullPrice,
         screeningId: screeningId,
@@ -145,6 +150,12 @@ router.put("/screening/:id", async (req, res) => {
       const insertedId = bookedResult.insertedId;
 
       let results = {
+        email: bookingInformation.email,
+        movieTitle: bookingInformation.movieTitle,
+        theater: bookingInformation.theater,
+        date: bookingInformation.date,
+        time: bookingInformation.time,
+        seats: bookingInformation.bookedSeats,
         fullPrice: fullPrice,
         bookingNumber: bookingNumber,
         screeningId: screeningId,
