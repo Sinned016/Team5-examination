@@ -119,8 +119,12 @@ router.put("/screening/:id", async (req, res) => {
 
   // Generate email content - Josefine
   const htmlContent = emailService.generateEmailTemplate(
-    bookingInformation.bookedSeats,
     bookingNumber,
+    bookingInformation.movieTitle,
+    bookingInformation.time,
+    bookingInformation.date,
+    bookingInformation.theater,
+    bookingInformation.bookedSeats,
     fullPrice
   );
 
