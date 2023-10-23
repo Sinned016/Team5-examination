@@ -16,7 +16,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div>
       <header id="header">
         <AppHeader />
         {/* <h1>Header component here!</h1> */}
@@ -27,6 +27,6 @@ export default function App() {
       <footer className="container-fluid mt-4">
         <h3>Footer component here!</h3>
       </footer>
-    </>
+    </div>
   );
 }
