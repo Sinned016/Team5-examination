@@ -1,0 +1,7 @@
+/* Accordions.css */
+.accordion-item {
+  margin: auto, auto;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 3px !important;
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import { Outlet } from "react-router-dom";
+import MovieBookingComponent from "./components/MovieBookingComponent";
 
 export default function App() {
   const [socket, setSocket] = useState(null);
@@ -22,6 +23,7 @@ export default function App() {
       <main>
         <Outlet />
       </main>
+      <MovieBookingComponent />
       <footer className="container-fluid mt-4">
         <h3>Footer component here!</h3>
       </footer>
