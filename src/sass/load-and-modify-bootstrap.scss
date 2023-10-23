@@ -4,14 +4,15 @@
 //$body-color: #eee;
 // $font-family-base: 'Roboto Slab';
 // Import Bootstrap
-
+//Override bootstrap variable
 $accordion-button-color: #ededed; // text color on button
 $accordion-button-active-bg: #3e7580;
 $accordion-button-active-color: white; //text color on button
-$accordion-button-bg: #0cdf5d;
+$accordion-button-bg: #2b2827; // bg color in the accordion header(button)
 $accordion-border-color: white; // border color of each item
 $accordion-bg: #2b2827; // bg in the accordion body
 $accordion-color: white; // font color in the accordion body
 $accordion-icon-color: white;
 
+//import bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
