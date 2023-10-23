@@ -29,7 +29,6 @@ function TicketWithPriceComponent({ onGetTickets }) {
 
   return (
     <div className="price-component">
-      <h2>This is Select Tickets Component</h2>
       <TicketCategoryComponent
         label="Vuxen:"
         price={adultPrice}
@@ -57,7 +56,10 @@ function TicketWithPriceComponent({ onGetTickets }) {
         <span className="total-label">Total: </span>
         <span className="total-value">{totalPrice} kr</span>
       </p>
-      <button onClick={() => onGetTickets(adultClicks, seniorClicks, childClicks)}>
+      <button
+        className="btn btn-secondary btn-lg"
+        onClick={() => onGetTickets(adultClicks, seniorClicks, childClicks)}
+      >
         Välj antal
       </button>
     </div>
