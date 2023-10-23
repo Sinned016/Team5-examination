@@ -1,9 +1,9 @@
 import Accordion from "react-bootstrap/Accordion";
-import "./Accordions.css";
+import "./MovieBookingComponent.css";
 
 function MovieBookingComponent() {
   return (
-    <Accordion defaultActiveKey="0" flush>
+    <Accordion defaultActiveKey={["0"]} alwaysOpen>
       <Accordion.Item eventKey="0">
         <Accordion.Header>1. Välj visning</Accordion.Header>
         <Accordion.Body>placeholder for dates of screenings</Accordion.Body>
