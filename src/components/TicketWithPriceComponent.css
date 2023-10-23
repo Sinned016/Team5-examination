@@ -1,0 +1,26 @@
+/* ShowPriceComponent.css */
+
+.price-component {
+  display: flex;
+  background-color: #1d1b1a;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.white-line {
+  border: 1px solid #fff;
+  width: 100%;
+}
+/* Style for the total price */
+
+.total-price {
+  margin-top: 0.8 rem;
+  align-self: self-end;
+  font-size: 1.2rem;
+}
+.total-price .total-value {
+  font-weight: bold;
+}
