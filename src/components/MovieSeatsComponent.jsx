@@ -5,28 +5,18 @@ import "./MovieSeatsComponent.css";
 let id = "652665cbac7404ee51b61940";
 
 function MovieSeatsComponent() {
-  useEffect(async () => {
-    const result = await fetch("http://localhost:5003/api/screening/${id}");
-    const data = await result.json();
-    const seatingLayouts = data.seats;
-    console.log(seatingLayouts);
-  }, []);
-
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [seatingLayout, setSeatingLayout] = useState(
-    // Placeholder seating layout (modify this with your actual layout)
-    // Each row is an array of seat status
-    // "0" for available, "selected" for selected, and "booked" for booked
-    [
-      [0, 0, 0, 0, 0, 0, 0, 0], // Row 1
-      [0, 0, 0, 0, 0, 0, 0, 0], // Row 2
-      [0, 0, 0, "booked", "booked", 0, 0, 0], // Row 3
-      [0, 0, 0, 0, 0, "booked", 0, 0], // Row 4
-      [0, 0, 0, 0, 0, 0, 0], // Row 5
-      [0, 0, 0, 0, 0, 0, 0], // Row 6
-    ]
-  );
+  const [seatingLayout, setSeatingLayout] = useState([]);
+  useEffect(() => {
+    async function fetchSeatingLayout() {
+      const result = await fetch(`/api/screening/${id}`);
+      const data = await result.json();
+      setSeatingLayout(data.seats);
+    }
 
+    fetchSeatingLayout();
+    console.log(seatingLayout);
+  }, []);
   const [socket, setSocket] = useState(null);
 
   // Setup the socket
@@ -71,6 +61,11 @@ function MovieSeatsComponent() {
 
   // Function to handle seat selection
   const handleSeatClick = (rowIndex, seatIndex) => {
+    const seatValue = seatingLayout[rowIndex][seatIndex];
+
+    // If the seat is booked, don't allow any interaction
+    if (typeof seatValue === "string") return;
+
     const selectedSeat = { row: rowIndex, seat: seatIndex };
     const isSelected = selectedSeats.some(
       (seat) => seat.row === selectedSeat.row && seat.seat === selectedSeat.seat
@@ -96,7 +91,6 @@ function MovieSeatsComponent() {
       }
     }
   };
-
   return (
     <div className="movie-wrap">
       <ul className="showcase">
@@ -122,7 +116,7 @@ function MovieSeatsComponent() {
             {row.map((seatStatus, seatIndex) => (
               <div
                 key={seatIndex}
-                className={`seat ${seatStatus}${
+                className={`seat ${typeof seatStatus === "string" ? "booked" : ""}${
                   selectedSeats.some((seat) => seat.row === rowIndex && seat.seat === seatIndex)
                     ? " selected"
                     : ""
