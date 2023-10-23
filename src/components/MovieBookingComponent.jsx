@@ -2,6 +2,7 @@ import Accordion from "react-bootstrap/Accordion";
 import { useState } from "react";
 import "./MovieBookingComponent.css";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
+import MovieSeatsComponent from "./MovieSeatsComponent";
 
 function MovieBookingComponent() {
   const [adultTickets, setAdultTickets] = useState(0);
@@ -30,7 +31,9 @@ function MovieBookingComponent() {
 
         <Accordion.Item eventKey="2">
           <Accordion.Header>3. Välj platser</Accordion.Header>
-          <Accordion.Body>placeholder for seats of a screening</Accordion.Body>
+          <Accordion.Body>
+            <MovieSeatsComponent />
+          </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="3">
