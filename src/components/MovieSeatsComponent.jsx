@@ -110,7 +110,6 @@ function MovieSeatsComponent() {
         </li>
       </ul>
       <div className="seats-container">
-        {/* Seating layout */}
         {seatingLayout.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
             {row.map((seatStatus, seatIndex) => (
