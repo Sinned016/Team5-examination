@@ -5,7 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "../sass/header.scss";
 // import Nav from "react-bootstrap/Navbar";
 
-export default function AppHeader() {
+export default function Header() {
   return (
     <Navbar expand="lg" className="navbar-body">
       <Container>
