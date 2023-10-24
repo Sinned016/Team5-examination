@@ -14,8 +14,9 @@ export default function Header() {
           <img
             className="company-logo"
             src="/public/images/filmvisarna_logotyp.png"
-            width={200}
-            height={70}
+            path
+            width="auto"
+            height="110"
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
