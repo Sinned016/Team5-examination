@@ -20,7 +20,8 @@ export default function App() {
       <header>
         <h1>Header component here!</h1>
       </header>
-      <Container className="fluid mt-3">
+      
+      <Container className="mt-2">
         <Row>
           <Col>
             <main>
@@ -28,8 +29,8 @@ export default function App() {
             </main>
           </Col>
         </Row>
-
       </Container>
+
       <footer className="container-fluid mt-4">
         <h3>Footer component here!</h3>
       </footer>
