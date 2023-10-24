@@ -1,0 +1,45 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+$primary-color: #1D1B1A;
+$primary-textcolor: #C0C0C0;
+
+.container {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+
+.company-logo {
+    display: flex;   
+}
+
+.navbar-body { 
+    // height: 100px;
+    background-color: $primary-color,
+}
+
+.dropdown-toggle,
+.dropdown-menu,
+.nav-item {
+    color: $primary-textcolor;
+    // display: flex;
+    
+}
+
+
+
+
+//Screensizes (desktop, phone)
+$small: 300px;
+$medium: 900px;
+
+.smth {
+  //some CSS
+  @media screen and (max-width: $small) {
+    //do Smth
+  }
+  @media screen and (min-width: $medium) {
+    //do Smth
+  }
+}
