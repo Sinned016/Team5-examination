@@ -31,17 +31,15 @@ export default function Movies() {
 
         return (
             <Col onClick={() => navigateToMovie(movieScreening.movieId)} className="card" key={movieScreening._id} xs={6} sm={6} md={4} lg={3} >
-                <div>
-                    <img className="movie-images" src={movieScreening.movieDetails[0].movieImg} alt={`Picture of the movie ${movieScreening.movieDetails[0].title}`} />
-                    <p>{movieScreening.movieDetails[0].title}</p>
-                </div>
+                <img className="movie-images" src={movieScreening.movieDetails[0].movieImg} alt={`Picture of the movie ${movieScreening.movieDetails[0].title}`} />
+                <p>{movieScreening.movieDetails[0].title}</p>
             </Col>
         )
     })
 
   return (
     <Container>
-        <Row>
+        <Row className="d-flex justify-content-center">
         {movies}
         </Row>
     </Container>

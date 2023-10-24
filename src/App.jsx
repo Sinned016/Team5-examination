@@ -20,16 +20,12 @@ export default function App() {
       <header>
         <h1>Header component here!</h1>
       </header>
-      
-      <Container className="mt-2">
-        <Row>
-          <Col>
-            <main>
-              <Outlet />
-            </main>
-          </Col>
-        </Row>
-      </Container>
+
+      <main>
+        <Container>
+            <Outlet />
+        </Container> 
+      </main>
 
       <footer className="container-fluid mt-4">
         <h3>Footer component here!</h3>

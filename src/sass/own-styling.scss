@@ -20,9 +20,11 @@ body {
 .card {
   color: white;
   background-color: #2B2827;
+  width: 177px;
+  padding: .5em;
 }
+
 .movie-images {
   width: 100%;
-  height: 250px; 
   object-fit: contain;
 }

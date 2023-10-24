@@ -7,8 +7,6 @@ export default function ScreeningsComponent() {
     console.log(g.moviesAndScreenings);
     const navigate = useNavigate();
 
-
-
   return (
     <Container>
         <Row>
