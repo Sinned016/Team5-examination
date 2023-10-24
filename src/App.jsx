@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import { Outlet } from "react-router-dom";
-import AppHeader from "./components/Header";
+import AppHeader from "./components/header";
 
 export default function App() {
   const [socket, setSocket] = useState(null);
