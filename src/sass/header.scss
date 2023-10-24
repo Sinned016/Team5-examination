@@ -2,40 +2,20 @@
 
 $primary-color: #1D1B1A;
 $primary-textcolor: #C0C0C0;
-
-.container {
-    height: 120px;
-    display: flex;
-    align-items: center;
-}
-
-.company-logo {
-    display: flex;   
-}
+$primary-btn-color: #2B2827;
 
 .navbar-body { 
     background-color: $primary-color,
 }
 
-.dropdown-toggle,
-.dropdown-menu,
-.nav-item {
-    color: $primary-textcolor;
+
+
+
+#dropdown-basic-button{
+  background-color: $primary-btn-color;
+  border: none
 }
 
-.navbar-toggler{
-    background-color: $primary-color;
-    border-radius: 2px;
-    border: 1.5px solid #554f4f; 
-}
-
-.navbar-toggler-icon {
-    color:#554f4f;
-}
-
-// .navbar-expand{
-    
-// }
 
 
 //Screensizes (desktop, phone)
