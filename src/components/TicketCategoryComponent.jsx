@@ -1,7 +1,7 @@
 import "./TicketCategoryComponent.css";
 export default function TicketCategoryComponent({ label, price, clicks, onAdd, onMinus }) {
   return (
-    <p className="ticket-category">
+    <div className="ticket-category">
       <label>{label}</label>
       <div className="counter-container">
         <button onClick={onMinus}>-</button>
@@ -9,6 +9,6 @@ export default function TicketCategoryComponent({ label, price, clicks, onAdd, o
         <button onClick={onAdd}>+</button>
       </div>
       <label> {price} kr</label>
-    </p>
+    </div>
   );
 }
