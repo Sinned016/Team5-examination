@@ -16,13 +16,13 @@ export default function ScreeningsComponent() {
   } else if (selectedFilter === "last") {
     sortedData = [...g.moviesAndScreenings].sort((a, b) => new Date(a.date) - new Date(b.date)).slice().reverse();
   }
-  console.log(sortedData)
+
   const screenings = sortedData.map((screening) => {
     return (
-      <Col key={screening._id} xs={12} sm={12} md={12} lg={12}>
-        <h3>{screening.date}</h3>
+      <Col className="screeningsContainer" key={screening._id} xs={12} sm={12} md={12} lg={12}>
+        <h3 className="screeningsDate text-center">{screening.date}</h3>
         <p>{screening.movieDetails[0].title}</p>
-        <p>{screening.time}</p>
+        <button className="screeningsBtn important">{screening.time}</button>
       </Col>
     )
   })
@@ -31,11 +31,9 @@ export default function ScreeningsComponent() {
     setSelectedFilter(eventKey);
   }
 
-  console.log(selectedFilter);
-
   return (
     <Container>
-      <Dropdown onSelect={handleDropdownSelect}>
+      <Dropdown className="text-center" onSelect={handleDropdownSelect}>
         <Dropdown.Toggle id="dropdown-basic">
           Filter
         </Dropdown.Toggle>
