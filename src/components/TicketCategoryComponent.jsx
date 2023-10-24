@@ -3,7 +3,7 @@ export default function TicketCategoryComponent({ label, price, clicks, onAdd, o
   return (
     <p className="ticket-category">
       <label>{label}</label>
-      <div>
+      <div className="counter-container">
         <button onClick={onMinus}>-</button>
         <span>{clicks}</span>
         <button onClick={onAdd}>+</button>
