@@ -1,4 +1,3 @@
-import "./TicketCategoryComponent.css";
 export default function TicketCategoryComponent({ label, price, clicks, onAdd, onMinus }) {
   return (
     <div className="ticket-category">

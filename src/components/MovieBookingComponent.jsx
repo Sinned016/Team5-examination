@@ -1,6 +1,5 @@
 import Accordion from "react-bootstrap/Accordion";
 import { useState } from "react";
-import "./MovieBookingComponent.css";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
 
 function MovieBookingComponent() {

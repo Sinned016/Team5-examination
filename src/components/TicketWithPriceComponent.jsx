@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./TicketWithPriceComponent.css";
 import TicketCategoryComponent from "./TicketCategoryComponent";
 
 function TicketWithPriceComponent({ onGetTickets }) {
