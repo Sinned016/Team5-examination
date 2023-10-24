@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import { Outlet } from "react-router-dom";
+import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 
 export default function App() {
   const [socket, setSocket] = useState(null);
@@ -16,14 +17,13 @@ export default function App() {
 
   return (
     <>
-      <header>
-        <h1>Header component here!</h1>
-      </header>
+      <header>{/* <h1>Header component here!</h1> */}</header>
       <main>
+        <BookingConfirmationPage /> {/* Remove later, just added for testing */}
         <Outlet />
       </main>
       <footer className="container-fluid mt-4">
-        <h3>Footer component here!</h3>
+        {/* <h3>Footer component here!</h3> */}
       </footer>
     </>
   );
