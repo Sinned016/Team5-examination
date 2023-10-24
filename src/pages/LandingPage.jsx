@@ -11,6 +11,7 @@ export default function LandingPage() {
         moviesAndScreenings: useFetch('/api/screeningsAndMovies')
     });
 
+
     const handleScrollToScreenings = () => {
       const screeningsComponentBtn = document.getElementById("screeningsComponentBtn");
       if (screeningsComponentBtn) {

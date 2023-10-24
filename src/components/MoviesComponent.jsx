@@ -13,6 +13,7 @@ export default function Movies() {
     }
 
     let previousMovieDetails = [];
+    
     const movies = g.moviesAndScreenings.map((movieScreening) => {
         const currentMovieDetails = movieScreening.movieDetails[0];
 

@@ -7,5 +7,12 @@
 // Import our own styling (one or several files)
 @import './own-styling.scss';
 
+// General stylings for everything
+@import './general.scss';
+
+// Landing page
+@import './landingPage.scss';
+
 // Footer
 @import './sticky-footer.scss';
+
