@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import { Outlet } from "react-router-dom";
+import { Container, Row, Col, } from 'react-bootstrap';
 
 export default function App() {
   const [socket, setSocket] = useState(null);
@@ -19,9 +20,16 @@ export default function App() {
       <header>
         <h1>Header component here!</h1>
       </header>
-      <main>
-        <Outlet />
-      </main>
+      <Container className="fluid mt-3">
+        <Row>
+          <Col>
+            <main>
+              <Outlet />
+            </main>
+          </Col>
+        </Row>
+
+      </Container>
       <footer className="container-fluid mt-4">
         <h3>Footer component here!</h3>
       </footer>
