@@ -39,7 +39,7 @@ export default function Header() {
               />
             </svg>
           }>
-          <Dropdown.Item href="#/register">
+          <Dropdown.Item href="#/api/register">
             Bli medlem {""}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ export default function Header() {
               <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z" />
             </svg>
           </Dropdown.Item>
-          <Dropdown.Item href="#/login">
+          <Dropdown.Item href="#/api/login">
             Logga in {""}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function Header() {
           </Dropdown.Item>
 
           {/* När inloggad! */}
-          {/* <Dropdown.Item href="#/bookings/:email">
+          {/* <Dropdown.Item href="#/api/bookings/:email">
             Bokningar {""}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ export default function Header() {
           </Dropdown.Item> */}
 
           {/* Logga ut! När inloggad*/}
-          {/* <Dropdown.Item href="#/screeningsAndMovies">
+          {/* <Dropdown.Item href="#/api/screeningsAndMovies">
             Logga ut {""}
             {""}
             <svg
