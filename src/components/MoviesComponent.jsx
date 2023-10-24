@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 export default function Movies() {
 
     const g = useStates('globalMovies');
-    console.log(g.moviesAndScreenings);
     const navigate = useNavigate();
 
     function navigateToMovie(movieId) {
@@ -13,7 +12,7 @@ export default function Movies() {
     }
 
     let previousMovieDetails = [];
-    
+
     const movies = g.moviesAndScreenings.map((movieScreening) => {
         const currentMovieDetails = movieScreening.movieDetails[0];
 
