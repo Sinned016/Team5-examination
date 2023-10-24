@@ -3,6 +3,7 @@
 $primary-color: #1D1B1A;
 $primary-textcolor: #C0C0C0;
 $primary-btn-color: #2B2827;
+$primary-background-cards: #2B2827;
 
 .navbar-body { 
     background-color: $primary-color,
@@ -12,10 +13,16 @@ $primary-btn-color: #2B2827;
 
 
 #dropdown-basic-button{
-  background-color: $primary-btn-color;
+  background-color: $primary-color;
   border: none
 }
 
+.dropdown-menu {
+  background-color: $primary-background-cards;
+}
+.dropdown-item{
+  color: $primary-textcolor
+}
 
 
 //Screensizes (desktop, phone)
