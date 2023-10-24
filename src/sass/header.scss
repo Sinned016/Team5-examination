@@ -9,13 +9,11 @@ $primary-textcolor: #C0C0C0;
     align-items: center;
 }
 
-
 .company-logo {
     display: flex;   
 }
 
 .navbar-body { 
-    // height: 100px;
     background-color: $primary-color,
 }
 
@@ -23,11 +21,21 @@ $primary-textcolor: #C0C0C0;
 .dropdown-menu,
 .nav-item {
     color: $primary-textcolor;
-    // display: flex;
-    
 }
 
+.navbar-toggler{
+    background-color: $primary-color;
+    border-radius: 2px;
+    border: 1.5px solid #554f4f; 
+}
 
+.navbar-toggler-icon {
+    color:#554f4f;
+}
+
+// .navbar-expand{
+    
+// }
 
 
 //Screensizes (desktop, phone)
