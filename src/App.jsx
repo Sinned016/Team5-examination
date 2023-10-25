@@ -9,6 +9,7 @@ export default function App() {
       <header>
         <h1>Header component here!</h1>{" "}
       </header>
+      <LoginPage />
 
       {/* <Container className="fluid mt-3">
         <Row>
@@ -27,7 +28,6 @@ export default function App() {
       </main>
 
       <MovieBookingComponent />
-      <LoginPage />
 
       <footer className="container-fluid mt-4">
         <h3>Footer component here!</h3>

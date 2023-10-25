@@ -1,29 +1,38 @@
+import { Container, Row, Col } from "react-bootstrap";
 import React, { useState } from "react";
+import "./LoginPage.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
-function LoginPage() {
-  const [password, setPassword] = useState("");
+export default function LoginPage() {
   const [email, setEmail] = useState("");
-  const [passwordError, setpasswordError] = useState("");
-  const [emailError, setemailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const handleValidation = (event) => {
+  const handleValidation = (e) => {
     let formIsValid = true;
 
-    if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+    if (password.length < 6) {
       formIsValid = false;
-      setemailError("Email Not Valid");
+      setPasswordError("Password too short. Should be at least 6 characters");
       return false;
-    } else {
-      setemailError("");
-      formIsValid = true;
     }
 
-    if (!password.match(/^[a-zA-Z]{8,22}$/)) {
+    if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
       formIsValid = false;
-      setpasswordError("Only Letters and length must best min 8 Chracters and Max 22 Chracters");
+      setPasswordError(
+        "The password must contain a capital letter, a lowercase letter, and a digit!"
+      );
+      return false;
+    }
+
+    if (/\s/.test(password)) {
+      formIsValid = false;
+      setPasswordError("Password should not contain spaces");
       return false;
     } else {
-      setpasswordError("");
+      setPasswordError("");
       formIsValid = true;
     }
 
@@ -36,52 +45,55 @@ function LoginPage() {
   };
 
   return (
-    <div className="App">
-      <div className="container">
-        <div className="row d-flex justify-content-center">
-          <div className="col-md-4">
-            <form id="loginform" onSubmit={loginSubmit}>
-              <div className="form-group">
-                <label>Email address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="EmailInput"
-                  name="EmailInput"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                  onChange={(event) => setEmail(event.target.value)}
-                />
-                <small id="emailHelp" className="text-danger form-text">
-                  {emailError}
-                </small>
-              </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
-                  onChange={(event) => setPassword(event.target.value)}
-                />
-                <small id="passworderror" className="text-danger form-text">
-                  {passwordError}
-                </small>
-              </div>
-              <div className="form-group form-check">
-                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                <label className="form-check-label">Check me out</label>
-              </div>
-              <button type="submit" className="btn btn-primary">
-                Submit
+    <Container
+      fluid
+      style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}
+    >
+      <form onSubmit={loginSubmit}>
+        <Row className="justify-content-center">
+          <Col>
+            <h1 className="text-center mb-4">Logga in</h1>
+            <div className="input-icon-container">
+              <FontAwesomeIcon icon={faEnvelope} className="icon" />
+              <input
+                type="email"
+                className="form-control with-icon"
+                name="emailInput"
+                aria-describedby="emailHelp"
+                placeholder="Email"
+                onChange={(event) => setEmail(event.target.value)}
+              />
+              <small className="text-danger form-text">{emailError}</small>
+            </div>
+            <div className="input-icon-container">
+              <FontAwesomeIcon icon={faLock} className="icon" />
+              <input
+                type="password"
+                className="form-control with-icon"
+                placeholder="Lösenord"
+                onChange={(event) => setPassword(event.target.value)}
+              />
+              <small className="text-danger form-text">{passwordError}</small>
+            </div>
+            <div className="form-group form-check">
+              <input type="checkbox" className="form-check-input" />
+              <label className="form-check-label">Kom ihåg mig</label>
+            </div>
+            <p className="text-center mt-3">
+              Glöm ditt lösenord? <span style={{ color: "#FFD700" }}>Återställ här!</span>
+            </p>
+            <p className="text-center">
+              Är du inte medlem men vill bli? <span style={{ color: "#FFD700" }}>Klicka här!</span>
+            </p>
+            <div className="d-flex justify-content-center mt-4">
+              <button className="btn cancel-btn me-2">AVBRYT</button>
+              <button className="btn login-btn  ms-2" type="submit">
+                LOGGA IN
               </button>
-            </form>
-          </div>
-          Source: <a href="https://askavy.com/react-form/">React Form</a>
-        </div>
-      </div>
-    </div>
+            </div>
+          </Col>
+        </Row>
+      </form>
+    </Container>
   );
 }
-export default LoginPage;
