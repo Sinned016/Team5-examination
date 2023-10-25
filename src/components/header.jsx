@@ -13,10 +13,9 @@ export default function Header() {
       <Container>
         {/* Kolla target i href */}
         <Navbar.Brand href="#/screeningsAndMovies">
-          <img
+        <img
             className="company-logo"
             src="/public/images/filmvisarna_logotyp.png"
-            path
             width="auto"
             height="110"
           />
