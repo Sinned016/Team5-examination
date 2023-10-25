@@ -1,27 +1,24 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
-$primary-color: #1D1B1A;
-$primary-textcolor: #C0C0C0;
-$primary-btn-color: #2B2827;
-$primary-background-cards: #2B2827;
+@import "./variables.scss";
 
 .navbar-body { 
-    background-color: $primary-color,
+  background-color: $background-color,
 }
 
 
 
 
 #dropdown-basic-button{
-  background-color: $primary-color;
+  background-color: $background-color;
   border: none
 }
 
 .dropdown-menu {
-  background-color: $primary-background-cards;
+  background-color: $cards-color;
 }
 .dropdown-item{
-  color: $primary-textcolor
+  color: $text-color
 }
 
 
