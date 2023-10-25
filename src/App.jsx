@@ -1,14 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Header from "./components/header";
 import { Container, Row, Col } from "react-bootstrap";
 import MovieBookingComponent from "./components/MovieBookingComponent";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   return (
     <div>
-      <header id="header">
-        <Header />
-        {/* <h1>Header component here!</h1> */}
+      <header>
+        <h1>Header component here!</h1>{" "}
       </header>
 
       {/* <Container className="fluid mt-3">
@@ -28,6 +27,7 @@ export default function App() {
       </main>
 
       <MovieBookingComponent />
+      <LoginPage />
 
       <footer className="container-fluid mt-4">
         <h3>Footer component here!</h3>
