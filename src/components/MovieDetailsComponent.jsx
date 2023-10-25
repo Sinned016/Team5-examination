@@ -15,6 +15,10 @@ export default function MovieCard() {
     const movieDetails = movieFetch.movieDetails[0];
     const movieTrailerLink = `https://www.youtube.com/embed/${movieDetails.link}`;
 
+    const hours = Math.floor(movieDetails.runtimeMin / 60);
+    const minutes = movieDetails.runtimeMin % 60;
+    const formattedTime = `${hours}:${minutes}`;
+
     return (
             <div className="movie-details-component">
                 <div className="movie-details-trailer">
@@ -35,7 +39,7 @@ export default function MovieCard() {
                     </div>
                     <div className="movie-details-runtime">
                         <p class="text-primary-detail-color">Längd</p>
-                        <p>{movieDetails.runtimeMin}</p>
+                        <p>{formattedTime}</p>
                     </div>
                 </div><hr />
                 <div className="movie-details-desc">
