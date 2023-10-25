@@ -12,7 +12,7 @@ export default function Header() {
     <Navbar expand="lg" className="navbar-body">
       <Container>
         {/* Kolla target i href */}
-        <Navbar.Brand href="#filmvisarna">
+        <Navbar.Brand href="#/screeningsAndMovies">
           <img
             className="company-logo"
             src="/public/images/filmvisarna_logotyp.png"
