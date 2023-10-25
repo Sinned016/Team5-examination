@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './sass/main.scss'
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import MovieDetailPage from './pages/MovieDetailPage';
 
 
 
 export const pages = [
-  //{ path: '/', label: 'Start', element: <StartPage /> }
-  
+  { path: '/', label: 'LandingPage', element: <LandingPage /> },
+  { path: '/movieDetailPage/:id', label: 'LandingPage', element:  <MovieDetailPage />},
 ]
 
 const router = createBrowserRouter([
