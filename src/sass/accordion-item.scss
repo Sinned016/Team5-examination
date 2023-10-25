@@ -1,0 +1,21 @@
+/* style for MovieBookingComponent */
+.accordion-item {
+  margin: auto, auto;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 3px !important;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+input.form-control {
+  width: 22rem;
+}
+
+.form-text {
+  color: white;
+}
