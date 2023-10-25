@@ -1,40 +1,35 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-
-$primary-color: #1D1B1A;
-$primary-textcolor: #C0C0C0;
-$primary-btn-color: #2B2827;
-$primary-background-cards: #2B2827;
+@import "./variables.scss";
 
 .navbar-body { 
-    background-color: $primary-color,
+  background-color: $background-color;
 }
 
-
-
-
-#dropdown-basic-button{
-  background-color: $primary-color;
-  border: none
+#dropdown-basic-button {
+  background-color: $background-color;
+  border: none;
 }
 
 .dropdown-menu {
-  background-color: $primary-background-cards;
-}
-.dropdown-item{
-  color: $primary-textcolor
+  background-color: $cards-color;
 }
 
+.dropdown-item {
+  color: $text-color;
+}
 
-//Screensizes (desktop, phone)
-$small: 300px;
+$small: 400px;
 $medium: 900px;
 
-.smth {
-  //some CSS
+/* Adjust the image width for specific screen widths */
+.company-logo {
+  width: 300px; /* Default width for large screens */
+
   @media screen and (max-width: $small) {
-    //do Smth
+    width: 150px; /* Width for small screens */
   }
+
   @media screen and (min-width: $medium) {
-    //do Smth
+    width: 500px; /* Width for medium and larger screens */
   }
 }
