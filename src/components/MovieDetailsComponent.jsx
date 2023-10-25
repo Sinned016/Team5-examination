@@ -13,6 +13,12 @@ export default function MovieCard() {
     })
     
     const movieDetails = movieFetch.movieDetails[0];
+
+    if (!movieDetails) {
+        console.log("Laddar...");
+        return;
+    }
+
     const movieTrailerLink = `https://www.youtube.com/embed/${movieDetails.link}`;
 
     const hours = Math.floor(movieDetails.runtimeMin / 60);
@@ -27,7 +33,7 @@ export default function MovieCard() {
                 <div className="movie-details-box">
                     <div className="movie-details-age-rest">
                         <p class="text-primary-detail-color">Åldersgräns</p>
-                        <p>{movieDetails.ageRestriction}</p>
+                        <p>{movieDetails.ageRestriction} år</p>
                     </div>
                     <div className="movie-details-subs">
                         <p class="text-primary-detail-color">Undertexter</p>
