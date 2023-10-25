@@ -2,6 +2,7 @@ import express from "express";
 import { ObjectId } from "mongodb";
 import { fetchCollection } from "../mongo/mongoClient.js";
 import emailService from "../service/emailService.js";
+import userFilter from "../filter/userFilter.js";
 
 const router = express.Router();
 
@@ -118,8 +119,12 @@ router.put("/screening/:id", async (req, res) => {
 
   // Generate email content - Josefine
   const htmlContent = emailService.generateEmailTemplate(
-    bookingInformation.bookedSeats,
     bookingNumber,
+    bookingInformation.movieTitle,
+    bookingInformation.time,
+    bookingInformation.date,
+    bookingInformation.theater,
+    bookingInformation.bookedSeats,
     fullPrice
   );
 
@@ -206,7 +211,7 @@ router.put("/screening/:id", async (req, res) => {
 });
 
 // Getting all bookings with the same mail as the logged in user (might change to Id later on)
-router.get("/bookings/:email", async (req, res) => {
+router.get("/bookings/:email", userFilter.authorize, async (req, res) => {
   const loggedInUserMail = req.params.email;
 
   try {
@@ -220,7 +225,7 @@ router.get("/bookings/:email", async (req, res) => {
 });
 
 // Delete booking and update seats
-router.delete("/bookings/:id", async (req, res) => {
+router.delete("/bookings/:id", userFilter.authorize, async (req, res) => {
   const bookingId = req.params.id;
 
   if (ObjectId.isValid(bookingId)) {

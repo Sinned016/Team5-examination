@@ -13,7 +13,15 @@ function createTransporter() {
   });
 }
 
-function generateEmailTemplate(bookedSeats, bookingNumber, fullPrice) {
+function generateEmailTemplate(
+  bookingNumber,
+  movieTitle,
+  time,
+  date,
+  theater,
+  bookedSeats,
+  fullPrice
+) {
   return `
       <div style="width: 50%; font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd;">
         <h2 style="color:#333;">Tack för din bokning!</h2>
@@ -24,15 +32,22 @@ function generateEmailTemplate(bookedSeats, bookingNumber, fullPrice) {
             <td style="padding: 10px; border: 1px solid #ddd;">Bokningsnummer:</td>
             <td style="padding: 10px; border: 1px solid #ddd;">${bookingNumber}</td>
           </tr>
+          <tr style="background-color: #f5f5f5;">
+          <td style="padding: 10px; border: 1px solid #ddd;">Film:</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">${movieTitle}</td>
+        </tr>
+        <tr style="background-color: #f5f5f5;">
+        <td style="padding: 10px; border: 1px solid #ddd;">Datum:</td>
+        <td style="padding: 10px; border: 1px solid #ddd;"> ${time} ${date} </td>
+      </tr>
           <tr>
             <td style="padding: 10px; border: 1px solid #ddd;">Plats:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${bookedSeats}</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${theater}, ${bookedSeats}</td>
           </tr>
           <tr style="background-color: #f5f5f5;">
             <td style="padding: 10px; border: 1px solid #ddd;">Kostnad(betalning sker på plats):</td>
             <td style="padding: 10px; border: 1px solid #ddd;">${fullPrice} kr</td>
           </tr>
-
         </table>
       </div>
     `;
