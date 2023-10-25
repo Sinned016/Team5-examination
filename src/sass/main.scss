@@ -4,6 +4,12 @@
 // Import Bootstrap and variable modifications
 @import "./load-and-modify-bootstrap.scss";
 
+// General stylings for everything
+@import './general.scss';
+
+// Landing page
+@import './landingPage.scss';
+
 // Footer
 @import "./sticky-footer.scss";
 

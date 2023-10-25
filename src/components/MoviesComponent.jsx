@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 export default function Movies() {
 
     const g = useStates('globalMovies');
-    console.log(g.moviesAndScreenings);
     const navigate = useNavigate();
 
     function navigateToMovie(movieId) {
@@ -13,6 +12,7 @@ export default function Movies() {
     }
 
     let previousMovieDetails = [];
+
     const movies = g.moviesAndScreenings.map((movieScreening) => {
         const currentMovieDetails = movieScreening.movieDetails[0];
 
@@ -31,17 +31,15 @@ export default function Movies() {
 
         return (
             <Col onClick={() => navigateToMovie(movieScreening.movieId)} className="card" key={movieScreening._id} xs={6} sm={6} md={4} lg={3} >
-                <div>
-                    <img className="movie-images" src={movieScreening.movieDetails[0].movieImg} alt={`Picture of the movie ${movieScreening.movieDetails[0].title}`} />
-                    <p>{movieScreening.movieDetails[0].title}</p>
-                </div>
+                <img className="movieImages" src={movieScreening.movieDetails[0].movieImg} alt={`Picture of the movie ${movieScreening.movieDetails[0].title}`} />
+                <p>{movieScreening.movieDetails[0].title}</p>
             </Col>
         )
     })
 
   return (
     <Container>
-        <Row>
+        <Row className="d-flex justify-content-center">
         {movies}
         </Row>
     </Container>
