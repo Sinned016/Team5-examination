@@ -1,17 +1,12 @@
-$background-color: #1D1B1A;
-$text-color: #EDEDED;
-$border-color: #C0C0C0;
-$btn-color: #2B2827;
-$cards-color: #2B2827;
-$important-color: #3E7580;
-$primary-detail-color: #FFD700;
-$secondary-detail-color: #F9D3B4;
 
-.card {
+
+.movieCard {
     color: #EDEDED;
-    background-color: #2B2827;
     width: 177px;
     padding: .5em;
+    border-radius: 2px;
+    background-color: #2B2827;
+    box-sizing: border-box;
 }
   
 .movieImages {

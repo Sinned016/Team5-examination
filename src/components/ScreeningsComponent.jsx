@@ -2,12 +2,15 @@ import { useStates } from "react-easier"
 import { Container, Row, Col, Dropdown } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import getDate from "../service/getCurrentDate";
 
 export default function ScreeningsComponent() {
   const g = useStates('globalMovies');
   const [selectedFilter, setSelectedFilter] = useState('first');
   const navigate = useNavigate();
+
+  function navigateToMovie(movieId) {
+    navigate(`/movieDetailPage/${movieId}`)
+  }
 
   let sortedData;
 
@@ -22,10 +25,10 @@ export default function ScreeningsComponent() {
       <Col className="screeningsContainer" key={screening._id} xs={12} sm={12} md={12} lg={12}>
         <h3 className="screeningsDate text-center">{screening.date}</h3>
         <p>{screening.movieDetails[0].title}</p>
-        <button className="screeningsBtn important">{screening.time}</button>
+        <button onClick={() =>navigateToMovie(screening.movieId)} className="screeningsBtn important">{screening.time}</button>
       </Col>
     )
-  })
+  });
 
   function handleDropdownSelect(eventKey) {
     setSelectedFilter(eventKey);

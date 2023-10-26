@@ -30,7 +30,7 @@ export default function Movies() {
         previousMovieDetails.push(currentMovieDetails);
 
         return (
-            <Col onClick={() => navigateToMovie(movieScreening.movieId)} className="card" key={movieScreening._id} xs={6} sm={6} md={4} lg={3} >
+            <Col onClick={() => navigateToMovie(movieScreening.movieId)} className="movieCard" key={movieScreening._id} xs={6} sm={6} md={4} lg={3}>
                 <img className="movieImages" src={movieScreening.movieDetails[0].movieImg} alt={`Picture of the movie ${movieScreening.movieDetails[0].title}`} />
                 <p>{movieScreening.movieDetails[0].title}</p>
             </Col>

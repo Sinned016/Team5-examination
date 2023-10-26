@@ -7,19 +7,9 @@ export default function App() {
   return (
     <div>
       <header id="header">
-        <Header />
-        {/* <h1>Header component here!</h1> */}
+        {/* <Header /> */}
+        <h1>Header component here!</h1>
       </header>
-
-      {/* <Container className="fluid mt-3">
-        <Row>
-          <Col>
-            <main>
-              <Outlet />
-            </main>
-          </Col>
-        </Row>
-      </Container> */}
 
       <main>
         <Container>
