@@ -1,17 +1,17 @@
 // Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&");
 
 // Import Bootstrap and variable modifications
 @import "./load-and-modify-bootstrap.scss";
 
 // General stylings for everything
-@import './general.scss';
+@import "./general.scss";
 
 // Header
 @import "./header.scss";
 
 // Landing page
-@import './landingPage.scss';
+@import "./landingPage.scss";
 
 // TicketCategoryComponent
 @import "./ticket-category.scss";
@@ -28,7 +28,5 @@
 // MovieDetailsComponent
 @import "./movieDetailsComponent.scss";
 
-
-
-
-
+// LoginPage
+@import "./loginPage.scss";

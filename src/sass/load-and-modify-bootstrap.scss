@@ -14,22 +14,25 @@ $accordion-bg: #2b2827; // bg in the accordion body
 $accordion-color: white; // font color in the accordion body
 $accordion-icon-color: white;
 
-$background-color: #1D1B1A;
-$text-color: #EDEDED;
-$border-color: #C0C0C0;
-$btn-color: #2B2827;
-$cards-color: #2B2827;
-$important-color: #3E7580;
-
-$primary-detail-color: #FFD700;
-$secondary-detail-color: #F9D3B4;
+$background-color: #1d1b1a;
+$text-color: #ededed;
+$border-color: #c0c0c0;
+$btn-color: #2b2827;
+$cards-color: #2b2827;
+$important-color: #3e7580;
+$primary-detail-color: #ffd700;
+$secondary-detail-color: #f9d3b4;
 
 * {
-    font-family: 'PT Sans', sans-serif !important;
+  font-family: "PT Sans", sans-serif !important;
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: 'Nunito', sans-serif !important;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Nunito", sans-serif !important;
 }
 
 //import bootstrap
