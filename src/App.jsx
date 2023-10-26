@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Header from "./components/header";
-import Footer from "./components/footer";
+// import Header from "./components/header";
+import Footer from "./components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import MovieBookingComponent from "./components/MovieBookingComponent";
 

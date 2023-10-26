@@ -1,19 +1,20 @@
-@import "./load-and-modify-bootstrap.scss";
-
 .footer {
     background-color: $background-color;
-    // width: 100%;
+    
 }
 .footer-items {
     display: flex;
-    flex: auto;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    // align-items: center;
 }
 .footer-item {
-    color: $text-color;
-    justify-content: center;
-    // flex-direction: row;
-    padding: 1em;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  color: $text-color;
+  padding: 1em;
 }
 
 //Screensizes (desktop, phone)

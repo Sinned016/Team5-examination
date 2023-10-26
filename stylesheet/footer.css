@@ -11978,16 +11978,20 @@ textarea.form-control-lg {
 }
 .footer {
   background-color: #1D1B1A;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .footer-items {
   display: flex;
-  flex: auto;
-  align-items: center;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
 }
 
 .footer-item {
+  flex: 1;
   color: #EDEDED;
-  justify-content: center;
   padding: 1em;
 }/*# sourceMappingURL=footer.css.map */

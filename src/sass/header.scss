@@ -1,13 +1,6 @@
-// @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-
-@import "./load-and-modify-bootstrap.scss";
-
 .navbar-body { 
-  background-color: $background-color,
+  background-color: $background-color;
 }
-
-
-
 
 #dropdown-basic-button{
   background-color: $background-color;
