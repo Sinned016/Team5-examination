@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useStates, useFetch } from "react-easier"
-import "../sass/variables.scss";
-import "../sass/movieDetailsComponent.scss";
+import { useStates, useFetch } from "react-easier";
 
 export default function MovieCard() {
     
