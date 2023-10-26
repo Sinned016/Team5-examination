@@ -2,13 +2,13 @@ import { Outlet } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import MovieBookingComponent from "./components/MovieBookingComponent";
 import LoginPage from "./pages/LoginPage";
+import Header from "./components/header";
 
 export default function App() {
   return (
     <div>
       <header id="header">
-        {/* <Header /> */}
-        <h1>Header component here!</h1>
+        <Header />
       </header>
 
       <LoginPage />
