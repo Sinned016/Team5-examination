@@ -1,19 +1,20 @@
 .footer {
-    background-color: $background-color;
+    // background-color: $background-color;
     
 }
 .footer-items {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;    
-    // align-items: center;
+    
 }
 .footer-item {
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
-  color: $text-color;
+  align-items: center;
+//   color: $text-color;
   padding: 1em;
 }
 
