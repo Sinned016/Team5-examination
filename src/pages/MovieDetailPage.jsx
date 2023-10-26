@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useStates, useFetch } from "react-easier";
 import MovieDetailsComponent from "../components/MovieDetailsComponent.jsx";
+import MovieBookingComponent from "../components/MovieBookingComponent.jsx";
 
 export default function movieDetailPage() {
     
@@ -12,6 +13,9 @@ export default function movieDetailPage() {
 })
 
   return (
-    <MovieDetailsComponent />
+    <>
+      <MovieDetailsComponent />
+      <MovieBookingComponent />
+    </>
   )
 }

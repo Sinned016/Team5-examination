@@ -19,7 +19,6 @@ export default function App() {
         </Container>
       </main>
 
-      <MovieBookingComponent />
 
       <footer className="container-fluid mt-4">
         <h3>Footer component here!</h3>
