@@ -1,0 +1,42 @@
+/* Style for each ticket category */
+.ticket-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.7rem;
+}
+
+.ticket-category label {
+  width: 5rem;
+  display: inline-block;
+  text-align: right;
+}
+
+.ticket-category .counter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-category button {
+  background-color: #3e7580;
+  font-size: 0.8 rem;
+  color: #fff;
+  border: none;
+  width: 27px;
+  height: 27px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin: 0 0.5em;
+}
+
+.ticket-category button:hover {
+  background-color: #254549;
+}
+
+.ticket-category span {
+  font-size: 1.2rem;
+  margin: 0 0.5em;
+}

@@ -1,0 +1,32 @@
+.navbar-body { 
+  background-color: $background-color;
+}
+
+#dropdown-basic-button {
+  background-color: $background-color;
+  border: none;
+}
+
+.dropdown-menu {
+  background-color: $cards-color;
+}
+
+.dropdown-item {
+  color: $text-color;
+}
+
+$small: 400px;
+$medium: 900px;
+
+/* Adjust the image width for specific screen widths */
+.company-logo {
+  width: 300px; /* Default width for large screens */
+
+  @media screen and (max-width: $small) {
+    width: 150px; /* Width for small screens */
+  }
+
+  @media screen and (min-width: $medium) {
+    width: 500px; /* Width for medium and larger screens */
+  }
+}

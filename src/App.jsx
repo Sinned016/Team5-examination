@@ -1,30 +1,24 @@
-import { useState, useEffect } from "react";
-import socketIOClient from "socket.io-client";
 import { Outlet } from "react-router-dom";
-import BookingConfirmationPage from "./pages/BookingConfirmationPage";
+import Footer from "./components/Footer";
+import { Container, Row, Col } from "react-bootstrap";
+import Header from "./components/Header";
 
 export default function App() {
-  const [socket, setSocket] = useState(null);
-
-  // Setup a socket connection
-  useEffect(() => {
-    const newSocket = socketIOClient("http://localhost:5003"); // Initialize the socket, establish socket connection to server
-    setSocket(newSocket); // Hold the active socket connection
-
-    // Clean up: Disconnect the socket as the component unmounts
-    return () => newSocket.disconnect();
-  }, []);
-
   return (
-    <>
-      <header>{/* <h1>Header component here!</h1> */}</header>
+    <div>
+      <header id="header">
+        <Header />
+      </header>
+
       <main>
-        <BookingConfirmationPage /> {/* Remove later, just added for testing */}
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </main>
+
       <footer className="container-fluid mt-4">
-        {/* <h3>Footer component here!</h3> */}
+        <Footer />
       </footer>
-    </>
+    </div>
   );
 }
