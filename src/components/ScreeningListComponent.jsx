@@ -12,19 +12,6 @@ export default function screeningList() {
         return;
     }
 
-    
-    let screeningList = [];
-
-    function createScreeningList(){
-        for (let i = 0; i < movieDetails.screenings.length; i++) {
-            screeningList.push(`${movieDetails.screenings[0].date}, ${movieDetails.screenings[0].time}, ${movieDetails.screenings[0].theater}. `);
-        }
-
-        return screeningList;
-    }
-
-    createScreeningList();
-
     return (
         <form className="screening-list">
             {movieDetails.screenings.map((screening, i) => {
@@ -38,12 +25,12 @@ export default function screeningList() {
                                 checked={selectedScreening === screening._id} 
                                 onChange={() => setSelectedScreening(screening._id)}
                             />
-                            {`${screening.date}, ${screening.time}, ${screening.theater}. `}
+                            {`${screening.date}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
                         </label>
                     </div>
             )})}
 
-            <button type="submit">Submit</button>
+            <button type="submit" className="btn login-btn ms-2">Submit</button>
         </form>
     );
 }
