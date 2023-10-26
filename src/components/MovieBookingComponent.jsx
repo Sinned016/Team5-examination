@@ -1,6 +1,7 @@
 import Accordion from "react-bootstrap/Accordion";
 import { useState } from "react";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
+import ScreeningListComponent from "./ScreeningListComponent";
 
 function MovieBookingComponent() {
   const [adultTickets, setAdultTickets] = useState(0);
@@ -35,7 +36,7 @@ function MovieBookingComponent() {
       <Accordion defaultActiveKey={["0"]} alwaysOpen>
         <Accordion.Item eventKey="0">
           <Accordion.Header>1. Välj visning</Accordion.Header>
-          <Accordion.Body>placeholder for dates of screenings</Accordion.Body>
+          <Accordion.Body><ScreeningListComponent /></Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">
           <Accordion.Header>2. Biljettyp och antal</Accordion.Header>

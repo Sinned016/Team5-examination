@@ -1,14 +1,8 @@
-import { useParams } from "react-router-dom";
-import { useStates, useFetch } from "react-easier";
+import { useStates } from "react-easier";
 
 export default function MovieCard() {
-    
-    const routeParams = useParams();
-    const id = routeParams.id;
 
-    const movieFetch = useStates({
-        movieDetails: useFetch(`/api/movie/${id}`)
-    })
+    const movieFetch = useStates('globalMovieState')
     
     const movieDetails = movieFetch.movieDetails[0];
 
