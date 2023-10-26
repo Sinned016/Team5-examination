@@ -1,6 +1,6 @@
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+// @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
-@import "./variables.scss";
+@import "./load-and-modify-bootstrap.scss";
 
 .navbar-body { 
   background-color: $background-color,
