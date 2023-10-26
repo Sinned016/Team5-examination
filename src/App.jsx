@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Footer from "./components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import Header from "./components/Header";
 
@@ -16,7 +17,7 @@ export default function App() {
       </main>
 
       <footer className="container-fluid mt-4">
-        <h3>Footer component here!</h3>
+        <Footer />
       </footer>
     </div>
   );
