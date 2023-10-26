@@ -4,6 +4,12 @@
 // Import Bootstrap and variable modifications
 @import "./load-and-modify-bootstrap.scss";
 
+// General stylings for everything
+@import "./general.scss";
+
+// Header
+@import "./header.scss";
+
 // Landing page
 @import "./landingPage.scss";
 
@@ -19,14 +25,5 @@
 // Footer
 @import "./sticky-footer.scss";
 
-* {
-  font-family: "PT Sans", sans-serif !important;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Nunito", sans-serif !important;
-}
+// MovieDetailsComponent
+@import "./movieDetailsComponent.scss";

@@ -23,5 +23,17 @@ $important-color: #3e7580;
 $primary-detail-color: #ffd700;
 $secondary-detail-color: #f9d3b4;
 
+* {
+  font-family: "PT Sans", sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Nunito", sans-serif !important;
+}
+
 //import bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
