@@ -64,7 +64,7 @@ async function login(req, res) {
   const { email, password } = req.body;
 
   if (email == undefined || password == undefined) {
-    res.status(400).send("Dåliga referenser");
+    res.status(400).send({ message: "Dåliga referenser" });
   } else {
     const isMatch = await authenticate(email, password);
     if (isMatch) {
@@ -73,7 +73,7 @@ async function login(req, res) {
       const accessToken = jwtUtil.generate(email, role);
       return res.status(200).send({ message: "Du loggade in!", accessToken });
     } else {
-      return res.status(400).send("Dåliga referenser. Ogiltig e-postadress/lösenord");
+      return res.status(400).send({ message: "Ingen medlem med denna email eller lösenord finns" });
     }
   }
 }

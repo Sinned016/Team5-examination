@@ -14,5 +14,14 @@ $accordion-bg: #2b2827; // bg in the accordion body
 $accordion-color: white; // font color in the accordion body
 $accordion-icon-color: white;
 
+$background-color: #1d1b1a;
+$text-color: #ededed;
+$border-color: #c0c0c0;
+$btn-color: #2b2827;
+$cards-color: #2b2827;
+$important-color: #3e7580;
+$primary-detail-color: #ffd700;
+$secondary-detail-color: #f9d3b4;
+
 //import bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";

@@ -3,12 +3,16 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import authService from "../service/authService";
+import memoryService from "../service/memoryService";
+import userService from "../service/userService";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [infoMessage, setInfoMessage] = useState("");
 
   const handleValidation = (e) => {
     let formIsValid = true;
@@ -39,10 +43,26 @@ export default function LoginPage() {
     return formIsValid;
   };
 
-  const loginSubmit = (e) => {
+  async function loginSubmit(e) {
     e.preventDefault();
-    handleValidation();
-  };
+    const formIsValid = handleValidation();
+    if (formIsValid) {
+      let res = await authService.authenticate({ email, password });
+      let data = await res.json();
+      if (res.status >= 400) {
+        setInfoMessage(data.message);
+      } else {
+        setInfoMessage(data.message);
+
+        memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
+        const role = userService.getUserRole();
+        if (role === "member") {
+          console.log("member", data.accessToken);
+          //setTimeout(() => navigate("/user/bookings"), 1000); // where to go when logged in ?
+        }
+      }
+    }
+  }
 
   return (
     <Container
@@ -73,12 +93,13 @@ export default function LoginPage() {
                 placeholder="Lösenord"
                 onChange={(event) => setPassword(event.target.value)}
               />
-              <small className="text-danger form-text">{passwordError}</small>
             </div>
+            <small className="text-danger form-text">{passwordError}</small>
             <div className="form-group form-check">
               <input type="checkbox" className="form-check-input" />
               <label className="form-check-label">Kom ihåg mig</label>
             </div>
+            <small className="form-text text-center text-danger">{infoMessage}</small>
             <p className="text-center mt-3">
               Glöm ditt lösenord? <span style={{ color: "#FFD700" }}>Återställ här!</span>
             </p>
