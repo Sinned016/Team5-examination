@@ -5,7 +5,7 @@ export default function BookingConfirmationPage() {
     bookingNumber: "ADC123",
     movieTitle: "Gladiator",
     theater: "salong 2",
-    date: "2024-01-03",
+    date: "lör. 23 sep",
     time: "18.00",
     seats: "rad 3, plats 13-15",
     price: 240,
@@ -14,35 +14,40 @@ export default function BookingConfirmationPage() {
 
   return (
     <>
-      <div>
-        <h1>Tack för din bokning!</h1>
-        <p>Bekräftelse skickas med e-post till {bookingData.email}</p>
-        <div className="booking-details">
-          <table>
+      <div className="booking-details-container">
+        <h1 className="text-center">Tack för din bokning!</h1>
+        <h3 className="text-center">
+          Bekräftelse skickas med e-post till {bookingData.email}
+        </h3>
+        <h2>Bokningsdetaljer</h2>
+        <div className="booking-details-card">
+          <table className="table">
             <tr>
-              <td>Bokningsnummer:</td>
-              <td>{bookingData.bookingNumber}</td>
+              <td className="tdata-left">Bokningsnummer:</td>
+              <td className="tdata-right">{bookingData.bookingNumber}</td>
             </tr>
             <tr>
-              <td>Film:</td>
-              <td>{bookingData.movieTitle}</td>
+              <td className="tdata-left">Film:</td>
+              <td className="tdata-right">{bookingData.movieTitle}</td>
             </tr>
             <tr>
-              <td>Datum:</td>
-              <td>{bookingData.date}</td>
+              <td className="tdata-left">Datum:</td>
+              <td className="tdata-right">
+                {bookingData.date}, {bookingData.time}
+              </td>
             </tr>
             <tr>
-              <td>Plats:</td>
-              <td>{bookingData.seats}</td>
+              <td className="tdata-left">Plats:</td>
+              <td className="tdata-right">{bookingData.seats}</td>
             </tr>
             <tr>
-              <td>Kostnad (betalning sker på plats):</td>
-              <td>{bookingData.price} SEK</td>
+              <td className="tdata-left">Pris (betalning sker på plats):</td>
+              <td className="tdata-right">{bookingData.price} SEK</td>
             </tr>
           </table>
         </div>
-        <h2>Vi ser fram emot ditt besök!</h2>
-        <button>STARTSIDAN</button>
+        <h2 className="text-center mt-4 mb-4">Vi ser fram emot ditt besök!</h2>
+        <button className="home-btn">STARTSIDAN</button>
       </div>
     </>
   );
