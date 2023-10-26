@@ -1,6 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
 import React, { useState } from "react";
-import "./LoginPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import authService from "../service/authService";
