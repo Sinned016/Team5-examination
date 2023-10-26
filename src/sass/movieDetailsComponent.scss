@@ -1,0 +1,34 @@
+.movie-details-component {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    margin-bottom: 2em;
+    border: 1px solid $border-color;
+}
+
+.movie-details-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.movie-details-box > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-details-trailer {}
+
+.movie-details-trailer iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.text-primary-detail-color {
+    color: $primary-detail-color;
+}
+
+.text-secondary-detail-color {
+    color: $secondary-detail-color;
+}
