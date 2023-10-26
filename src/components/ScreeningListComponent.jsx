@@ -30,14 +30,16 @@ export default function screeningList() {
             {movieDetails.screenings.map((screening, i) => {
                 return (
                     <div key={i}>
-                        <input 
-                            type="radio"
-                            name="selectedScreening" 
-                            value={screening._id} 
-                            checked={selectedScreening === screening._id} 
-                            onChange={() => setSelectedScreening(screening._id)}
-                        />
-                        <label>{`${screening.date}, ${screening.time}, ${screening.theater}. `}</label>
+                        <label>
+                            <input 
+                                type="radio"
+                                name="selectedScreening" 
+                                value={screening._id} 
+                                checked={selectedScreening === screening._id} 
+                                onChange={() => setSelectedScreening(screening._id)}
+                            />
+                            {`${screening.date}, ${screening.time}, ${screening.theater}. `}
+                        </label>
                     </div>
             )})}
 
