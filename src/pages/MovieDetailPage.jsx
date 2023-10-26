@@ -11,7 +11,6 @@ export default function movieDetailPage() {
   const movieFetch = useStates('globalMovieState', {
     movieDetails: useFetch(`/api/movie/${id}`)
 })
-
   return (
     <>
       <MovieDetailsComponent />
