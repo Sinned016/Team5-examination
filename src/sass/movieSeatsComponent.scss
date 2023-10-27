@@ -36,6 +36,6 @@
 
 .occupied-seat {
     background-color: red;
-    pointer-events: none;
+    cursor: default;
     opacity: 0.4;
 }

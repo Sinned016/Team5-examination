@@ -11,11 +11,15 @@ export default function MovieSeatsComponent(props) {
   const tickets = props.totalTickets;
   const setChosenSeats = props.setChosenSeats;
 
-  function pickSeats(row, seat) {
+  function pickSeats(row, seat, seatState) {
     setChosenSeats([])
 
     if(seat + tickets > 10) {
-      alert("Välj andra platser")
+      alert("Välj andra platser");
+      return;
+    }
+
+    if (seatState === "occupied-seat") {
       return;
     }
 
@@ -24,6 +28,7 @@ export default function MovieSeatsComponent(props) {
 
       setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
     }
+
   }
 
   const mappedSeats = seats.map((seatArray, rowIndex) => {
@@ -32,7 +37,7 @@ export default function MovieSeatsComponent(props) {
 
           {seatArray.map((seat, seatIndex) => {
             return (
-              <div onClick={() => pickSeats(rowIndex, seatIndex)} key={`${rowIndex} ${seatIndex}`} className={seat === 0 ? "available-seat" : "occupied-seat"}>
+              <div onClick={() => pickSeats(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} key={`${rowIndex} ${seatIndex}`} className={seat === 0 ? "available-seat" : "occupied-seat"}>
                 {seatIndex}
               </div>
             )
