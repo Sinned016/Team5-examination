@@ -14,7 +14,7 @@ export default function movieDetailPage() {
   const selectedScreening = useStates('globalSelectedScreening', {
     selectedScreening: "Välj en visning!"
   })
-
+  
   return (
     <>
       <MovieDetailsComponent />
