@@ -1,14 +1,8 @@
-import { useParams } from "react-router-dom";
-import { useStates, useFetch } from "react-easier";
+import { useStates } from "react-easier";
 
 export default function MovieCard() {
-    
-    const routeParams = useParams();
-    const id = routeParams.id;
 
-    const movieFetch = useStates({
-        movieDetails: useFetch(`/api/movie/${id}`)
-    })
+    const movieFetch = useStates('globalMovieState')
     
     const movieDetails = movieFetch.movieDetails[0];
 
@@ -30,19 +24,19 @@ export default function MovieCard() {
                 </div><hr />
                 <div className="movie-details-box">
                     <div className="movie-details-age-rest">
-                        <p class="text-primary-detail-color">Åldersgräns</p>
+                        <p className="text-primary-detail-color">Åldersgräns</p>
                         <p>{movieDetails.ageRestriction} år</p>
                     </div>
                     <div className="movie-details-subs">
-                        <p class="text-primary-detail-color">Undertexter</p>
+                        <p className="text-primary-detail-color">Undertexter</p>
                         <p>{movieDetails.subtitles}</p>
                     </div>
                     <div className="movie-details-lang">
-                        <p class="text-primary-detail-color">Språk</p>
+                        <p className="text-primary-detail-color">Språk</p>
                         <p>{movieDetails.language}</p>
                     </div>
                     <div className="movie-details-runtime">
-                        <p class="text-primary-detail-color">Längd</p>
+                        <p className="text-primary-detail-color">Längd</p>
                         <p>{formattedTime}</p>
                     </div>
                 </div><hr />

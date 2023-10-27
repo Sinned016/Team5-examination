@@ -18,21 +18,21 @@ export default function LoginPage() {
 
     if (password.length < 6) {
       formIsValid = false;
-      setPasswordError("Password too short. Should be at least 6 characters");
+      setPasswordError("Lösenordet är för kort. Måste innehålla minst 6 tecken.");
       return false;
     }
 
     if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
       formIsValid = false;
       setPasswordError(
-        "The password must contain a capital letter, a lowercase letter, and a digit!"
+        "Lösenordet måste innehålla både små och stora bokstäver samt minst en siffra."
       );
       return false;
     }
 
     if (/\s/.test(password)) {
       formIsValid = false;
-      setPasswordError("Password should not contain spaces");
+      setPasswordError("Lösenordet får inte innehålla mellanrum.");
       return false;
     } else {
       setPasswordError("");
@@ -79,7 +79,7 @@ export default function LoginPage() {
                 className="form-control with-icon"
                 name="emailInput"
                 aria-describedby="emailHelp"
-                placeholder="Email"
+                placeholder="E-mail"
                 onChange={(event) => setEmail(event.target.value)}
               />
               <small className="text-danger form-text">{emailError}</small>
