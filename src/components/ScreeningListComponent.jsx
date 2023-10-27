@@ -1,9 +1,9 @@
 import { useStates } from "react-easier";
 import { useState } from "react";
 
-export default function screeningList() {
-    const movieFetch = useStates('globalMovieState')
-    const [selectedScreening, setSelectedScreening] = useState(null);
+export default function ScreeningList() {
+    const movieFetch = useStates('globalMovieState');
+    const selectedScreening = useStates('globalSelectedScreening');
     
     const movieDetails = movieFetch.movieDetails[0];
 
@@ -11,9 +11,11 @@ export default function screeningList() {
         console.log("Laddar...");
         return;
     }
+    
+    console.log(selectedScreening);
 
     return (
-        <form className="screening-list">
+        <form className="screening-list" onSubmit={(event) => { event.preventDefault(); }}>
             {movieDetails.screenings.map((screening, i) => {
                 return (
                     <div key={i}>
@@ -22,8 +24,7 @@ export default function screeningList() {
                                 type="radio"
                                 name="selectedScreening" 
                                 value={screening._id} 
-                                checked={selectedScreening === screening._id} 
-                                onChange={() => setSelectedScreening(screening._id)}
+                                onChange={() => { selectedScreening.selectedScreening = screening._id}}
                             />
                             {`${screening.date}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
                         </label>
