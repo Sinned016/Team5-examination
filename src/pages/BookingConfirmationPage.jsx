@@ -14,14 +14,14 @@ export default function BookingConfirmationPage() {
 
   return (
     <>
-      <div className="booking-details-container">
+      <div className="row mx-1 booking-details-container">
         <h1 className="text-center">Tack för din bokning!</h1>
-        <h3 className="text-center">
+        <h4 className="text-center">
           Bekräftelse skickas med e-post till {bookingData.email}
-        </h3>
-        <h2>Bokningsdetaljer</h2>
-        <div className="booking-details-card">
-          <table className="table">
+        </h4>
+        <h2 className="mt-3">Bokningsdetaljer</h2>
+        <table className="table-dark table-border">
+          <tbody>
             <tr>
               <td className="tdata-left">Bokningsnummer:</td>
               <td className="tdata-right">{bookingData.bookingNumber}</td>
@@ -44,10 +44,14 @@ export default function BookingConfirmationPage() {
               <td className="tdata-left">Pris (betalning sker på plats):</td>
               <td className="tdata-right">{bookingData.price} SEK</td>
             </tr>
-          </table>
-        </div>
-        <h2 className="text-center mt-4 mb-4">Vi ser fram emot ditt besök!</h2>
-        <button className="home-btn">STARTSIDAN</button>
+          </tbody>
+        </table>
+      </div>
+      <h4 className="text-center mt-4 mb-4">Vi ser fram emot ditt besök!</h4>
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-outline-secondary px-1 py-2 mb-4">
+          STARTSIDA
+        </button>
       </div>
     </>
   );
