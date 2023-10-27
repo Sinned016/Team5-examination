@@ -1,0 +1,12 @@
+.seats {
+    display: flex;
+    flex-direction: row;
+}
+
+.available {
+    background-color: green;
+}
+
+.taken {
+    background-color: red;
+}
