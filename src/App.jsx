@@ -15,7 +15,7 @@ export default function App() {
           <Outlet />
         </Container>
       </main>
-
+    
       <footer className="container-fluid mt-4">
         <Footer />
       </footer>
