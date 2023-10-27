@@ -13,15 +13,21 @@
 }
 
 .screeningsContainer {
-  border: 1px solid #c0c0c0;
+  border: 1px solid $border-color;
   padding: 1em;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-.screeningsDate {
-  border-bottom: 1px solid #c0c0c0;
-  padding-bottom: 0.2em;
+.screeningContainer {
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 1em;
+  margin-bottom: .5em;
+}
+
+.underline {
+  border-bottom: 1px solid $border-color;
+  padding-bottom: .5em;
 }
 
 .screeningsBtn {
