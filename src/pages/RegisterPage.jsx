@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import authService from "../service/authService";
-import memoryService from "../service/memoryService";
-import userService from "../service/userService";
 import { Link } from "react-router-dom";
 
 export default function RegisterPage() {
@@ -19,21 +17,19 @@ export default function RegisterPage() {
 
     if (password.length < 6) {
       formIsValid = false;
-      setPasswordError("Password too short. Should be at least 6 characters");
+      setPasswordError("Lösenordet måste innehålla minst 6 tecken!");
       return false;
     }
 
     if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
       formIsValid = false;
-      setPasswordError(
-        "The password must contain a capital letter, a lowercase letter, and a digit!"
-      );
+      setPasswordError("Stor bokstav, liten bokstav och siffra krävs för lösenord!");
       return false;
     }
 
     if (/\s/.test(password)) {
       formIsValid = false;
-      setPasswordError("Password should not contain spaces");
+      setPasswordError("Lösenordet får inte innehålla mellanrum!");
       return false;
     } else {
       setPasswordError("");
@@ -53,13 +49,6 @@ export default function RegisterPage() {
         setInfoMessage(data.message);
       } else {
         setInfoMessage(data.message);
-
-        memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
-        const role = userService.getUserRole();
-        if (role === "member") {
-          console.log("member", data.accessToken);
-          //setTimeout(() => navigate("/user/bookings"), 1000); // where to go when logged in ?
-        }
       }
     }
   }
@@ -76,7 +65,7 @@ export default function RegisterPage() {
     >
       <form onSubmit={registerSubmit}>
         <Row className="justify-content-center">
-          <Col>
+          <Col className="justify-content-center">
             <h1 className="text-center mb-4">Bli Medlemme</h1>
             <div className="input-icon-container">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />

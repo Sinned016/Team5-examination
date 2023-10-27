@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import { fetchCollection } from "../mongo/mongoClient.js";
 import jwtUtil from "../util/jwtUtil.js";
-import e from "express";
 
 // create a new user with email, hashed password and role if the email is not existing.
 async function createUser(email, password) {
@@ -26,13 +25,13 @@ async function register(req, res) {
   }
 
   if (password.length < 6) {
-    return res.status(400).send("Password too short. Should be at least 6 characters");
+    return res.status(400).send("Lösenordet måste innehålla minst 6 tecken!");
   }
 
   if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
     return res
       .status(400)
-      .send("The password must contain a capital letter, a lowercase letter and a digit!");
+      .send("en stor bokstav, en liten bokstav och en siffra krävs för lösenord!");
   }
 
   // Check if the password contains spaces

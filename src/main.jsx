@@ -7,12 +7,14 @@ import LandingPage from "./pages/LandingPage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import MemberBookingsPage from "./pages/MemberBookingsPage";
 
 export const pages = [
   { path: "/", label: "LandingPage", element: <LandingPage /> },
   { path: "/movieDetailPage/:id", label: "LandingPage", element: <MovieDetailPage /> },
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
+  { path: "/bookings", element: <MemberBookingsPage /> },
 ];
 
 const router = createBrowserRouter([

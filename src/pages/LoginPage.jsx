@@ -6,6 +6,7 @@ import authService from "../service/authService";
 import memoryService from "../service/memoryService";
 import userService from "../service/userService";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -14,26 +15,26 @@ export default function LoginPage() {
   const [passwordError, setPasswordError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
 
+  const navigate = useNavigate();
+
   const handleValidation = (e) => {
     let formIsValid = true;
 
     if (password.length < 6) {
       formIsValid = false;
-      setPasswordError("Password too short. Should be at least 6 characters");
+      setPasswordError("Lösenordet måste innehålla minst 6 tecken!");
       return false;
     }
 
     if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
       formIsValid = false;
-      setPasswordError(
-        "The password must contain a capital letter, a lowercase letter, and a digit!"
-      );
+      setPasswordError("Stor bokstav, liten bokstav och siffra krävs för lösenord!");
       return false;
     }
 
     if (/\s/.test(password)) {
       formIsValid = false;
-      setPasswordError("Password should not contain spaces");
+      setPasswordError("Lösenordet får inte innehålla mellanrum!");
       return false;
     } else {
       setPasswordError("");
@@ -58,7 +59,7 @@ export default function LoginPage() {
         const role = userService.getUserRole();
         if (role === "member") {
           console.log("member", data.accessToken);
-          //setTimeout(() => navigate("/user/bookings"), 1000); // where to go when logged in ?
+          navigate("/bookings");
         }
       }
     }
