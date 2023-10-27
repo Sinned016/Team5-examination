@@ -8,14 +8,18 @@ function MovieBookingComponent() {
   const [adultTickets, setAdultTickets] = useState(0);
   const [seniorTickets, setSeniorTickets] = useState(0);
   const [childTickets, setChildTickets] = useState(0);
+  const [totalTickets, setTotalTickets] = useState(0);
+  const [chosenSeats, setChosenSeats] = useState([]);
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
   const [screening, setScreening] = useState("");
+  console.log(chosenSeats);
 
   function getTickets(adultTickets, seniorTickets, childTickets) {
     setAdultTickets(adultTickets);
     setSeniorTickets(seniorTickets);
     setChildTickets(childTickets);
+    setTotalTickets(adultTickets + seniorTickets + childTickets);
     console.log("adult:", adultTickets, "senior:", seniorTickets, "child:", childTickets);
   }
 
@@ -49,7 +53,7 @@ function MovieBookingComponent() {
 
         <Accordion.Item eventKey="2">
           <Accordion.Header>3. Välj platser</Accordion.Header>
-          <Accordion.Body> <MovieSeatsComponent screening={screening}/> </Accordion.Body>
+          <Accordion.Body> <MovieSeatsComponent screening={screening} totalTickets={totalTickets} setChosenSeats={setChosenSeats}/> </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="3">

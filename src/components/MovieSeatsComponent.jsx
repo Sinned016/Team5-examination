@@ -2,31 +2,37 @@ import { useStates } from "react-easier"
 import { useState } from "react"
 
 export default function MovieSeatsComponent(props) {
-  const [chosenSeats, setChosenSeats] = useState([
-    [0, 1],
-  ]);
-
+  
   if(props.screening == "") {
     return;
   }
 
   const seats = props.screening.seats;
+  const tickets = props.totalTickets;
+  const setChosenSeats = props.setChosenSeats;
 
   function pickSeats(row, seat) {
-    const pickedSeats = [row, seat];
-    setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
-  }
+    setChosenSeats([])
 
-  console.log(chosenSeats);
+    if(seat + tickets > 10) {
+      alert("Välj andra platser")
+      return;
+    }
+
+    for(let i = 0; i < tickets; i++) {
+      let pickedSeats = [row, seat++];
+
+      setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
+    }
+  }
 
   const mappedSeats = seats.map((seatArray, rowIndex) => {
     return (
-      <div key={rowIndex}>
-          <p>Row {rowIndex}</p>
+      <div className="theatre-row" key={rowIndex}>
 
           {seatArray.map((seat, seatIndex) => {
             return (
-              <div onClick={() => pickSeats(rowIndex, seatIndex)} key={`${rowIndex} ${seatIndex}`} className={seat === 0 ? "available" : "taken"}>
+              <div onClick={() => pickSeats(rowIndex, seatIndex)} key={`${rowIndex} ${seatIndex}`} className={seat === 0 ? "available-seat" : "occupied-seat"}>
                 {seatIndex}
               </div>
             )
@@ -36,8 +42,9 @@ export default function MovieSeatsComponent(props) {
   })
 
   return (
-    <div>
-        {mappedSeats}
-    </div>
+    <>
+      <div className="theatre-screen"></div>
+      {mappedSeats}
+    </>
   )
 }

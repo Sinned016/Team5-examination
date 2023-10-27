@@ -1,12 +1,41 @@
-.seats {
+.theatre-screen {
+    background-color: #fff;
+    height: 120px;
+    width: 100%;
+    margin: 0 0 30px 0;
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+.theatre-row {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
-.available {
+.theatre-row > div {
+    width: 9%;
+    aspect-ratio: 1 / 1;
+    align-self: center;
+    border-radius: 50% 50% 0 0;
+    margin-bottom: 10px;
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.available-seat {
     background-color: green;
+    cursor: pointer;
 }
 
-.taken {
+.selected-seat {
+    background-color: darkgrey;
+}
+
+.occupied-seat {
     background-color: red;
+    pointer-events: none;
+    opacity: 0.4;
 }
