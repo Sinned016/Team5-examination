@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 export default function BookingConfirmationPage() {
   // Test data to simulate a booking and map it out.
   const bookingData = {
@@ -11,6 +13,8 @@ export default function BookingConfirmationPage() {
     price: 240,
     tickets: "1 vuxen, 2 barn",
   };
+
+  const navigateToHome = useNavigate();
 
   return (
     <>
@@ -62,7 +66,10 @@ export default function BookingConfirmationPage() {
       </div>
       <h4 className="text-center mt-4 mb-4">Vi ser fram emot ditt besök!</h4>
       <div className="d-flex justify-content-center">
-        <button className="btn btn-outline-secondary py-2 mb-4">
+        <button
+          onClick={() => navigateToHome("/")}
+          className="btn btn-outline-secondary py-2 mb-4"
+        >
           STARTSIDA
         </button>
       </div>

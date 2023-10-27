@@ -1,7 +1,6 @@
 import { useStates, useFetch } from "react-easier";
 import MoviesComponent from "../components/MoviesComponent";
 import ScreeningsComponent from "../components/ScreeningsComponent";
-import BookingConfirmationPage from "./BookingConfirmationPage";
 
 export default function LandingPage() {
   // Fetching all the movies and all the screenings and sharing this useStates with all child components.
@@ -33,7 +32,6 @@ export default function LandingPage() {
 
   return (
     <>
-      <BookingConfirmationPage />
       <h2 className="text-center mb-4">På bio just nu</h2>
       <div className="d-flex justify-content-center mb-3">
         <button
