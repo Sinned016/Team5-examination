@@ -11,6 +11,8 @@ export default function ScreeningList() {
         console.log("Laddar...");
         return;
     }
+    
+    console.log(selectedScreening);
 
     return (
         <form className="screening-list" onSubmit={(event) => { event.preventDefault(); }}>
