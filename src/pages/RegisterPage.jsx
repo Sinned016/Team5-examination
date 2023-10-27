@@ -7,7 +7,7 @@ import memoryService from "../service/memoryService";
 import userService from "../service/userService";
 import { Link } from "react-router-dom";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -43,11 +43,11 @@ export default function LoginPage() {
     return formIsValid;
   };
 
-  async function loginSubmit(e) {
+  async function registerSubmit(e) {
     e.preventDefault();
     const formIsValid = handleValidation();
     if (formIsValid) {
-      let res = await authService.authenticate({ email, password });
+      let res = await authService.register({ email, password });
       let data = await res.json();
       if (res.status >= 400) {
         setInfoMessage(data.message);
@@ -72,13 +72,12 @@ export default function LoginPage() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "80%",
       }}
     >
-      <form onSubmit={loginSubmit}>
+      <form onSubmit={registerSubmit}>
         <Row className="justify-content-center">
           <Col>
-            <h1 className="text-center mb-4">Logga in</h1>
+            <h1 className="text-center mb-4">Bli Medlemme</h1>
             <div className="input-icon-container">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
               <input
@@ -101,25 +100,17 @@ export default function LoginPage() {
               />
             </div>
             <small className="text-danger form-text">{passwordError}</small>
-            <div className="form-group form-check">
-              <input type="checkbox" className="form-check-input" />
-              <label className="form-check-label">Kom ihåg mig</label>
-            </div>
             <small className="form-text text-center text-danger">{infoMessage}</small>
-
             <p className="text-center mt-3">
-              Glöm ditt lösenord? <span style={{ color: "#FFD700" }}>Återställ här!</span>
-            </p>
-            <p className="text-center">
-              Är du inte medlem men vill bli?
-              <Link to="/register">
-                <span style={{ color: "#FFD700" }}> Klicka här!</span>
+              Är du redan medlem?
+              <Link to="/login">
+                <span style={{ color: "#FFD700" }}> Logga in är!</span>
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
               <button className="btn cancel-btn me-2">AVBRYT</button>
-              <button className="btn login-btn  ms-2" type="submit">
-                LOGGA IN
+              <button className="btn register-btn  ms-2" type="submit">
+                BLI MEDLEM
               </button>
             </div>
           </Col>
