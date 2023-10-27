@@ -10,7 +10,7 @@ function MovieBookingComponent() {
   const [childTickets, setChildTickets] = useState(0);
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
-  const [screening, setScreening] = useState();
+  const [screening, setScreening] = useState("");
 
   function getTickets(adultTickets, seniorTickets, childTickets) {
     setAdultTickets(adultTickets);
