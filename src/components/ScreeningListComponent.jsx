@@ -11,6 +11,8 @@ export default function screeningList() {
         console.log("Laddar...");
         return;
     }
+    
+    console.log(selectedScreening);
 
     return (
         <form className="screening-list">

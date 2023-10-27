@@ -20,14 +20,28 @@ export default function ScreeningsComponent() {
     sortedData = [...g.moviesAndScreenings].sort((a, b) => new Date(a.date) - new Date(b.date)).slice().reverse();
   }
 
-  const screenings = sortedData.map((screening) => {
+   // Group the screenings by date
+   const groupedData = sortedData.reduce((acc, screening) => {
+    const date = screening.date;
+    if (!acc[date]) {
+      acc[date] = [];
+    }
+    acc[date].push(screening);
+    return acc;
+  }, {});
+
+  const screenings = Object.entries(groupedData).map(([date, screenings]) => {
     return (
-      <Col className="screeningsContainer" key={screening._id} xs={12} sm={12} md={12} lg={12}>
-        <h3 className="screeningsDate text-center">{screening.date}</h3>
-        <p>{screening.movieDetails[0].title}</p>
-        <button onClick={() =>navigateToMovie(screening.movieId)} className="screeningsBtn important">{screening.time}</button>
-      </Col>
-    )
+      <div className="screeningsContainer" key={date}>
+        <h3 className="underline text-center">{date}</h3>
+        {screenings.map((screening) => (
+          <Col className="screeningContainer" key={screening._id} xs={12} sm={12} md={12} lg={12}>
+            <p>{screening.movieDetails[0].title}</p>
+            <button onClick={() => navigateToMovie(screening.movieId)} className="screeningsBtn important">{screening.time}</button>
+          </Col>
+        ))}
+      </div>
+    );
   });
 
   function handleDropdownSelect(eventKey) {
