@@ -11,14 +11,13 @@ export default function MovieSeatsComponent(props) {
   }
 
   const seats = props.screening.seats;
-  console.log(seats)
-  
 
   function pickSeats(row, seat) {
-    const pickedSeats = [row, seat]
-    setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]))
-    console.log(chosenSeats);
+    const pickedSeats = [row, seat];
+    setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
   }
+
+  console.log(chosenSeats);
 
   const mappedSeats = seats.map((seatArray, rowIndex) => {
     return (
@@ -27,8 +26,8 @@ export default function MovieSeatsComponent(props) {
 
           {seatArray.map((seat, seatIndex) => {
             return (
-              <div onClick={() => pickSeats(rowIndex, seatIndex)} key={`${rowIndex} ${seatIndex}`}>
-                <div className={seat[0] === 0 ? "available" : "taken"}>{seatIndex}</div>
+              <div onClick={() => pickSeats(rowIndex, seatIndex)} key={`${rowIndex} ${seatIndex}`} className={seat === 0 ? "available" : "taken"}>
+                {seatIndex}
               </div>
             )
           })}
