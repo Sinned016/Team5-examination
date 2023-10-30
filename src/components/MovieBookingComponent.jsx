@@ -104,7 +104,7 @@ function MovieBookingComponent() {
                 }}
                 className="form-control"
               ></input>
-              <Button onClick={handleShow} className="btn login-btn ms-2">
+              <Button onClick={handleShow} className="btn login-btn custom-hover-1 ms-2">
                 Boka
               </Button>
             </form>
@@ -118,12 +118,18 @@ function MovieBookingComponent() {
         <Modal.Header closeButton>
           <Modal.Title>Bokningsbekräftelse</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Är du säker på att boka filmen {screening.movieDetails[0].title}? </Modal.Body>
+        <Modal.Body>
+          Är du säker på att boka {totalTickets} biljetter för filmen
+          {screening && screening.movieDetails && screening.movieDetails.length > 0
+            ? screening.movieDetails[0].title
+            : " "}
+          ?
+        </Modal.Body>
         <Modal.Footer>
-          <Button className="btn cancel-btn me-2" onClick={handleClose}>
+          <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleClose}>
             Avbryt
           </Button>
-          <Button className="btn login-btn" onClick={submitBooking}>
+          <Button className="btn login-btn custom-hover-2" onClick={submitBooking}>
             Boka
           </Button>
         </Modal.Footer>
