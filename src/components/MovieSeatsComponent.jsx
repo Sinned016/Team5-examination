@@ -1,6 +1,7 @@
 import { useStates } from "react-easier"
 import { useState } from "react"
 
+// Made by Dennis and Mikael
 export default function MovieSeatsComponent(props) {
   
   if(props.screening == "") {
