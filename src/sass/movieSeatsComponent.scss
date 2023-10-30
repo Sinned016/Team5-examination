@@ -1,9 +1,11 @@
 .theatre-screen {
     background-color: #fff;
-    height: 120px;
-    width: 100%;
-    margin: 0 0 30px 0;
-    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+    width: 80%;
+    aspect-ratio: 5 / 1;
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.7);
+    transform: perspective(8px) rotateX(-1deg);
+    margin: 2vw auto 5vw;
+    
 }
 
 .theatre-row {
@@ -17,6 +19,7 @@
     aspect-ratio: 1 / 1;
     align-self: center;
     border-radius: 50% 50% 0 0;
+    border: 3px solid rgba(0, 0, 0, .4);
     margin-bottom: 10px;
     text-align: center;
     
@@ -26,16 +29,15 @@
 }
 
 .available-seat {
-    background-color: green;
+    background-color: $text-color;
     cursor: pointer;
 }
 
 .selected-seat {
-    background-color: darkgrey;
+    background-color: $important-color;
 }
 
 .occupied-seat {
-    background-color: red;
-    cursor: default;
-    opacity: 0.4;
+    background-color: $cards-color;
+    pointer-events: none;
 }
