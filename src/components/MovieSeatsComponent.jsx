@@ -10,18 +10,18 @@ export default function MovieSeatsComponent(props) {
 
   const seats = props.screening.seats;
   const tickets = props.totalTickets;
+  const chosenSeats = props.chosenSeats;
   const setChosenSeats = props.setChosenSeats;
+  const setActiveItem = props.setActiveItem;
 
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
 
     if(seat + tickets > 10) {
-      alert("Du kan inte boka där");
       return;
     }
 
     if (seatState === "occupied-seat") {
-      console.log("Sätet är redan taget");
       return;
     }
 
@@ -31,23 +31,28 @@ export default function MovieSeatsComponent(props) {
       if (seats[row][seat + i] === 0) {
         setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
       } else {
-        console.log("Sätena efter är bokade");
         setChosenSeats([]);
       }
     }
   }
 
+  function setActive() {
+    setActiveItem(3)
+  }
+
   const mappedSeats = seats.map((seatArray, rowIndex) => {
     return (
       <div className="theatre-row" key={rowIndex}>
+        
+        {seatArray.map((seat, seatIndex) => {
+          const seatState = seat === 0 ? "available-seat" : "occupied-seat";
+          const isSelected = chosenSeats.some(([row, seat]) => row === rowIndex && seat === seatIndex);
+          const seatClass = isSelected ? `${seatState} selected-seat` : seatState;
 
-          {seatArray.map((seat, seatIndex) => {
-            return (
-              <div onClick={() => pickSeats(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} key={`${rowIndex} ${seatIndex}`} className={seat === 0 ? "available-seat" : "occupied-seat"}>
-                {seatIndex}
-              </div>
-            )
-          })}
+          return (
+            <div onClick={() => pickSeats(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} key={`${rowIndex} ${seatIndex}`} className={seatClass}></div>
+          )
+        })}
       </div>
     )
   })
@@ -56,6 +61,7 @@ export default function MovieSeatsComponent(props) {
     <>
       <div className="theatre-screen"></div>
       {mappedSeats}
+      <button onClick={setActive}>Test</button>
     </>
   )
 }
