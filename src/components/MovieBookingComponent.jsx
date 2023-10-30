@@ -19,7 +19,12 @@ function MovieBookingComponent() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    if (!isValidEmail(email)) {
+      setEmailValid(false);
+      return; // exit the function if email is invalid, which means you need to have a valid email to book tickets
+    } else setShow(true);
+  };
 
   function getTickets(adultTickets, seniorTickets, childTickets) {
     setAdultTickets(adultTickets);
@@ -52,10 +57,6 @@ function MovieBookingComponent() {
   function submitBooking(e) {
     e.preventDefault();
     handleClose();
-    if (!isValidEmail(email)) {
-      setEmailValid(false);
-      return; // exit the function if email is invalid, which means you need to have a valid email to book tickets
-    }
 
     console.log("connecting with backend");
     // Here can make put request to book tickets
@@ -117,7 +118,7 @@ function MovieBookingComponent() {
         <Modal.Header closeButton>
           <Modal.Title>Bokningsbekräftelse</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Är du säker på att du vill göra bokningen? </Modal.Body>
+        <Modal.Body>Är du säker på att göra bokningen? </Modal.Body>
         <Modal.Footer>
           <Button className="btn cancel-btn me-2" onClick={handleClose}>
             Avbryt
