@@ -14,8 +14,10 @@ export default function ScreeningList() {
     
     console.log(selectedScreening);
 
+    let screeningSelection = "";
+
     return (
-        <form className="screening-list" onSubmit={(event) => { event.preventDefault(); }}>
+        <form className="screening-list">
             {movieDetails.screenings.map((screening, i) => {
                 return (
                     <div key={i}>
@@ -24,14 +26,14 @@ export default function ScreeningList() {
                                 type="radio"
                                 name="selectedScreening" 
                                 value={screening._id} 
-                                onChange={() => { selectedScreening.selectedScreening = screening._id}}
+                                onChange={() => { screeningSelection = screening._id}}
                             />
                             {`${screening.date}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
                         </label>
                     </div>
             )})}
 
-            <button type="submit" className="btn login-btn ms-2">Submit</button>
+            <button type="submit" name="selectedScreening" className="btn login-btn ms-2" onClick={(e) => {e.preventDefault(); selectedScreening.selectedScreening = screeningSelection; console.log(selectedScreening.selectedScreening);}}>Submit</button>
         </form>
     );
 }

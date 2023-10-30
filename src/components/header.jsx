@@ -38,7 +38,7 @@ export default function Header() {
           className="dropdown-button"
           drop="start"
         >
-          <Dropdown.Item href="#/register">
+          <Dropdown.Item href="/register">
             Bli medlem {""}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
