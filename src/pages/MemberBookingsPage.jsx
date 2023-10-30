@@ -26,13 +26,16 @@ function MemberBookingsPage() {
             {/* Render booking details */}
             {booking.email}
             {booking.bookingNumber}
-            {booking.price}
+            {booking.movieTitle}
+            {booking.date}
             {booking.seats}
+            {booking.price}
           </li>
-        ))}
+        ))}add
       </ul>
     </>
   );
 }
 
 export default MemberBookingsPage;
+
