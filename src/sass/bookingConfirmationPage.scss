@@ -1,0 +1,51 @@
+.booking-details-container {
+  h1 {
+    font-size: 2.125rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  h2:first-of-type {
+    color: $primary-detail-color;
+  }
+}
+
+.btn-outline-secondary {
+  border-radius: 2px;
+  border: 2px solid $border-color;
+} 
+
+.table-border {
+  border: 1px solid $border-color;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.tdata-left, .tdata-right {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.tdata-right {
+  text-align: right;
+  padding-right: .5rem;
+  color: $secondary-detail-color;
+}
+
+.tdata-left {
+  text-align: left;
+  padding-left: .5rem;
+}
+
+.bi-check-circle {
+  color: $important-color;
+}
