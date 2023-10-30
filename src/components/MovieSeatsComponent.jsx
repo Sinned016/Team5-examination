@@ -12,6 +12,7 @@ export default function MovieSeatsComponent(props) {
   const tickets = props.totalTickets;
   const chosenSeats = props.chosenSeats;
   const setChosenSeats = props.setChosenSeats;
+  const setActiveItem = props.setActiveItem;
 
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
@@ -35,21 +36,23 @@ export default function MovieSeatsComponent(props) {
     }
   }
 
+  function setActive() {
+    setActiveItem(3)
+  }
+
   const mappedSeats = seats.map((seatArray, rowIndex) => {
     return (
       <div className="theatre-row" key={rowIndex}>
         
+        {seatArray.map((seat, seatIndex) => {
+          const seatState = seat === 0 ? "available-seat" : "occupied-seat";
+          const isSelected = chosenSeats.some(([row, seat]) => row === rowIndex && seat === seatIndex);
+          const seatClass = isSelected ? `${seatState} selected-seat` : seatState;
 
-          {seatArray.map((seat, seatIndex) => {
-            const seatState = seat === 0 ? "available-seat" : "occupied-seat";
-            const isSelected = chosenSeats.some(([row, seat]) => row === rowIndex && seat === seatIndex);
-            const seatClass = isSelected ? `${seatState} selected-seat` : seatState;
-
-            return (
-              <div onClick={() => pickSeats(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} key={`${rowIndex} ${seatIndex}`} className={seatClass}>
-              </div>
-            )
-          })}
+          return (
+            <div onClick={() => pickSeats(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} key={`${rowIndex} ${seatIndex}`} className={seatClass}></div>
+          )
+        })}
       </div>
     )
   })
@@ -58,6 +61,7 @@ export default function MovieSeatsComponent(props) {
     <>
       <div className="theatre-screen"></div>
       {mappedSeats}
+      <button onClick={setActive}>Test</button>
     </>
   )
 }

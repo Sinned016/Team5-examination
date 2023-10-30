@@ -1,7 +1,7 @@
 import { useFetch, useStates } from "react-easier";
 import { useState } from "react";
 
-export default function ScreeningList({ setScreening }) {
+export default function ScreeningList({ setScreening, setActiveItem }) {
     const movieFetch = useStates('globalMovieState');
     const selectedScreening = useStates('globalSelectedScreening');
     const [screeningSelection, setScreeningSelection] = useState();
@@ -15,10 +15,16 @@ export default function ScreeningList({ setScreening }) {
 
     async function onScreenSubmit(e) {
         e.preventDefault();
-        const result = await fetch(`/api/screening/${screeningSelection}`)
+
+        if(screeningSelection === undefined) {
+            return;
+        }
+
+        const result = await fetch(`/api/screening/${screeningSelection}`);
         const data = await result.json();
 
         setScreening(data);
+        setActiveItem(1);
     }
 
     return (
