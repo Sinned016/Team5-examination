@@ -89,7 +89,7 @@ function MemberBookingsPage() {
               </tr>
           </tbody> ))}
         </table>
-        <button onClick={() => navigateToHome("/")} className="btn btn-outline-secondary py-2 mb-4" git >STARTSIDA</button>
+        <button onClick={() => navigateToHome("/")} className="btn btn-outline-secondary py-2 mb-4" >STARTSIDA</button>
         </div>
     </>
   );
