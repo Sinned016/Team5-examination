@@ -44,7 +44,7 @@ export default function ScreeningList({ setScreening, setActiveItem }) {
                     </div>
             )})}
 
-            <button type="submit" name="selectedScreening" className="btn login-btn ms-2">Submit</button>
+            <button type="submit" name="selectedScreening" className="btn login-btn ms-2">Välj visning</button>
         </form>
     );
 }
