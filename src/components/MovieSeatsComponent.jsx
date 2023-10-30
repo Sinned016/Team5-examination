@@ -15,20 +15,25 @@ export default function MovieSeatsComponent(props) {
     setChosenSeats([])
 
     if(seat + tickets > 10) {
-      alert("Välj andra platser");
+      alert("Du kan inte boka där");
       return;
     }
 
     if (seatState === "occupied-seat") {
+      console.log("Sätet är redan taget");
       return;
     }
 
     for(let i = 0; i < tickets; i++) {
-      let pickedSeats = [row, seat++];
+      let pickedSeats = [row, seat + i];
 
-      setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
+      if (seats[row][seat + i] === 0) {
+        setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
+      } else {
+        console.log("Sätena efter är bokade");
+        setChosenSeats([]);
+      }
     }
-
   }
 
   const mappedSeats = seats.map((seatArray, rowIndex) => {
