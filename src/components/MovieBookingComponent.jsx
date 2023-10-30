@@ -3,6 +3,9 @@ import { useState } from "react";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
 import ScreeningListComponent from "./ScreeningListComponent";
 import MovieSeatsComponent from "./MovieSeatsComponent";
+import userService from "../service/userService";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 function MovieBookingComponent() {
   const [adultTickets, setAdultTickets] = useState(0);
@@ -13,36 +16,59 @@ function MovieBookingComponent() {
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
   const [screening, setScreening] = useState("");
-  console.log(chosenSeats);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   function getTickets(adultTickets, seniorTickets, childTickets) {
     setAdultTickets(adultTickets);
     setSeniorTickets(seniorTickets);
     setChildTickets(childTickets);
     setTotalTickets(adultTickets + seniorTickets + childTickets);
-    console.log("adult:", adultTickets, "senior:", seniorTickets, "child:", childTickets);
   }
 
   function isValidEmail(email) {
     return email.includes("@");
   }
 
+  const bookSeats = async () => {
+    const body = {
+      email: email,
+      adult: adultTickets,
+      child: childTickets,
+      senior: seniorTickets,
+      bookedSeats: chosenSeats,
+      movieTitle: screening.movieDetails[0].title,
+      date: screening.date,
+      time: screening.time,
+      theater: screening.theater,
+    };
+
+    let resp = await userService.bookSeats(screening._id, body);
+    console.log(resp);
+  };
+
   function submitBooking(e) {
     e.preventDefault();
+    handleClose();
     if (!isValidEmail(email)) {
       setEmailValid(false);
       return; // exit the function if email is invalid, which means you need to have a valid email to book tickets
     }
-    console.log(email, adultTickets, seniorTickets, childTickets);
+
     console.log("connecting with backend");
     // Here can make put request to book tickets
+    bookSeats();
   }
   return (
     <div className="container">
       <Accordion defaultActiveKey={["0"]} alwaysOpen>
         <Accordion.Item eventKey="0">
           <Accordion.Header>1. Välj visning</Accordion.Header>
-          <Accordion.Body><ScreeningListComponent setScreening={setScreening} /></Accordion.Body>
+          <Accordion.Body>
+            <ScreeningListComponent setScreening={setScreening} />
+          </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">
           <Accordion.Header>2. Biljettyp och antal</Accordion.Header>
@@ -53,7 +79,14 @@ function MovieBookingComponent() {
 
         <Accordion.Item eventKey="2">
           <Accordion.Header>3. Välj platser</Accordion.Header>
-          <Accordion.Body> <MovieSeatsComponent screening={screening} totalTickets={totalTickets} setChosenSeats={setChosenSeats}/> </Accordion.Body>
+          <Accordion.Body>
+            {" "}
+            <MovieSeatsComponent
+              screening={screening}
+              totalTickets={totalTickets}
+              setChosenSeats={setChosenSeats}
+            />{" "}
+          </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="3">
@@ -70,15 +103,30 @@ function MovieBookingComponent() {
                 }}
                 className="form-control"
               ></input>
-              <button onClick={submitBooking} className="btn btn-secondary btn-sm ms-2">
+              <Button onClick={handleShow} className="btn login-btn ms-2">
                 Boka
-              </button>
+              </Button>
             </form>
             <div className="form-text">Vi kommer aldrig att dela din e-post med någon annan.</div>
             {!emailValid && <div className="text-danger">Vänligen ange en giltig email.</div>}
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
+
+      <Modal show={show} onHide={handleClose} style={{ color: "black" }}>
+        <Modal.Header closeButton>
+          <Modal.Title>Bokningsbekräftelse</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Är du säker på att du vill göra bokningen? </Modal.Body>
+        <Modal.Footer>
+          <Button className="btn cancel-btn me-2" onClick={handleClose}>
+            Avbryt
+          </Button>
+          <Button className="btn login-btn" onClick={submitBooking}>
+            Boka
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
