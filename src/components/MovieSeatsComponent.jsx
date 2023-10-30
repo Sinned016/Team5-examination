@@ -12,12 +12,28 @@ export default function MovieSeatsComponent(props) {
   const tickets = props.totalTickets;
   const setChosenSeats = props.setChosenSeats;
 
+  const [isHovered, setIsHovered] = useState([]);
+  const handleMouseEnter = (row, seat) => {
+    let toMark = [];
+    for (let i = 0; i < tickets; i++) {
+      if (seat + tickets > 10) {
+        seat = 10 - tickets
+      }
+
+      toMark.push([row, seat+i]);
+    }
+    setIsHovered(toMark);
+  };
+  const handleMouseLeave = (row, seat) => {setIsHovered([]);};
+
+
+
+
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
 
     if(seat + tickets > 10) {
-      alert("Du kan inte boka där");
-      return;
+      seat = 10 - tickets;
     }
 
     if (seatState === "occupied-seat") {
@@ -43,8 +59,13 @@ export default function MovieSeatsComponent(props) {
 
           {seatArray.map((seat, seatIndex) => {
             return (
-              <div onClick={() => pickSeats(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} key={`${rowIndex} ${seatIndex}`} className={seat === 0 ? "available-seat" : "occupied-seat"}>
-                {seatIndex}
+              <div 
+                onClick={() => pickSeats(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} 
+                onMouseEnter={() => handleMouseEnter(rowIndex, seatIndex)} 
+                onMouseLeave={() => handleMouseLeave(rowIndex, seatIndex)} 
+                key={`${rowIndex} ${seatIndex}`} 
+                className={`${seat === 0 ? "available-seat" : "occupied-seat"} ${isHovered.find(([r,s]) => r === rowIndex && s === seatIndex) ? "hovered-seat" : ""}`}
+              >
               </div>
             )
           })}
