@@ -19,7 +19,7 @@ function MemberBookingsPage() {
 
   return (
     <>
-      <h1>This page is to show member's bookings</h1>
+      <h2>Mina bokningar </h2>
       <ul>
         {bookings.map((booking, index) => (
           <li key={index}>
