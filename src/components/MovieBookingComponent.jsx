@@ -5,6 +5,7 @@ import ScreeningListComponent from "./ScreeningListComponent";
 import MovieSeatsComponent from "./MovieSeatsComponent";
 
 function MovieBookingComponent() {
+  const [activeItem, setActiveItem] = useState(0);
   const [adultTickets, setAdultTickets] = useState(0);
   const [seniorTickets, setSeniorTickets] = useState(0);
   const [childTickets, setChildTickets] = useState(0);
@@ -37,26 +38,40 @@ function MovieBookingComponent() {
     console.log("connecting with backend");
     // Here can make put request to book tickets
   }
+
+  function accordionChoice(choice) {
+    if(screening === "") {
+      choice = 0;
+    } else if (totalTickets === 0) {
+      choice = 1;
+    } else if (chosenSeats.length === 0) {
+      choice = 2;
+    }
+
+    setActiveItem(choice);
+  }
+
   return (
     <div className="container">
-      <Accordion defaultActiveKey={["0"]} alwaysOpen>
-        <Accordion.Item eventKey="0">
+      <Accordion activeKey={activeItem + ""}>
+        <Accordion.Item onClick={() => accordionChoice(0)} eventKey="0">
           <Accordion.Header>1. Välj visning</Accordion.Header>
           <Accordion.Body><ScreeningListComponent setScreening={setScreening} /></Accordion.Body>
         </Accordion.Item>
-        <Accordion.Item eventKey="1">
+
+        <Accordion.Item onClick={() => accordionChoice(1)} eventKey="1" >
           <Accordion.Header>2. Biljettyp och antal</Accordion.Header>
           <Accordion.Body>
             <TicketWithPriceComponent onGetTickets={getTickets} />
           </Accordion.Body>
         </Accordion.Item>
 
-        <Accordion.Item eventKey="2">
+        <Accordion.Item onClick={() => accordionChoice(2)} eventKey="2">
           <Accordion.Header>3. Välj platser</Accordion.Header>
-          <Accordion.Body> <MovieSeatsComponent screening={screening} totalTickets={totalTickets} setChosenSeats={setChosenSeats}/> </Accordion.Body>
+          <Accordion.Body> <MovieSeatsComponent screening={screening} totalTickets={totalTickets} chosenSeats={chosenSeats} setChosenSeats={setChosenSeats}/> </Accordion.Body>
         </Accordion.Item>
 
-        <Accordion.Item eventKey="3">
+        <Accordion.Item onClick={() => accordionChoice(3)} eventKey="3">
           <Accordion.Header>4. Bekräfta</Accordion.Header>
           <Accordion.Body>
             <form>
