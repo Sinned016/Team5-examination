@@ -118,7 +118,7 @@ function MovieBookingComponent() {
         <Modal.Header closeButton>
           <Modal.Title>Bokningsbekräftelse</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Är du säker på att göra bokningen? </Modal.Body>
+        <Modal.Body>Är du säker på att boka filmen {screening.movieDetails[0].title}? </Modal.Body>
         <Modal.Footer>
           <Button className="btn cancel-btn me-2" onClick={handleClose}>
             Avbryt
