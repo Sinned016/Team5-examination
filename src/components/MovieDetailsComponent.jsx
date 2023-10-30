@@ -20,7 +20,7 @@ export default function MovieCard() {
     return (
             <div className="movie-details-component">
                 <div className="movie-details-trailer">
-                    <iframe src={movieTrailerLink} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe src={movieTrailerLink} title="YouTube video player"></iframe>
                 </div><hr />
                 <div className="movie-details-box">
                     <div className="movie-details-age-rest">

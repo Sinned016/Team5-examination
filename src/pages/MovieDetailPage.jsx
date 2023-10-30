@@ -10,10 +10,11 @@ export default function movieDetailPage() {
 
   const movieFetch = useStates('globalMovieState', {
     movieDetails: useFetch(`/api/movie/${id}`)
-  })
+  });
+
   const selectedScreening = useStates('globalSelectedScreening', {
-    selectedScreening: "Välj en visning!"
-  })
+    selectedScreening: ""
+  });
   
   return (
     <>

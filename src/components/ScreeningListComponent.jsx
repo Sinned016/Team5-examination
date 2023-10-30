@@ -1,9 +1,10 @@
-import { useStates } from "react-easier";
+import { useFetch, useStates } from "react-easier";
 import { useState } from "react";
 
-export default function ScreeningList() {
+export default function ScreeningList({ setScreening }) {
     const movieFetch = useStates('globalMovieState');
     const selectedScreening = useStates('globalSelectedScreening');
+    const [screeningSelection, setScreeningSelection] = useState();
     
     const movieDetails = movieFetch.movieDetails[0];
 
@@ -11,13 +12,17 @@ export default function ScreeningList() {
         console.log("Laddar...");
         return;
     }
-    
-    console.log(selectedScreening);
 
-    let screeningSelection = "";
+    async function onScreenSubmit(e) {
+        e.preventDefault();
+        const result = await fetch(`/api/screening/${screeningSelection}`)
+        const data = await result.json();
+
+        setScreening(data);
+    }
 
     return (
-        <form className="screening-list">
+        <form className="screening-list" onSubmit={(e) => onScreenSubmit(e)}>
             {movieDetails.screenings.map((screening, i) => {
                 return (
                     <div key={i}>
@@ -26,14 +31,14 @@ export default function ScreeningList() {
                                 type="radio"
                                 name="selectedScreening" 
                                 value={screening._id} 
-                                onChange={() => { screeningSelection = screening._id}}
+                                onChange={() => setScreeningSelection(screening._id)}
                             />
                             {`${screening.date}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
                         </label>
                     </div>
             )})}
 
-            <button type="submit" name="selectedScreening" className="btn login-btn ms-2" onClick={(e) => {e.preventDefault(); selectedScreening.selectedScreening = screeningSelection; console.log(selectedScreening.selectedScreening);}}>Submit</button>
+            <button type="submit" name="selectedScreening" className="btn login-btn ms-2">Submit</button>
         </form>
     );
 }

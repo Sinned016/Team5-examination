@@ -2,18 +2,24 @@ import Accordion from "react-bootstrap/Accordion";
 import { useState } from "react";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
 import ScreeningListComponent from "./ScreeningListComponent";
+import MovieSeatsComponent from "./MovieSeatsComponent";
 
 function MovieBookingComponent() {
   const [adultTickets, setAdultTickets] = useState(0);
   const [seniorTickets, setSeniorTickets] = useState(0);
   const [childTickets, setChildTickets] = useState(0);
+  const [totalTickets, setTotalTickets] = useState(0);
+  const [chosenSeats, setChosenSeats] = useState([]);
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
+  const [screening, setScreening] = useState("");
+  console.log(chosenSeats);
 
   function getTickets(adultTickets, seniorTickets, childTickets) {
     setAdultTickets(adultTickets);
     setSeniorTickets(seniorTickets);
     setChildTickets(childTickets);
+    setTotalTickets(adultTickets + seniorTickets + childTickets);
     console.log("adult:", adultTickets, "senior:", seniorTickets, "child:", childTickets);
   }
 
@@ -36,7 +42,7 @@ function MovieBookingComponent() {
       <Accordion defaultActiveKey={["0"]} alwaysOpen>
         <Accordion.Item eventKey="0">
           <Accordion.Header>1. Välj visning</Accordion.Header>
-          <Accordion.Body><ScreeningListComponent /></Accordion.Body>
+          <Accordion.Body><ScreeningListComponent setScreening={setScreening} /></Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">
           <Accordion.Header>2. Biljettyp och antal</Accordion.Header>
@@ -47,7 +53,7 @@ function MovieBookingComponent() {
 
         <Accordion.Item eventKey="2">
           <Accordion.Header>3. Välj platser</Accordion.Header>
-          <Accordion.Body>placeholder for MovieSeatsComponent</Accordion.Body>
+          <Accordion.Body> <MovieSeatsComponent screening={screening} totalTickets={totalTickets} setChosenSeats={setChosenSeats}/> </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="3">
