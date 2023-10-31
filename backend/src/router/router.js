@@ -141,6 +141,9 @@ router.put("/screening/:id", async (req, res) => {
     formattedDate,
     bookingInformation.theater,
     seatRange,
+    bookingInformation.child,
+    bookingInformation.adult,
+    bookingInformation.senior,
     fullPrice
   );
 
