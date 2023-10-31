@@ -225,7 +225,7 @@ router.get("/bookings/:email", userFilter.authorize, async (req, res) => {
 });
 
 // Delete booking and update seats
-router.delete("/bookings/:id", userFilter.authorize, async (req, res) => {
+router.delete("/bookings/:id", async (req, res) => {
   const bookingId = req.params.id;
 
   if (ObjectId.isValid(bookingId)) {

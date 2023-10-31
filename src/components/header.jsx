@@ -10,7 +10,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 export default function Header() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
+  const token = localStorage.getItem("JWT_TOKEN");
 
   async function logout() {
     memoryService.clearLocalValue("JWT_TOKEN");
