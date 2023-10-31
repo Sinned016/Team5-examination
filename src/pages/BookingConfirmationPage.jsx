@@ -68,7 +68,9 @@ export default function BookingConfirmationPage() {
             </tr>
             <tr>
               <td className="tdata-left">Plats:</td>
-              <td className="tdata-right">{bookingData.seats}</td>
+              <td className="tdata-right">
+                {bookingData.theater}, {bookingData.seats}
+              </td>
             </tr>
             <tr>
               <td className="tdata-left">Pris (betalning sker på plats):</td>
