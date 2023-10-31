@@ -31,7 +31,7 @@ export default function LoginPage() {
       setPasswordError("Stor bokstav, liten bokstav och siffra krävs för lösenord!");
       return false;
     }
-
+ 
     if (/\s/.test(password)) {
       formIsValid = false;
       setPasswordError("Lösenordet får inte innehålla mellanrum!");
