@@ -22,12 +22,15 @@ function MemberBookingsPage() {
 
   return (
     <>
+    <div className="row mx-1 booking-details-container">
     <h1>Mina bokningar </h1>
-    <div className="booking-history-container" >
+    <div className="table-responsive mt-4 mb-2">
     <h2>Bokningsdetaljer</h2>
-      
+    </div>
+    
+
       {bookings.map((booking, index) => (
-      <table key={index} className="table-dark table-border">
+      <table key={index} className="table-dark table-border mb-4">
     
           <tbody>
           
@@ -53,33 +56,30 @@ function MemberBookingsPage() {
               <td className="tdata-left">Pris (betalning sker på plats)</td>
               <td className="tdata-right">{booking.price} SEK</td>
             </tr>
+            <div className="d-flex justify-content-center">
             <button className="btn btn-outline-secondary py-2 mb-4" >AVBOKA</button>
+            </div>
           </tbody>
         </table>  ))}
-        </div>
+        
   
 
-
-
-    <div className="bookinghistory table-responsive" >
+        <div className="table-responsive mt-4 mb-2">
     <h2>Bokningshistorik</h2>
-   
-      <table className="table table-dark table-border align-middle">
+    </div>  
+      <table className="table-dark table-border mb-4">
         <thead>
-          <th>Bokningsnr</th>
-          <th>Film</th>
-          <th>Datum</th>
-          <th>Pris</th>
+          <th className="tdata-left">Bokningsnr</th>
+          <th className="tdata-left">Film</th>
+          <th className="tdata-left">Datum</th>
+          <th className="tdata-left">Pris</th>
         </thead>
               {bookings.map((booking, index) => (
-          <tbody key={index} className="table-dark">
+          <tbody key={index} className="">
 
-            <tr className="table-dark align-bottom">
+            <tr className="align-bottom">
               <td className="tdata-left">{booking.bookingNumber}</td>
-          
-             
               <td className="tdata-left">{booking.movieTitle}</td>
-            
               <td className="tdata-left">
                 {booking.date} {booking.time}
               </td>
@@ -89,6 +89,8 @@ function MemberBookingsPage() {
               </tr>
           </tbody> ))}
         </table>
+        </div>
+        <div className="d-flex justify-content-center mt-5">
         <button onClick={() => navigateToHome("/")} className="btn btn-outline-secondary py-2 mb-4 " >STARTSIDA</button>
         </div>
     </>
@@ -96,5 +98,3 @@ function MemberBookingsPage() {
 }
 
 export default MemberBookingsPage;
-
-

@@ -13,11 +13,8 @@ export default function Header() {
 
 
   async function logout() {
-    // Clear user session data
-    memoryService.removeLocalValue("JWT_TOKEN");
+    memoryService.clearLocalValue("JWT_TOKEN");
     userService.removeUserRole();
-  
-    // navigate("/login");
   }
 
   return (
