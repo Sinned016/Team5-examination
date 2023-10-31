@@ -50,7 +50,6 @@ function MemberBookingsPage() {
       <table key={index} className="table-dark table-border mb-4">
     
           <tbody>
-          
             <tr>
               <td className="tdata-left">Bokningsnummer</td>
               <td className="tdata-right">{booking.bookingNumber}</td>
