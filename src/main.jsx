@@ -8,6 +8,7 @@ import MovieDetailPage from "./pages/MovieDetailPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import MemberBookingsPage from "./pages/MemberBookingsPage";
+import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 
 export const pages = [
   { path: "/", label: "LandingPage", element: <LandingPage /> },
@@ -15,6 +16,7 @@ export const pages = [
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
   { path: "/bookings", element: <MemberBookingsPage /> },
+  { path: "/bookingConfirmation", element: <BookingConfirmationPage /> },
 ];
 
 const router = createBrowserRouter([

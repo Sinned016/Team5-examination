@@ -1,8 +1,9 @@
+import { Container } from 'react-bootstrap';
 
 export default function Footer() {
     return (
         <footer className="footer">
-            <container className="footer-items">
+            <Container className="footer-items">
                 {/* <div>
                     <div className="footer-item"> 
                         <ul className="list-unstyled mb-0">
@@ -23,7 +24,7 @@ export default function Footer() {
                 <p className="footer-item">Om oss</p>
                 <p className="footer-item">Kontakt</p>
                 <p className="footer-item">Hitta hit</p>
-            </container>
+            </Container>
             <div className="text-center p-3">
                  © Filmvisarna
             </div>
