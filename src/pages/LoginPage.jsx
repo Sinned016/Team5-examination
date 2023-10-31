@@ -108,9 +108,9 @@ export default function LoginPage() {
             </div>
             <small className="form-text text-center text-danger">{infoMessage}</small>
 
-            <p className="text-center mt-3">
-              Glöm ditt lösenord? <span style={{ color: "#FFD700" }}>Återställ här!</span>
-            </p>
+<p className="text-center mt-3" onClick={() => alert('Fungerar inte för tillfället!')}>
+ Glöm ditt lösenord? <span style={{ color: "#FFD700" }}>Återställ här!</span>
+</p>
             <p className="text-center">
               Är du inte medlem men vill bli?
               <Link to="/register">
