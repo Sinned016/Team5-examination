@@ -24,19 +24,16 @@ function MemberBookingsPage() {
   
 
   const cancelBooking = async (bookingId, screeningId) => {
-
-    console.log(bookingId);
-    console.log(screeningId);
-
-    const body = {
-      screeningId: screeningId
-    }
     
     try {
-      const response = await fetch(`/api/bookings/${bookingId}`, fetchOptions('DELETE', body));
+      const response = await fetch(`/api/bookings/${bookingId}`, fetchOptions('DELETE', { screeningId }));
       console.log(response);
+      if (response.ok) {
+        const result = await userService.getUserBookings(email);
+        setBookings(result);
+      }
     } catch (err) {
-      console.log("Could not delete the booking")
+      console.log(err)
     }
   }
 
