@@ -19,6 +19,7 @@ function MovieBookingComponent() {
   const [screening, setScreening] = useState("");
   const [show, setShow] = useState(false);
 
+
   const handleClose = () => setShow(false);
   const handleShow = () => {
     if (!isValidEmail(email)) {
@@ -71,28 +72,44 @@ function MovieBookingComponent() {
     bookSeats();
   }
 
+  function restart(identifier) {
+    if (identifier === "screening") {
+      setScreening("");
+      setTotalTickets(0);
+      setChosenSeats([]);
+      setActiveItem(0);
+    } else if (identifier === "ticketType") {
+      setTotalTickets(0);
+      setChosenSeats([]);
+      setActiveItem(1);
+    } else if (identifier === "seats") {
+      setChosenSeats([]);
+      setActiveItem(2);
+    }
+  }
+
   return (
     <div className="container">
       <Accordion activeKey={activeItem + ""}>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>1. Välj visning</Accordion.Header>
+          <Accordion.Header>1. Välj visning {screening ? <button className="restart-button" onClick={() => restart("screening")}>Ändra</button> : ""}</Accordion.Header>
           <Accordion.Body><ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} /></Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="1" >
-          <Accordion.Header>2. Biljettyp och antal</Accordion.Header>
+          <Accordion.Header>2. Biljettyp och antal {totalTickets > 0 ? <button className="restart-button" onClick={() => restart("ticketType")}>Ändra</button> : ""}</Accordion.Header>
           <Accordion.Body>
             <TicketWithPriceComponent onGetTickets={getTickets} />
           </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="2">
-          <Accordion.Header>3. Välj platser</Accordion.Header>
+          <Accordion.Header>3. Välj platser {chosenSeats.length > 0 ? <button className="restart-button" onClick={() => restart("seats")}>Ändra</button> : ""}</Accordion.Header>
           <Accordion.Body> <MovieSeatsComponent setActiveItem={setActiveItem} screening={screening} totalTickets={totalTickets} chosenSeats={chosenSeats} setChosenSeats={setChosenSeats}/> </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="3">
-          <Accordion.Header>4. Bekräfta</Accordion.Header>
+          <Accordion.Header>4. Bekräfta </Accordion.Header>
           <Accordion.Body>
             <form>
               <input
