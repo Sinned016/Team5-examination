@@ -1,20 +1,35 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function BookingConfirmationPage() {
-  // Test data to simulate a booking and map it out.
-  const bookingData = {
-    email: "test@gmail.com",
-    bookingNumber: "ADC123",
-    movieTitle: "Gladiator",
-    theater: "salong 2",
-    date: "lör. 23 sep",
-    time: "18.00",
-    seats: "rad 3, plats 13-15",
-    price: 240,
-    tickets: "1 vuxen, 2 barn",
-  };
+  const location = useLocation();
+  const navigate = useNavigate();
+  const data = location.state?.data;
 
-  const navigateToHome = useNavigate();
+  function formatDateWithWeekday(dateString) {
+    const options = { weekday: "short", year: "numeric", month: "2-digit", day: "2-digit" };
+    const date = new Date(dateString);
+    return date.toLocaleDateString("sv-SE", options);
+  }
+  const formattedDate = formatDateWithWeekday(data.date);
+
+  // Extracting the row number and seat numbers
+  const row = data.seats[0][0] + 1;
+  const seatNumbers = data.seats.map((seat) => seat[1] + 1);
+
+  // Assuming seats are consecutive, use the first and the last seat number for the range
+  const seatRange = `rad ${row}, plats ${seatNumbers[0]}-${seatNumbers[seatNumbers.length - 1]}`;
+
+  // Function to process the seat data
+  const bookingData = {
+    email: data.email,
+    bookingNumber: data.bookingNumber,
+    movieTitle: data.movieTitle,
+    theater: data.theater,
+    date: formattedDate,
+    time: data.time,
+    seats: seatRange,
+    price: data.fullPrice,
+  };
 
   return (
     <>
@@ -33,9 +48,7 @@ export default function BookingConfirmationPage() {
           </svg>
         </div>
         <h1 className="text-center">Tack för din bokning!</h1>
-        <h4 className="text-center">
-          Bekräftelse skickas med e-post till {bookingData.email}
-        </h4>
+        <h4 className="text-center">Bekräftelse skickas med e-post till {bookingData.email}</h4>
         <h2 className="mt-3">Bokningsdetaljer</h2>
         <table className="table-dark table-border">
           <tbody>
@@ -50,7 +63,7 @@ export default function BookingConfirmationPage() {
             <tr>
               <td className="tdata-left">Datum:</td>
               <td className="tdata-right">
-                {bookingData.date}, {bookingData.time}
+                {bookingData.time}, {bookingData.date}
               </td>
             </tr>
             <tr>
@@ -66,10 +79,7 @@ export default function BookingConfirmationPage() {
       </div>
       <h4 className="text-center mt-4 mb-4">Vi ser fram emot ditt besök!</h4>
       <div className="d-flex justify-content-center">
-        <button
-          onClick={() => navigateToHome("/")}
-          className="btn btn-outline-secondary py-2 mb-4"
-        >
+        <button onClick={() => navigate("/")} className="btn btn-outline-secondary py-2 mb-4">
           STARTSIDA
         </button>
       </div>

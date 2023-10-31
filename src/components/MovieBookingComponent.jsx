@@ -1,5 +1,6 @@
 import Accordion from "react-bootstrap/Accordion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
 import ScreeningListComponent from "./ScreeningListComponent";
 import MovieSeatsComponent from "./MovieSeatsComponent";
@@ -18,6 +19,8 @@ function MovieBookingComponent() {
   const [emailValid, setEmailValid] = useState(true);
   const [screening, setScreening] = useState("");
   const [show, setShow] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -60,6 +63,8 @@ function MovieBookingComponent() {
 
     let resp = await userService.bookSeats(screening._id, body);
     console.log(resp);
+
+    navigate("/bookingConfirmation", {state: {data: resp}});
   };
 
   function submitBooking(e) {
