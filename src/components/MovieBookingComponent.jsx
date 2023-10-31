@@ -1,5 +1,6 @@
 import Accordion from "react-bootstrap/Accordion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
 import ScreeningListComponent from "./ScreeningListComponent";
 import MovieSeatsComponent from "./MovieSeatsComponent";
@@ -19,6 +20,7 @@ function MovieBookingComponent() {
   const [screening, setScreening] = useState("");
   const [show, setShow] = useState(false);
 
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -34,7 +36,7 @@ function MovieBookingComponent() {
     setChildTickets(childTickets);
     setTotalTickets(adultTickets + seniorTickets + childTickets);
     console.log("adult:", adultTickets, "senior:", seniorTickets, "child:", childTickets);
-  
+
     if (adultTickets > 0 || seniorTickets > 0 || childTickets > 0) {
       setActiveItem(2);
     } else {
@@ -61,6 +63,8 @@ function MovieBookingComponent() {
 
     let resp = await userService.bookSeats(screening._id, body);
     console.log(resp);
+
+    navigate("/bookingConfirmation", { state: { data: resp } });
   };
 
   function submitBooking(e) {
@@ -92,20 +96,58 @@ function MovieBookingComponent() {
     <div className="container">
       <Accordion activeKey={activeItem + ""}>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>1. Välj visning {screening ? <button className="restart-button" onClick={() => restart("screening")}>Ändra</button> : ""}</Accordion.Header>
-          <Accordion.Body><ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} /></Accordion.Body>
+          <Accordion.Header>
+            1. Välj visning{" "}
+            {screening ? (
+              <button className="restart-button" onClick={() => restart("screening")}>
+                Ändra
+              </button>
+            ) : (
+              ""
+            )}
+          </Accordion.Header>
+          <Accordion.Body>
+            <ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} />
+          </Accordion.Body>
         </Accordion.Item>
 
-        <Accordion.Item eventKey="1" >
-          <Accordion.Header>2. Biljettyp och antal {totalTickets > 0 ? <button className="restart-button" onClick={() => restart("ticketType")}>Ändra</button> : ""}</Accordion.Header>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>
+            2. Biljettyp och antal{" "}
+            {totalTickets > 0 ? (
+              <button className="restart-button" onClick={() => restart("ticketType")}>
+                Ändra
+              </button>
+            ) : (
+              ""
+            )}
+          </Accordion.Header>
           <Accordion.Body>
             <TicketWithPriceComponent onGetTickets={getTickets} />
           </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="2">
-          <Accordion.Header>3. Välj platser {chosenSeats.length > 0 ? <button className="restart-button" onClick={() => restart("seats")}>Ändra</button> : ""}</Accordion.Header>
-          <Accordion.Body> <MovieSeatsComponent setActiveItem={setActiveItem} screening={screening} totalTickets={totalTickets} chosenSeats={chosenSeats} setChosenSeats={setChosenSeats}/> </Accordion.Body>
+          <Accordion.Header>
+            3. Välj platser{" "}
+            {chosenSeats.length > 0 ? (
+              <button className="restart-button" onClick={() => restart("seats")}>
+                Ändra
+              </button>
+            ) : (
+              ""
+            )}
+          </Accordion.Header>
+          <Accordion.Body>
+            {" "}
+            <MovieSeatsComponent
+              setActiveItem={setActiveItem}
+              screening={screening}
+              totalTickets={totalTickets}
+              chosenSeats={chosenSeats}
+              setChosenSeats={setChosenSeats}
+            />{" "}
+          </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="3">
@@ -137,10 +179,13 @@ function MovieBookingComponent() {
           <Modal.Title>Bokningsbekräftelse</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Är du säker på att boka {totalTickets} biljetter för filmen
-          {screening && screening.movieDetails && screening.movieDetails.length > 0
-            ? screening.movieDetails[0].title
-            : " "}
+          Är du säker på att boka <span style={{ fontWeight: "bold" }}>{totalTickets} </span>
+          biljetter för filmen{" "}
+          <span style={{ fontWeight: "bold" }}>
+            {screening && screening.movieDetails && screening.movieDetails.length > 0
+              ? screening.movieDetails[0].title
+              : "ingen filmtitle"}
+          </span>
           ?
         </Modal.Body>
         <Modal.Footer>
