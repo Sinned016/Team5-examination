@@ -33,12 +33,15 @@ export default function MovieSeatsComponent(props) {
 
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
+    
+    const takenSeat = "Säte upptaget, välj en annan plats!";
 
     if(seat + tickets > 10) {
       seat = 10 - tickets;
     }
 
-    if (seatState === "occupied-seat") {
+    if (seatState.includes("occupied-seat")) {
+      alert(takenSeat)
       return;
     }
 
@@ -48,6 +51,7 @@ export default function MovieSeatsComponent(props) {
       if (seats[row][seat + i] === 0) {
         setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
       } else {
+        alert(takenSeat)
         setChosenSeats([]);
       }
     }
