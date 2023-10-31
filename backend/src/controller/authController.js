@@ -42,9 +42,9 @@ async function register(req, res) {
   try {
     const result = await createUser(email, password);
     if (result.upsertedCount == 1) {
-      return res.status(201).send("Välkommen, du är nu medlem!"); // 201: created
+      return res.status(201).send({ message: "Välkommen, du är nu medlem!" }); // 201: created
     } else {
-      return res.status(409).send("Kontot finns redan."); // 409: conflict
+      return res.status(409).send({ message: "Kontot finns redan." }); // 409: conflict
     }
   } catch (error) {
     return res.status(500).send("Server error");
