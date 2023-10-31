@@ -88,8 +88,7 @@ export default function Header() {
             </svg>
           </Dropdown.Item>
           </>
-          )}
-
+          
           {/* {isLoggedIn && */}
           (
             <>
