@@ -93,7 +93,7 @@ export default function Header() {
           (
             <>
           {/* När inloggad! */}
-          <Dropdown.Item href="/bookings/:email">
+          <Dropdown.Item href="/bookings/">
             Bokningar {""}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
