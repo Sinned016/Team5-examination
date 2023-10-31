@@ -41,3 +41,8 @@
     background-color: $cards-color;
     pointer-events: none;
 }
+
+.hovered-seat {
+    background-color: $important-color;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}

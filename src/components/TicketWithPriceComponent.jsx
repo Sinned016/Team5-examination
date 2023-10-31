@@ -56,7 +56,7 @@ function TicketWithPriceComponent({ onGetTickets }) {
         <span className="total-value">{totalPrice} kr</span>
       </p>
       <button
-        className="btn btn-secondary"
+        className="btn login-btn"
         onClick={() => onGetTickets(adultClicks, seniorClicks, childClicks)}
       >
         Välj antal

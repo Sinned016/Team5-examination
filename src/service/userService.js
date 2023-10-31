@@ -19,17 +19,27 @@ function getUserRole() {
   return getLocalJWTData().role;
 }
 
+const buildPutFetchOptions = (body) => ({
+  method: "PUT",
+  body: JSON.stringify(body),
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 const buildGetFetchOptions = () => ({
   headers: {
     "Authorization": "Bearer " + memoryService.getLocalValue("JWT_TOKEN"),
   },
 });
 
-const performRequest = async (url, method) => {
+const performRequest = async (url, method, body) => {
   let options = undefined;
 
   if (method === "GET") {
     options = buildGetFetchOptions();
+  } else if (method === "PUT") {
+    options = buildPutFetchOptions(body);
   }
 
   return await fetch(url, options);
@@ -41,9 +51,16 @@ const getUserBookings = async (email) => {
   return data;
 };
 
+const bookSeats = async (id, bookingInformation) => {
+  let resp = await performRequest(`/api/screening/${id}`, "PUT", bookingInformation);
+  let data = await resp.json();
+  return data;
+};
+
 const userService = {
   getUserEmail,
   getUserRole,
   getUserBookings,
+  bookSeats,
 };
 export default userService;

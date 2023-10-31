@@ -1,10 +1,15 @@
 import Accordion from "react-bootstrap/Accordion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
 import ScreeningListComponent from "./ScreeningListComponent";
 import MovieSeatsComponent from "./MovieSeatsComponent";
+import userService from "../service/userService";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 function MovieBookingComponent() {
+  const [activeItem, setActiveItem] = useState(0);
   const [adultTickets, setAdultTickets] = useState(0);
   const [seniorTickets, setSeniorTickets] = useState(0);
   const [childTickets, setChildTickets] = useState(0);
@@ -13,7 +18,17 @@ function MovieBookingComponent() {
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
   const [screening, setScreening] = useState("");
-  console.log(chosenSeats);
+  const [show, setShow] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    if (!isValidEmail(email)) {
+      setEmailValid(false);
+      return; // exit the function if email is invalid, which means you need to have a valid email to book tickets
+    } else setShow(true);
+  };
 
   function getTickets(adultTickets, seniorTickets, childTickets) {
     setAdultTickets(adultTickets);
@@ -21,43 +36,122 @@ function MovieBookingComponent() {
     setChildTickets(childTickets);
     setTotalTickets(adultTickets + seniorTickets + childTickets);
     console.log("adult:", adultTickets, "senior:", seniorTickets, "child:", childTickets);
+
+    if (adultTickets > 0 || seniorTickets > 0 || childTickets > 0) {
+      setActiveItem(2);
+    } else {
+      return;
+    }
   }
 
   function isValidEmail(email) {
     return email.includes("@");
   }
 
+  const bookSeats = async () => {
+    const body = {
+      email: email,
+      adult: adultTickets,
+      child: childTickets,
+      senior: seniorTickets,
+      bookedSeats: chosenSeats,
+      movieTitle: screening.movieDetails[0].title,
+      date: screening.date,
+      time: screening.time,
+      theater: screening.theater,
+    };
+
+    let resp = await userService.bookSeats(screening._id, body);
+    console.log(resp);
+
+    navigate("/bookingConfirmation", { state: { data: resp } });
+  };
+
   function submitBooking(e) {
     e.preventDefault();
-    if (!isValidEmail(email)) {
-      setEmailValid(false);
-      return; // exit the function if email is invalid, which means you need to have a valid email to book tickets
-    }
-    console.log(email, adultTickets, seniorTickets, childTickets);
+    handleClose();
+
     console.log("connecting with backend");
     // Here can make put request to book tickets
+    bookSeats();
   }
+
+  function restart(identifier) {
+    if (identifier === "screening") {
+      setScreening("");
+      setTotalTickets(0);
+      setChosenSeats([]);
+      setActiveItem(0);
+    } else if (identifier === "ticketType") {
+      setTotalTickets(0);
+      setChosenSeats([]);
+      setActiveItem(1);
+    } else if (identifier === "seats") {
+      setChosenSeats([]);
+      setActiveItem(2);
+    }
+  }
+
   return (
     <div className="container">
-      <Accordion defaultActiveKey={["0"]} alwaysOpen>
+      <Accordion activeKey={activeItem + ""}>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>1. Välj visning</Accordion.Header>
-          <Accordion.Body><ScreeningListComponent setScreening={setScreening} /></Accordion.Body>
+          <Accordion.Header>
+            1. Välj visning{" "}
+            {screening ? (
+              <button className="restart-button" onClick={() => restart("screening")}>
+                Ändra
+              </button>
+            ) : (
+              ""
+            )}
+          </Accordion.Header>
+          <Accordion.Body>
+            <ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} />
+          </Accordion.Body>
         </Accordion.Item>
+
         <Accordion.Item eventKey="1">
-          <Accordion.Header>2. Biljettyp och antal</Accordion.Header>
+          <Accordion.Header>
+            2. Biljettyp och antal{" "}
+            {totalTickets > 0 ? (
+              <button className="restart-button" onClick={() => restart("ticketType")}>
+                Ändra
+              </button>
+            ) : (
+              ""
+            )}
+          </Accordion.Header>
           <Accordion.Body>
             <TicketWithPriceComponent onGetTickets={getTickets} />
           </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="2">
-          <Accordion.Header>3. Välj platser</Accordion.Header>
-          <Accordion.Body> <MovieSeatsComponent screening={screening} totalTickets={totalTickets} setChosenSeats={setChosenSeats}/> </Accordion.Body>
+          <Accordion.Header>
+            3. Välj platser{" "}
+            {chosenSeats.length > 0 ? (
+              <button className="restart-button" onClick={() => restart("seats")}>
+                Ändra
+              </button>
+            ) : (
+              ""
+            )}
+          </Accordion.Header>
+          <Accordion.Body>
+            {" "}
+            <MovieSeatsComponent
+              setActiveItem={setActiveItem}
+              screening={screening}
+              totalTickets={totalTickets}
+              chosenSeats={chosenSeats}
+              setChosenSeats={setChosenSeats}
+            />{" "}
+          </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey="3">
-          <Accordion.Header>4. Bekräfta</Accordion.Header>
+          <Accordion.Header>4. Bekräfta </Accordion.Header>
           <Accordion.Body>
             <form>
               <input
@@ -70,15 +164,39 @@ function MovieBookingComponent() {
                 }}
                 className="form-control"
               ></input>
-              <button onClick={submitBooking} className="btn btn-secondary btn-sm ms-2">
+              <Button onClick={handleShow} className="btn login-btn custom-hover-1 ms-2">
                 Boka
-              </button>
+              </Button>
             </form>
             <div className="form-text">Vi kommer aldrig att dela din e-post med någon annan.</div>
             {!emailValid && <div className="text-danger">Vänligen ange en giltig email.</div>}
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
+
+      <Modal show={show} onHide={handleClose} style={{ color: "black" }}>
+        <Modal.Header closeButton>
+          <Modal.Title>Bokningsbekräftelse</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Är du säker på att boka <span style={{ fontWeight: "bold" }}>{totalTickets} </span>
+          biljetter för filmen{" "}
+          <span style={{ fontWeight: "bold" }}>
+            {screening && screening.movieDetails && screening.movieDetails.length > 0
+              ? screening.movieDetails[0].title
+              : "ingen filmtitle"}
+          </span>
+          ?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleClose}>
+            Avbryt
+          </Button>
+          <Button className="btn login-btn custom-hover-2" onClick={submitBooking}>
+            Boka
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
