@@ -14,7 +14,7 @@ export default function MovieSeatsComponent(props) {
   const setChosenSeats = props.setChosenSeats;
   const setActiveItem = props.setActiveItem;
 
-  const [isHovered, setIsHovered] = useState([]);
+  const [isHovered, setIsHovered] = useState([]); // eslint-disable-line
   const handleMouseEnter = (row, seat) => {
     let toMark = [];
     for (let i = 0; i < tickets; i++) {
