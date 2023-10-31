@@ -14,7 +14,7 @@ export default function MovieSeatsComponent(props) {
   const setChosenSeats = props.setChosenSeats;
   const setActiveItem = props.setActiveItem;
 
-  const [isHovered, setIsHovered] = useState([]);
+  const [isHovered, setIsHovered] = useState([]); // eslint-disable-line
   const handleMouseEnter = (row, seat) => {
     let toMark = [];
     for (let i = 0; i < tickets; i++) {
@@ -58,7 +58,11 @@ export default function MovieSeatsComponent(props) {
   }
 
   function setActive() {
-    setActiveItem(3)
+    if (chosenSeats.length > 0) {
+      setActiveItem(3);
+    } else {
+      alert("Välj säten innan du fortsätter");
+    }
   }
 
   const mappedSeats = seats.map((seatArray, rowIndex) => {
@@ -87,7 +91,7 @@ export default function MovieSeatsComponent(props) {
     <>
       <div className="theatre-screen"></div>
       {mappedSeats}
-      <button onClick={setActive}>Test</button>
+      <button className="btn login-btn" onClick={setActive}>Välj plats</button>
     </>
   )
 }
