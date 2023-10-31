@@ -115,7 +115,7 @@ export default function Header() {
 
           {/* Logga ut! När inloggad*/}
           <Dropdown.Item 
-          href="/screeningsAndMovies" onClick={logout}>
+          href="/" onClick={logout}>
             Logga ut {""}
             {""}
             <svg
@@ -136,7 +136,7 @@ export default function Header() {
             </svg>
           </Dropdown.Item>
           </>
-          )}
+          )
         </DropdownButton>
       </Container>
     </Navbar>
