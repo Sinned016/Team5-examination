@@ -32,25 +32,25 @@ function MemberBookingsPage() {
           <tbody>
           
             <tr>
-              <td className="tdata-left">Bokningsnummer:</td>
+              <td className="tdata-left">Bokningsnummer</td>
               <td className="tdata-right">{booking.bookingNumber}</td>
             </tr>
             <tr>
-              <td className="tdata-left">Film:</td>
+              <td className="tdata-left">Film</td>
               <td className="tdata-right">{booking.movieTitle}</td>
             </tr>
             <tr>
-              <td className="tdata-left">Datum:</td>
+              <td className="tdata-left">Datum</td>
               <td className="tdata-right">
                 {booking.date} {booking.time}
               </td>
             </tr>
             <tr>
-              <td className="tdata-left">Plats:</td>
+              <td className="tdata-left">Plats</td>
               <td className="tdata-right">{booking.seats}</td>
             </tr>
             <tr>
-              <td className="tdata-left">Pris (betalning sker på plats):</td>
+              <td className="tdata-left">Pris (betalning sker på plats)</td>
               <td className="tdata-right">{booking.price} SEK</td>
             </tr>
             <button className="btn btn-outline-secondary py-2 mb-4" >AVBOKA</button>
@@ -66,10 +66,10 @@ function MemberBookingsPage() {
    
       <table className="table-dark table-border">
         <thead>
-          <th>Bokningsnr:</th>
-          <th>Film:</th>
-          <th>Datum:</th>
-          <th>Pris:</th>
+          <th>Bokningsnr</th>
+          <th>Film</th>
+          <th>Datum</th>
+          <th>Pris</th>
         </thead>
               {bookings.map((booking, index) => (
           <tbody key={index}>
