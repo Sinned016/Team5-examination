@@ -32,6 +32,12 @@ function generateId() {
   return result;
 }
 
+// format date
+function formatDateWithWeekday(dateString) {
+  const options = { weekday: "short", year: "numeric", month: "2-digit", day: "2-digit" };
+  const date = new Date(dateString);
+  return date.toLocaleDateString("sv-SE", options);
+}
 // get all movies
 router.get("/movies", async (req, res) => {
   try {
@@ -109,6 +115,8 @@ router.put("/screening/:id", async (req, res) => {
   const bookingInformation = req.body;
   const userEmail = bookingInformation.email; // Get userEmail in order to send out an email confirmation to it - Josefine
 
+  console.log(bookingInformation);
+
   const fullPrice = addTotalPrice(
     bookingInformation.child,
     bookingInformation.adult,
@@ -116,15 +124,23 @@ router.put("/screening/:id", async (req, res) => {
   );
 
   const bookingNumber = generateId();
+  const bookedSeats = bookingInformation.bookedSeats;
+  const date = bookingInformation.date;
+  const formattedDate = formatDateWithWeekday(date);
+
+  const row = bookedSeats[0][0] + 1;
+  const seatNumbers = bookedSeats.map((seat) => seat[1] + 1);
+  const seatRange = `rad ${row}, plats ${seatNumbers[0]}-${seatNumbers[seatNumbers.length - 1]}`;
 
   // Generate email content - Josefine
   const htmlContent = emailService.generateEmailTemplate(
     bookingNumber,
     bookingInformation.movieTitle,
     bookingInformation.time,
-    bookingInformation.date,
+    //bookingInformation.date,
+    formattedDate,
     bookingInformation.theater,
-    bookingInformation.bookedSeats,
+    seatRange,
     fullPrice
   );
 

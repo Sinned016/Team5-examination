@@ -38,7 +38,7 @@ function generateEmailTemplate(
         </tr>
         <tr style="background-color: #f5f5f5;">
         <td style="padding: 10px; border: 1px solid #ddd;">Datum:</td>
-        <td style="padding: 10px; border: 1px solid #ddd;"> ${time} ${date} </td>
+        <td style="padding: 10px; border: 1px solid #ddd;"> ${time}, ${date} </td>
       </tr>
           <tr>
             <td style="padding: 10px; border: 1px solid #ddd;">Plats:</td>
