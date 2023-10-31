@@ -115,8 +115,6 @@ router.put("/screening/:id", async (req, res) => {
   const bookingInformation = req.body;
   const userEmail = bookingInformation.email; // Get userEmail in order to send out an email confirmation to it - Josefine
 
-  console.log(bookingInformation);
-
   const fullPrice = addTotalPrice(
     bookingInformation.child,
     bookingInformation.adult,
@@ -137,7 +135,6 @@ router.put("/screening/:id", async (req, res) => {
     bookingNumber,
     bookingInformation.movieTitle,
     bookingInformation.time,
-    //bookingInformation.date,
     formattedDate,
     bookingInformation.theater,
     seatRange,
