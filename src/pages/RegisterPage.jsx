@@ -66,7 +66,7 @@ export default function RegisterPage() {
       <form onSubmit={registerSubmit}>
         <Row className="justify-content-center">
           <Col className="justify-content-center">
-            <h1 className="text-center mb-4">Bli Medlemme</h1>
+            <h1 className="text-center mb-4">Bli medlem</h1>
             <div className="input-icon-container">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
               <input

@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import userService from "../service/userService";
+import fetchOptions from "../service/fetchService";
+
 
 function MemberBookingsPage() {
   const [bookings, setBookings] = useState([]);
   const email = userService.getUserEmail();
+  const navigateToHome = useNavigate();
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -18,7 +21,21 @@ function MemberBookingsPage() {
     fetchBookings();
   }, [email]); // Dependency on 'email', if it changes, fetch bookings again
 
-  const navigateToHome = useNavigate();
+  
+
+  const cancelBooking = async (bookingId, screeningId) => {
+    
+    try {
+      const response = await fetch(`/api/bookings/${bookingId}`, fetchOptions('DELETE', { screeningId }));
+      console.log(response);
+      if (response.ok) {
+        const result = await userService.getUserBookings(email);
+        setBookings(result);
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -33,7 +50,6 @@ function MemberBookingsPage() {
       <table key={index} className="table-dark table-border mb-4">
     
           <tbody>
-          
             <tr>
               <td className="tdata-left">Bokningsnummer</td>
               <td className="tdata-right">{booking.bookingNumber}</td>
@@ -57,7 +73,7 @@ function MemberBookingsPage() {
               <td className="tdata-right">{booking.price} SEK</td>
             </tr>
             <div className="d-flex justify-content-center">
-            <button className="btn btn-outline-secondary py-2 mb-4" >AVBOKA</button>
+            <button className="btn btn-outline-secondary py-2 mb-4" onClick={() => cancelBooking(booking._id, booking.screeningId)} >AVBOKA</button>
             </div>
           </tbody>
         </table>  ))}
