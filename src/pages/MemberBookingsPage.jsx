@@ -61,10 +61,10 @@ function MemberBookingsPage() {
 
 
 
-    <div className="booking-history-container" >
+    <div className="bookinghistory table-responsive" >
     <h2>Bokningshistorik</h2>
    
-      <table className="table-dark table-border">
+      <table className="table table-dark table-border align-middle">
         <thead>
           <th>Bokningsnr</th>
           <th>Film</th>
@@ -72,24 +72,24 @@ function MemberBookingsPage() {
           <th>Pris</th>
         </thead>
               {bookings.map((booking, index) => (
-          <tbody key={index}>
+          <tbody key={index} className="table-dark">
 
-            <tr>
-              <td className="tdata-right">{booking.bookingNumber}</td>
+            <tr className="table-dark align-bottom">
+              <td className="tdata-left">{booking.bookingNumber}</td>
           
              
-              <td className="tdata-right">{booking.movieTitle}</td>
+              <td className="tdata-left">{booking.movieTitle}</td>
             
-              <td className="tdata-right">
+              <td className="tdata-left">
                 {booking.date} {booking.time}
               </td>
               
          
-              <td className="tdata-right">{booking.price} SEK</td>
+              <td className="tdata-left">{booking.price} SEK</td>
               </tr>
           </tbody> ))}
         </table>
-        <button onClick={() => navigateToHome("/")} className="btn btn-outline-secondary py-2 mb-4" >STARTSIDA</button>
+        <button onClick={() => navigateToHome("/")} className="btn btn-outline-secondary py-2 mb-4 " >STARTSIDA</button>
         </div>
     </>
   );

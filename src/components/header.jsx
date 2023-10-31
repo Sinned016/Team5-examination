@@ -1,10 +1,25 @@
+import { useState } from "react";
+// import { useStates } from "react-easier"
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-
+import memoryService from "../service/memoryService";
+import userService from "../service/userService";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
 export default function Header() {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+
+  async function logout() {
+    // Clear user session data
+    memoryService.removeLocalValue("JWT_TOKEN");
+    userService.removeUserRole();
+  
+    // navigate("/login");
+  }
+
   return (
     <Navbar expand="lg" className="navbar-body">
       <Container>
@@ -38,6 +53,9 @@ export default function Header() {
           className="dropdown-button"
           drop="start"
         >
+          {/* {!isLoggedIn && 
+          ( */}
+            <>
           <Dropdown.Item href="/register">
             Bli medlem {""}{" "}
             <svg
@@ -72,8 +90,14 @@ export default function Header() {
               />
             </svg>
           </Dropdown.Item>
+          </>
+          )}
+
+          {/* {isLoggedIn && */}
+          (
+            <>
           {/* När inloggad! */}
-          {/* <Dropdown.Item href="#/bookings/:email">
+          <Dropdown.Item href="/bookings/:email">
             Bokningar {""}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -87,10 +111,11 @@ export default function Header() {
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
               />
             </svg>
-          </Dropdown.Item> */}
+          </Dropdown.Item>
 
           {/* Logga ut! När inloggad*/}
-          {/* <Dropdown.Item href="#/screeningsAndMovies">
+          <Dropdown.Item 
+          href="/screeningsAndMovies" onClick={logout}>
             Logga ut {""}
             {""}
             <svg
@@ -109,7 +134,9 @@ export default function Header() {
                 d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
               />
             </svg>
-          </Dropdown.Item> */}
+          </Dropdown.Item>
+          </>
+          )}
         </DropdownButton>
       </Container>
     </Navbar>
