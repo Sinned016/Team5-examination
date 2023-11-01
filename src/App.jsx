@@ -22,7 +22,7 @@ export default function App() {
 
       <MovieBookingComponent />
 
-      <footer className="container-fluid mt-4">
+      <footer className="text-lg-start">
         <Footer />
       </footer>
     </div>
