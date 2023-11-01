@@ -5,11 +5,19 @@
 #dropdown-basic-button {
   background-color: $background-color;
   border: none;
+  
 }
 
 .dropdown-menu {
   background-color: $cards-color;
 }
+
+// .bi.bi-person{ gubbikonen
+//   background-color: green;
+// }
+// .dropdown-menu.show { dropdownrutan
+// justify-content: end;
+// }
 
 .dropdown-item {
   color: $text-color;
