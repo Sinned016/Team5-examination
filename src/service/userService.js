@@ -4,19 +4,28 @@ import memoryService from "./memoryService.js";
 
 function getLocalJWTData() {
   const localJWTToken = memoryService.getLocalValue("JWT_TOKEN");
-  const tokenParts = localJWTToken.split("."); // 0 - jwt header, 1 - payload, 2 - signatur
-  const payload = tokenParts[1];
+  if (!localJWTToken) return;
+  else {
+    const tokenParts = localJWTToken.split("."); // 0 - jwt header, 1 - payload, 2 - signatur
+    const payload = tokenParts[1];
 
-  let payloadData = window.atob(payload);
-  return JSON.parse(payloadData);
+    let payloadData = window.atob(payload);
+    return JSON.parse(payloadData);
+  }
 }
 
 function getUserEmail() {
-  return getLocalJWTData().email;
+  if (!getLocalJWTData()) return;
+  else {
+    return getLocalJWTData().email;
+  }
 }
 
 function getUserRole() {
-  return getLocalJWTData().role;
+  if (!getLocalJWTData()) return;
+  else {
+    return getLocalJWTData().role;
+  }
 }
 
 const buildPutFetchOptions = (body) => ({
