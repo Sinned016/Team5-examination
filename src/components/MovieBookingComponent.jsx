@@ -1,5 +1,5 @@
 import Accordion from "react-bootstrap/Accordion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
 import ScreeningListComponent from "./ScreeningListComponent";
@@ -19,8 +19,16 @@ function MovieBookingComponent() {
   const [emailValid, setEmailValid] = useState(true);
   const [screening, setScreening] = useState("");
   const [show, setShow] = useState(false);
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("JWT_TOKEN");
+    if(!token) {
+      return;
+    }
+    const email = userService.getUserEmail();
+    setEmail(email);
+  }, [])
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
