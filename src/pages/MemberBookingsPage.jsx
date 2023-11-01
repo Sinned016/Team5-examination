@@ -80,7 +80,7 @@ function MemberBookingsPage() {
                     </tr>
                     <tr>
                       <td className="tdata-left">Plats</td>
-                      <td className="tdata-right">{booking.seats}</td>
+                      <td className="tdata-right">Rad: {booking.seats[0][0] + 1}, Plats: {booking.seats[0][1] + 1}-{booking.seats[booking.seats.length - 1][1] + 1}</td>
                     </tr>
                     <tr>
                       <td className="tdata-left">Pris (betalning sker på plats)</td>
