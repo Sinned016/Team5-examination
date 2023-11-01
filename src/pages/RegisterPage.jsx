@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import authService from "../service/authService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -97,7 +98,9 @@ export default function RegisterPage() {
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
-              <button className="btn cancel-btn me-2">AVBRYT</button>
+              <button className="btn cancel-btn me-2" onClick={() => navigate("/")}>
+                AVBRYT
+              </button>
               <button className="btn register-btn  ms-2" type="submit">
                 BLI MEDLEM
               </button>
