@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import { Container, Row, Col } from "react-bootstrap";
-import Header from "./components/Header";
+import Header from "./components/header";
 
 export default function App() {
 
   return (
     <div>
-      <header id="header">
+      <header className="container-fixed mt-3">
         <Header />
       </header>
 

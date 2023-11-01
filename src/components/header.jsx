@@ -18,7 +18,7 @@ export default function Header() {
   }
 
   return (
-    <Navbar expand="lg" className="navbar-body">
+
       <Container>
         <div className="logo-container">
           <a href="/">
@@ -28,9 +28,24 @@ export default function Header() {
               alt="Company Logo"
             />
           </a>
+
+          
         </div>
-      
-      </Container>
-    </Navbar>
+
+  
+    <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+      <Dropdown.Item href="/register">Bli medlem</Dropdown.Item>
+      <Dropdown.Item href="/login">Logga in</Dropdown.Item>
+      <Dropdown.Item href="/bookings">Mina bokningar</Dropdown.Item>
+      <Dropdown.Item href="#/action-3">Logga ut</Dropdown.Item>
+    </DropdownButton>
+
+
+
+</Container>
+
+
+
+
   );
 }
