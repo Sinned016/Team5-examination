@@ -50,9 +50,7 @@ export default function Header() {
           className="dropdown-button"
           drop="start"
         >
-          {/* {!isLoggedIn && 
-          ( */}
-            <>
+     
           <Dropdown.Item href="/register">
             Bli medlem {""}{" "}
             <svg
@@ -87,11 +85,9 @@ export default function Header() {
               />
             </svg>
           </Dropdown.Item>
-          </>
+      
           
-          {/* {isLoggedIn && */}
-          (
-            <>
+  
           {/* När inloggad! */}
           <Dropdown.Item href="/bookings/"> 
             Bokningar {""}{" "}
@@ -131,8 +127,7 @@ export default function Header() {
               />
             </svg>
           </Dropdown.Item>
-          </>
-          )
+      
         </DropdownButton>
       </Container>
     </Navbar>
