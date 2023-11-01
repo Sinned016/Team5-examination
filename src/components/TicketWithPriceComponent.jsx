@@ -55,12 +55,12 @@ function TicketWithPriceComponent({ onGetTickets }) {
         <span className="total-label">Total: </span>
         <span className="total-value">{totalPrice} kr</span>
       </p>
-      <button
-        className="btn login-btn"
-        onClick={() => onGetTickets(adultClicks, seniorClicks, childClicks)}
-      >
-        Välj antal
-      </button>
+        <button
+          className="confirm-button"
+          onClick={() => onGetTickets(adultClicks, seniorClicks, childClicks)}
+        >
+          Välj antal
+        </button>
     </div>
   );
 }

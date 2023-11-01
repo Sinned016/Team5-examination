@@ -1,3 +1,13 @@
+.theater-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-item-right {
+    display: flex;
+    justify-content: end;
+}
+
 .theatre-screen {
     background-color: #fff;
     width: 80%;

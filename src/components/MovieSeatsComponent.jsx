@@ -88,10 +88,12 @@ export default function MovieSeatsComponent(props) {
   })
 
   return (
-    <>
+    <div className="theater-container">
       <div className="theatre-screen"></div>
       {mappedSeats}
-      <button className="btn login-btn" onClick={setActive}>Välj plats</button>
-    </>
+      <div className="flex-item-right">
+        <button className="confirm-button" onClick={setActive}>Välj plats</button>
+      </div>
+    </div>
   )
 }

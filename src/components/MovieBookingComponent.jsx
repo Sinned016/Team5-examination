@@ -93,7 +93,7 @@ function MovieBookingComponent() {
   }
 
   return (
-    <div className="container">
+    <>
       <Accordion activeKey={activeItem + ""}>
         <Accordion.Item eventKey="0">
           <Accordion.Header>
@@ -197,7 +197,7 @@ function MovieBookingComponent() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 }
 
