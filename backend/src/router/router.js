@@ -32,6 +32,12 @@ function generateId() {
   return result;
 }
 
+// format date
+function formatDateWithWeekday(dateString) {
+  const options = { weekday: "short", year: "numeric", month: "2-digit", day: "2-digit" };
+  const date = new Date(dateString);
+  return date.toLocaleDateString("sv-SE", options);
+}
 // get all movies
 router.get("/movies", async (req, res) => {
   try {
@@ -116,15 +122,25 @@ router.put("/screening/:id", async (req, res) => {
   );
 
   const bookingNumber = generateId();
+  const bookedSeats = bookingInformation.bookedSeats;
+  const date = bookingInformation.date;
+  const formattedDate = formatDateWithWeekday(date);
+
+  const row = bookedSeats[0][0] + 1;
+  const seatNumbers = bookedSeats.map((seat) => seat[1] + 1);
+  const seatRange = `rad ${row}, plats ${seatNumbers[0]}-${seatNumbers[seatNumbers.length - 1]}`;
 
   // Generate email content - Josefine
   const htmlContent = emailService.generateEmailTemplate(
     bookingNumber,
     bookingInformation.movieTitle,
     bookingInformation.time,
-    bookingInformation.date,
+    formattedDate,
     bookingInformation.theater,
-    bookingInformation.bookedSeats,
+    seatRange,
+    bookingInformation.child,
+    bookingInformation.adult,
+    bookingInformation.senior,
     fullPrice
   );
 
@@ -196,15 +212,15 @@ router.put("/screening/:id", async (req, res) => {
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             console.log(error);
-            res.status(500).send("Failed to send email"); // 500 Internal Server Error
+            res.status(500).send("Lyckades inte skicka e-mail."); // 500 Internal Server Error
           } else {
-            console.log("Email sent: " + info.response);
-            res.status(200).send("Booking and Email sent successfully");
+            console.log("Email skickat: " + info.response);
+            res.status(200).send("Bokning och e-mail skickades.");
           }
         });
       } catch (error) {
-        console.error("Failed to send confirmation email:", error);
-        return res.status(500).send("Failed to send email");
+        console.error("Misslyckades att skicka bekräftelsemail:", error);
+        return res.status(500).send("Misslyckades att skicka e-mail.");
       }
     }
   }
@@ -225,7 +241,7 @@ router.get("/bookings/:email", userFilter.authorize, async (req, res) => {
 });
 
 // Delete booking and update seats
-router.delete("/bookings/:id", userFilter.authorize, async (req, res) => {
+router.delete("/bookings/:id", async (req, res) => {
   const bookingId = req.params.id;
 
   if (ObjectId.isValid(bookingId)) {

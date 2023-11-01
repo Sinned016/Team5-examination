@@ -3,7 +3,8 @@
   border-color: #c0c0c0;
 }
 
-.login-btn {
+.login-btn,
+.register-btn {
   background-color: #3e7580;
   border: none;
 }
@@ -30,4 +31,15 @@
 
 .form-control.with-icon {
   padding-left: 30px;
+}
+
+.custom-hover-1:hover {
+  background-color: transparent !important;
+  /* Add other styles if needed, like changing the text color, border, etc. */
+}
+
+.custom-hover-2:hover {
+  color: black;
+  background-color: transparent !important;
+  border: 1px solid black;
 }

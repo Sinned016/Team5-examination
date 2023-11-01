@@ -3,18 +3,15 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import authService from "../service/authService";
-import memoryService from "../service/memoryService";
-import userService from "../service/userService";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function LoginPage() {
+export default function RegisterPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
-
-  const navigate = useNavigate();
 
   const handleValidation = (e) => {
     let formIsValid = true;
@@ -43,23 +40,16 @@ export default function LoginPage() {
     return formIsValid;
   };
 
-  async function loginSubmit(e) {
+  async function registerSubmit(e) {
     e.preventDefault();
     const formIsValid = handleValidation();
     if (formIsValid) {
-      let res = await authService.authenticate({ email, password });
+      let res = await authService.register({ email, password });
       let data = await res.json();
       if (res.status >= 400) {
         setInfoMessage(data.message);
       } else {
         setInfoMessage(data.message);
-
-        memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
-        const role = userService.getUserRole();
-        if (role === "member") {
-          console.log("member", data.accessToken);
-          navigate("/bookings");
-        }
       }
     }
   }
@@ -72,13 +62,12 @@ export default function LoginPage() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "80%",
       }}
     >
-      <form onSubmit={loginSubmit}>
+      <form onSubmit={registerSubmit}>
         <Row className="justify-content-center">
-          <Col>
-            <h1 className="text-center mb-4">Logga in</h1>
+          <Col className="justify-content-center">
+            <h1 className="text-center mb-4">Bli medlem</h1>
             <div className="input-icon-container">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
               <input
@@ -86,7 +75,7 @@ export default function LoginPage() {
                 className="form-control with-icon"
                 name="emailInput"
                 aria-describedby="emailHelp"
-                placeholder="E-mail"
+                placeholder="Email"
                 onChange={(event) => setEmail(event.target.value)}
               />
               <small className="text-danger form-text">{emailError}</small>
@@ -101,27 +90,19 @@ export default function LoginPage() {
               />
             </div>
             <small className="text-danger form-text">{passwordError}</small>
-            <div className="form-group form-check">
-              <input type="checkbox" className="form-check-input" />
-              <label className="form-check-label">Kom ihåg mig</label>
-            </div>
             <small className="form-text text-center text-danger">{infoMessage}</small>
-
-            <p className="text-center mt-3" onClick={() => alert("Fungerar inte för tillfället!")}>
-              Glöm ditt lösenord? <span style={{ color: "#FFD700" }}>Återställ här!</span>
-            </p>
-            <p className="text-center">
-              Är du inte medlem men vill bli?
-              <Link to="/register">
-                <span style={{ color: "#FFD700" }}> Klicka här!</span>
+            <p className="text-center mt-3">
+              Är du redan medlem?
+              <Link to="/login">
+                <span style={{ color: "#FFD700" }}> Logga in här!</span>
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
               <button className="btn cancel-btn me-2" onClick={() => navigate("/")}>
                 AVBRYT
               </button>
-              <button className="btn login-btn  ms-2" type="submit">
-                LOGGA IN
+              <button className="btn register-btn  ms-2" type="submit">
+                BLI MEDLEM
               </button>
             </div>
           </Col>

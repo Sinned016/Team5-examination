@@ -29,8 +29,6 @@ export default function Footer() {
                  © Filmvisarna
             </div>
 
-
-
         </footer>
     )
 }
