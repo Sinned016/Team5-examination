@@ -1,15 +1,14 @@
 .movieCard {
   color: #ededed;
-  width: 177px;
   padding: 0.5em;
   border-radius: 2px;
   background-color: #2b2827;
-  box-sizing: border-box;
 }
 
 .movieImages {
   width: 100%;
-  object-fit: contain;
+  aspect-ratio: 2/3;
+  object-fit: cover;
 }
 
 .screeningsContainer {
