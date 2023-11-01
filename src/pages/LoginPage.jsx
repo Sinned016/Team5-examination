@@ -5,8 +5,7 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import authService from "../service/authService";
 import memoryService from "../service/memoryService";
 import userService from "../service/userService";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -31,7 +30,7 @@ export default function LoginPage() {
       setPasswordError("Stor bokstav, liten bokstav och siffra krävs för lösenord!");
       return false;
     }
- 
+
     if (/\s/.test(password)) {
       formIsValid = false;
       setPasswordError("Lösenordet får inte innehålla mellanrum!");
@@ -108,7 +107,7 @@ export default function LoginPage() {
             </div>
             <small className="form-text text-center text-danger">{infoMessage}</small>
 
-            <p className="text-center mt-3">
+            <p className="text-center mt-3" onClick={() => alert("Fungerar inte för tillfället!")}>
               Glöm ditt lösenord? <span style={{ color: "#FFD700" }}>Återställ här!</span>
             </p>
             <p className="text-center">
@@ -118,7 +117,9 @@ export default function LoginPage() {
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
-              <button className="btn cancel-btn me-2">AVBRYT</button>
+              <button className="btn cancel-btn me-2" onClick={() => navigate("/")}>
+                AVBRYT
+              </button>
               <button className="btn login-btn  ms-2" type="submit">
                 LOGGA IN
               </button>
