@@ -53,7 +53,7 @@ function generateEmailTemplate(
       </tr>
       
           <tr>
-            <td style="padding: 10px; border: 1px solid #ddd;">Kostnad(betalning sker på plats):</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">Kostnad (betalning sker på plats):</td>
             <td style="padding: 10px; border: 1px solid #ddd;">${fullPrice} kr</td>
           </tr>
         </table>
