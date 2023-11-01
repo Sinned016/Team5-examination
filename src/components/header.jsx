@@ -33,11 +33,13 @@ export default function Header() {
         </div>
 
   
-    <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+    <DropdownButton id="dropdown-basic-button" title="Dropdown button" >
+    
+    
       <Dropdown.Item href="/register">Bli medlem</Dropdown.Item>
       <Dropdown.Item href="/login">Logga in</Dropdown.Item>
-      <Dropdown.Item href="/bookings">Mina bokningar</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Logga ut</Dropdown.Item>
+      <Dropdown.Item href="/bookings/">Mina bokningar</Dropdown.Item>
+      <Dropdown.Item href="/" onClick={logout}>Logga ut</Dropdown.Item>
     </DropdownButton>
 
 
