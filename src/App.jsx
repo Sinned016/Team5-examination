@@ -17,9 +17,7 @@ export default function App() {
         </Container>
       </main>
 
-      <MovieBookingComponent />
       <footer className="container-fixed mt-4">
-
         <Footer />
       </footer>
     </div>

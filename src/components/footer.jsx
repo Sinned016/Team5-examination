@@ -1,8 +1,8 @@
-import Container from "react-bootstrap/Container";
+import { Container } from 'react-bootstrap';
 
 export default function Footer() {
     return (
-        <footer className="footer py-2">
+        <footer className="footer">
             <Container className="footer-items">
                 {/* <div>
                     <div className="footer-item"> 
@@ -25,7 +25,7 @@ export default function Footer() {
                 <p className="footer-item">Kontakt</p>
                 <p className="footer-item">Hitta hit</p>
             </Container>
-            <div className="text-center">
+            <div className="text-center p-3">
                  © Filmvisarna
             </div>
 
