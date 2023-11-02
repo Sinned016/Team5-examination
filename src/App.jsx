@@ -6,7 +6,7 @@ import Header from "./components/header";
 export default function App() {
   return (
     <div>
-      <header className="container-fixed mt-3">
+      <header>
         <Header />
       </header>
 
