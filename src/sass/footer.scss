@@ -3,9 +3,9 @@
 }
 
 .footer-items {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;    
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;    
     
 }
 .footer-item {
@@ -14,10 +14,8 @@
   flex-basis: 100%;
   flex: 1;
   align-items: center;
-//   color: $text-color;
-  padding: 1em;
 }
 
 //Screensizes (desktop, phone)
-$small: 300px;
-$medium: 900px;
+// $small: 300px;
+// $medium: 900px;
