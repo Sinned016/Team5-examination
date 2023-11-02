@@ -1,18 +1,5 @@
-.navbar-body { 
-  background-color: $background-color;
-}
-
-#dropdown-basic-button {
-  background-color: $background-color;
-  border: none;
-}
-
-.dropdown-menu {
-  background-color: $cards-color;
-}
-
-.dropdown-item {
-  color: $text-color;
+.bg-body-tertiary{
+  background-color: $background-color !important;
 }
 
 $small: 400px;
