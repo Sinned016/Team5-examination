@@ -30,8 +30,7 @@ export default function Header() {
             alt="Company Logo"
           />
         </Navbar.Brand>
-      </Container>
-      <Container className="dropdown-end">
+
         {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Nav className="nav-top">
