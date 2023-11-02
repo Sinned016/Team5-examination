@@ -2,20 +2,27 @@
   background-color: $background-color !important;
 }
 
+.nav-top.navbar-nav{
+display: flex;
+
 .dropdown-menu{
     background-color: $background-color !important;
     border: none;
     text-align: center;
-    
+    position: fixed;
+}
+// .dropdown-toggle.nav-link,
+#basic-nav-dropdown,
+.dropdown-item{
+  color: $text-color,
 
 }
-.dropdown-item{
-  color: $text-color
-}
+
 
 .dropdown-menu {
-  position: fixed;
+align-items: end;
 }
+
 $small: 400px;
 $medium: 900px;
 
