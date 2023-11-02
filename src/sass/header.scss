@@ -1,6 +1,17 @@
-.bg-body-tertiary{
-  background-color: $background-color !important;
-  text-align: center;
+.navbar-body { 
+  background-color: $background-color;
+}
+
+#dropdown-basic-button {
+  background-color: $background-color;
+  border: none;
+}
+
+.dropdown-menu {
+  background-color: $cards-color;
+}
+
+.dropdown-item {
   color: $text-color;
 }
 
