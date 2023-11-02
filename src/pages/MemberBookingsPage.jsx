@@ -60,7 +60,7 @@ function MemberBookingsPage() {
           <h2>Bokningsdetaljer</h2>
         </div>
         {bookings.length > 0
-          ? bookings.map((booking, index) => (
+          ? bookings.filter(booking => new Date() <= new Date(booking.date)).map((booking, index) => (
               <div key={index} className="mb-4">
                 <table key={index} className="table-dark table-border mb-4">
                   <tbody>
@@ -110,7 +110,7 @@ function MemberBookingsPage() {
             <th className="tdata-left">Datum</th>
             <th className="tdata-left">Pris</th>
           </thead>
-          {bookings.map((booking, index) => (
+          {bookings.filter(booking => new Date() > new Date(booking.date)).map((booking, index) => (
             <tbody key={index} className="">
               <tr className="align-bottom">
                 <td className="tdata-left">{booking.bookingNumber}</td>
