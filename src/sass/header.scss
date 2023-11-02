@@ -5,11 +5,37 @@
 #dropdown-basic-button {
   background-color: $background-color;
   border: none;
+  display: flex;
+  
   
 }
 
+
+
+.logo {
+  background-color: green;
+  max-width: fit-content;
+  position: absolute;
+
+}
+
+.dropdown{
+  background-color: green;
+  max-width: fit-content;
+  // position:absolute;
+  
+  
+}
+
+
 .dropdown-menu {
   background-color: $cards-color;
+  position:absolute;
+  width: 100%;
+
+}
+.show.dropdown-menu{
+  position:absolute;
 }
 
 // .bi.bi-person{ gubbikonen ::after är pilen

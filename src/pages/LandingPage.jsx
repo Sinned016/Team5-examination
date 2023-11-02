@@ -37,8 +37,7 @@ export default function LandingPage() {
         <button
           className="nav-btn important"
           id="moviesComponentBtn"
-          onClick={handleScrollToScreenings}
-        >
+          onClick={handleScrollToScreenings}>
           KALENDER
         </button>
       </div>
@@ -49,8 +48,7 @@ export default function LandingPage() {
         <button
           className="nav-btn important"
           id="screeningsComponentBtn"
-          onClick={handleScrollToMovies}
-        >
+          onClick={handleScrollToMovies}>
           FILMER
         </button>
       </div>
