@@ -60,44 +60,49 @@ function MemberBookingsPage() {
           <h2>Bokningsdetaljer</h2>
         </div>
         {bookings.length > 0
-          ? bookings.map((booking, index) => (
-              <div key={index} className="mb-4">
-                <table key={index} className="table-dark table-border mb-4">
-                  <tbody>
-                    <tr>
-                      <td className="tdata-left">Bokningsnummer</td>
-                      <td className="tdata-right">{booking.bookingNumber}</td>
-                    </tr>
-                    <tr>
-                      <td className="tdata-left">Film</td>
-                      <td className="tdata-right">{booking.movieTitle}</td>
-                    </tr>
-                    <tr>
-                      <td className="tdata-left">Datum</td>
-                      <td className="tdata-right">
-                        {booking.date} {booking.time}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="tdata-left">Plats</td>
-                      <td className="tdata-right">Rad: {booking.seats[0][0] + 1}, Plats: {booking.seats[0][1] + 1}-{booking.seats[booking.seats.length - 1][1] + 1}</td>
-                    </tr>
-                    <tr>
-                      <td className="tdata-left">Pris (betalning sker på plats)</td>
-                      <td className="tdata-right">{booking.price} SEK</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="d-flex justify-content-center">
-                  <button
-                    className="btn btn-outline-secondary py-2 mb-4"
-                    onClick={() => handleShowModal(booking)}
-                  >
-                    AVBOKA
-                  </button>
+          ? bookings
+              .filter((booking) => new Date() <= new Date(booking.date))
+              .map((booking, index) => (
+                <div key={index} className="mb-4">
+                  <table key={index} className="table-dark table-border mb-4">
+                    <tbody>
+                      <tr>
+                        <td className="tdata-left">Bokningsnummer</td>
+                        <td className="tdata-right">{booking.bookingNumber}</td>
+                      </tr>
+                      <tr>
+                        <td className="tdata-left">Film</td>
+                        <td className="tdata-right">{booking.movieTitle}</td>
+                      </tr>
+                      <tr>
+                        <td className="tdata-left">Datum</td>
+                        <td className="tdata-right">
+                          {booking.date} {booking.time}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="tdata-left">Plats</td>
+                        <td className="tdata-right">
+                          Rad: {booking.seats[0][0] + 1}, Plats: {booking.seats[0][1] + 1}-
+                          {booking.seats[booking.seats.length - 1][1] + 1}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="tdata-left">Pris (betalning sker på plats)</td>
+                        <td className="tdata-right">{booking.price} SEK</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div className="d-flex justify-content-center">
+                    <button
+                      className="btn btn-outline-secondary py-2 mb-4"
+                      onClick={() => handleShowModal(booking)}
+                    >
+                      AVBOKA
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))
+              ))
           : "Du har inga bokningar nu."}
 
         <div className="table-responsive mt-4 mb-2">
@@ -110,19 +115,21 @@ function MemberBookingsPage() {
             <th className="tdata-left">Datum</th>
             <th className="tdata-left">Pris</th>
           </thead>
-          {bookings.map((booking, index) => (
-            <tbody key={index} className="">
-              <tr className="align-bottom">
-                <td className="tdata-left">{booking.bookingNumber}</td>
-                <td className="tdata-left">{booking.movieTitle}</td>
-                <td className="tdata-left">
-                  {booking.date} {booking.time}
-                </td>
+          {bookings
+            .filter((booking) => new Date() > new Date(booking.date))
+            .map((booking, index) => (
+              <tbody key={index} className="">
+                <tr className="align-bottom">
+                  <td className="tdata-left">{booking.bookingNumber}</td>
+                  <td className="tdata-left">{booking.movieTitle}</td>
+                  <td className="tdata-left">
+                    {booking.date} {booking.time}
+                  </td>
 
-                <td className="tdata-left">{booking.price} SEK</td>
-              </tr>
-            </tbody>
-          ))}
+                  <td className="tdata-left">{booking.price} SEK</td>
+                </tr>
+              </tbody>
+            ))}
         </table>
       </div>
       <div className="d-flex justify-content-center mt-5">
