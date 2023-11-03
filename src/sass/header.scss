@@ -20,11 +20,12 @@
 
 
 
-$small: 400px;
-$medium: 900px;
+$small: 250px;
+$medium: 650px;
 
 /* Adjust the image width for specific screen widths */
 .company-logo {
+  margin-top: 30px;
   width: 300px; /* Default width for large screens */
 
   @media screen and (max-width: $small) {
