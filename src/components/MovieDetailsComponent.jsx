@@ -21,7 +21,7 @@ export default function MovieCard() {
     return (
             <div className="movie-details-component">
                 <div>
-                    <h2 className="text-center">{movieDetails.title}</h2>
+                    <h1 className="text-center">{movieDetails.title}</h1>
                 </div>
                 <div className="movie-details-trailer">
                     <iframe src={movieTrailerLink} title="YouTube video player"></iframe>
