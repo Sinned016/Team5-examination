@@ -19,6 +19,9 @@ export default function MovieCard() {
 
     return (
             <div className="movie-details-component">
+                <div>
+                    <h1 className="text-center">{movieDetails.title}</h1>
+                </div>
                 <div className="movie-details-trailer">
                     <iframe src={movieTrailerLink} title="YouTube video player"></iframe>
                 </div><hr />
@@ -43,11 +46,14 @@ export default function MovieCard() {
                 <div className="movie-details-desc">
                     {movieDetails.description}
                 </div><hr />
+                <div>
+                <p><span className="text-secondary-detail-color">Genre:</span> {movieDetails.genre.join(", ")}</p>
+                </div>
                 <div className="movie-details-actors">
                     <p><span className="text-secondary-detail-color">Skådespelare:</span> {movieDetails.actors.join(", ")}</p>
                 </div>
                 <div className="movie-details-director">
-                    <p><span className="text-secondary-detail-color">Regisör:</span> {movieDetails.director}</p>
+                    <p><span className="text-secondary-detail-color">Regissör:</span> {movieDetails.director}</p>
                 </div>
             </div>
     );
