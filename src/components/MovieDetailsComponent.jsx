@@ -16,9 +16,13 @@ export default function MovieCard() {
     const hours = Math.floor(movieDetails.runtimeMin / 60);
     const minutes = movieDetails.runtimeMin % 60;
     const formattedTime = `${hours}:${minutes}`;
+    console.log(movieDetails);
 
     return (
             <div className="movie-details-component">
+                <div>
+                    <h2 className="text-center">{movieDetails.title}</h2>
+                </div>
                 <div className="movie-details-trailer">
                     <iframe src={movieTrailerLink} title="YouTube video player"></iframe>
                 </div><hr />
@@ -43,6 +47,9 @@ export default function MovieCard() {
                 <div className="movie-details-desc">
                     {movieDetails.description}
                 </div><hr />
+                <div>
+                <p><span className="text-secondary-detail-color">Genre:</span> {movieDetails.genre.join(", ")}</p>
+                </div>
                 <div className="movie-details-actors">
                     <p><span className="text-secondary-detail-color">Skådespelare:</span> {movieDetails.actors.join(", ")}</p>
                 </div>
