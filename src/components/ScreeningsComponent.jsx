@@ -2,6 +2,7 @@ import { useStates } from "react-easier"
 import { Container, Row, Col, Dropdown } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import getFormattedDate from "../service/getFormattedDate";
 
 export default function ScreeningsComponent() {
   const g = useStates('globalMovies');
@@ -31,9 +32,12 @@ export default function ScreeningsComponent() {
   }, {});
 
   const screenings = Object.entries(groupedData).map(([date, screenings]) => {
+    
+    let formattedDate = getFormattedDate(date);
+ 
     return (
       <div className="screeningsContainer" key={date}>
-        <h3 className="underline text-center">{date}</h3>
+        <h3 className="underline text-center">{formattedDate}</h3>
         {screenings.map((screening) => (
           <Col className="screeningContainer" key={screening._id} xs={12} sm={12} md={12} lg={12}>
             <p>{screening.movieDetails[0].title}</p>
