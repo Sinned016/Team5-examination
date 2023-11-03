@@ -6,33 +6,30 @@
 .dropdown-menu{
     background-color: $background-color !important;
     border: none;
-    text-align: center;
-    
-    
+    text-align: center; 
 }
-// .dropdown-toggle.nav-link,
+
+
+
+
 #basic-nav-dropdown,
 .dropdown-item{
   color: $text-color,
 }
 
-
-
-
-
 $small: 250px;
 $medium: 650px;
 
-/* Adjust the image width for specific screen widths */
+
 .company-logo {
   margin-top: 30px;
-  width: 300px; /* Default width for large screens */
+  width: 300px;
 
   @media screen and (max-width: $small) {
-    width: 150px; /* Width for small screens */
+    width: 150px;
   }
 
   @media screen and (min-width: $medium) {
-    width: 500px; /* Width for medium and larger screens */
+    width: 500px;
   }
 }
