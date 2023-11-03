@@ -102,7 +102,7 @@ function MovieBookingComponent() {
 
   return (
     <>
-      <Accordion activeKey={activeItem + ""}>
+      <Accordion className="no-arrow-accordion" activeKey={activeItem + ""}>
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             1. Välj visning{" "}

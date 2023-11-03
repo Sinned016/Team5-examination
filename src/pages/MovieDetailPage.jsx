@@ -3,7 +3,7 @@ import { useStates, useFetch } from "react-easier";
 import MovieDetailsComponent from "../components/MovieDetailsComponent.jsx";
 import MovieBookingComponent from "../components/MovieBookingComponent.jsx";
 
-export default function movieDetailPage() {
+export default function MovieDetailPage() {
     
   const routeParams = useParams();
   const id = routeParams.id;

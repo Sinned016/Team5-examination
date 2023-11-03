@@ -3,9 +3,10 @@
     flex-direction: column;
 }
 
-.flex-item-right {
+.flex-space-between {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: end;
 }
 
 .theatre-screen {
@@ -24,8 +25,15 @@
     justify-content: space-between;
 }
 
-.theatre-row > div {
+.seats-explained {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+.default-seat {
     width: 9%;
+    min-width: 20px;
     aspect-ratio: 1 / 1;
     align-self: center;
     border-radius: 50% 50% 0 0;
@@ -36,6 +44,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.flex-no-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-no-wrap > * {
+    margin: 0 .5em 4px 0;
 }
 
 .available-seat {
@@ -50,6 +67,14 @@
 .occupied-seat {
     background-color: $cards-color;
     pointer-events: none;
+}
+
+.occupied-seat::after {
+    content: '\d7';
+    font-size: 1.9rem;
+    line-height: 20px;
+    color: #111;
+    overflow: clip;
 }
 
 .hovered-seat {
