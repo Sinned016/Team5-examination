@@ -51,6 +51,8 @@ function MemberBookingsPage() {
     }
   };
 
+  let activeBookings = bookings.filter(booking => new Date() <= new Date(booking.date));
+  let oldBookings = bookings.filter(booking => new Date() > new Date(booking.date))
   return (
     <>
       <div className="row mx-1 booking-details-container">
@@ -59,8 +61,8 @@ function MemberBookingsPage() {
         <div className="table-responsive mt-4 mb-2">
           <h2>Bokningsdetaljer</h2>
         </div>
-        {bookings.length > 0
-          ? bookings.map((booking, index) => (
+        {activeBookings.length > 0
+          ? activeBookings.map((booking, index) => (
               <div key={index} className="mb-4">
                 <table key={index} className="table-dark table-border mb-4">
                   <tbody>
@@ -98,7 +100,7 @@ function MemberBookingsPage() {
                 </div>
               </div>
             ))
-          : "Du har inga bokningar nu."}
+          : "Du har inga aktiva bokningar nu."}
 
         <div className="table-responsive mt-4 mb-2">
           <h2>Bokningshistorik</h2>
@@ -110,7 +112,8 @@ function MemberBookingsPage() {
             <th className="tdata-left">Datum</th>
             <th className="tdata-left">Pris</th>
           </thead>
-          {bookings.map((booking, index) => (
+          {oldBookings.length > 0
+          ? oldBookings.map((booking, index) => (
             <tbody key={index} className="">
               <tr className="align-bottom">
                 <td className="tdata-left">{booking.bookingNumber}</td>
@@ -122,7 +125,7 @@ function MemberBookingsPage() {
                 <td className="tdata-left">{booking.price} SEK</td>
               </tr>
             </tbody>
-          ))}
+          )) : <td colspan="4" className="px-2">Du har inga gamla bokningar.</td>}
         </table>
       </div>
       <div className="d-flex justify-content-center mt-5">
