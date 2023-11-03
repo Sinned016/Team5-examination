@@ -16,7 +16,6 @@ export default function MovieCard() {
     const hours = Math.floor(movieDetails.runtimeMin / 60);
     const minutes = movieDetails.runtimeMin % 60;
     const formattedTime = `${hours}:${minutes}`;
-    console.log(movieDetails);
 
     return (
             <div className="movie-details-component">
@@ -54,7 +53,7 @@ export default function MovieCard() {
                     <p><span className="text-secondary-detail-color">Skådespelare:</span> {movieDetails.actors.join(", ")}</p>
                 </div>
                 <div className="movie-details-director">
-                    <p><span className="text-secondary-detail-color">Regisör:</span> {movieDetails.director}</p>
+                    <p><span className="text-secondary-detail-color">Regissör:</span> {movieDetails.director}</p>
                 </div>
             </div>
     );
