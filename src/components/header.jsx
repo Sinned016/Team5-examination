@@ -35,6 +35,7 @@ export default function Header() {
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Nav className="nav-top">
           <NavDropdown
+            align={{ lg: "start" }}
             title={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
