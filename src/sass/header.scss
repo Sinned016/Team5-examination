@@ -12,18 +12,17 @@
 #basic-nav-dropdown,
 .dropdown-item{
   color: $text-color,
-
 }
 
+.dropdown-menu.show {
 
-.navbar-nav{
-  display: flex;
-  width: 100%;
 }
+// .navbar-nav{
+//   display: flex;
+//   width: 100%;
+// }
 
-.dropdown-menu {
-align-items: end;
-}
+
 
 $small: 400px;
 $medium: 900px;

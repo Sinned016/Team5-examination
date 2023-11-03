@@ -20,7 +20,7 @@ export default function Header() {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar sticky="top" className="bg-body-tertiary">
       <Container className="header">
         <Navbar.Brand href="/">
           {" "}
