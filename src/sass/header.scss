@@ -1,35 +1,70 @@
-.bg-body-tertiary{
+// .bg-body-tertiary{
+//   background-color: $background-color !important;
+//   position: sticky;
+// }
+
+// .dropdown-menu{
+//     background-color: $background-color !important;
+//     border: none;
+//     text-align: center; 
+// }
+
+// #basic-nav-dropdown,
+// .dropdown-item{
+//   color: $text-color,
+// }
+
+// $small: 250px;
+// $medium: 650px;
+
+
+// .company-logo {
+//   margin-top: 30px;
+//   width: 300px;
+
+//   @media screen and (max-width: $small) {
+//     width: 150px;
+//   }
+
+//   @media screen and (min-width: $medium) {
+//     width: 500px;
+//   }
+// }
+
+.bg-body-tertiary {
   background-color: $background-color !important;
   position: sticky;
 }
 
-.dropdown-menu{
-    background-color: $background-color !important;
-    border: none;
-    text-align: center; 
+.dropdown-menu {
+  background-color: $background-color !important;
+  border: none;
+  text-align: center;
 }
-
-
-
 
 #basic-nav-dropdown,
-.dropdown-item{
-  color: $text-color,
+.dropdown-item {
+  color: $text-color;
 }
 
-$small: 250px;
-$medium: 650px;
-
+$small: 650px;
 
 .company-logo {
   margin-top: 30px;
   width: 300px;
 
-  @media screen and (max-width: $small) {
-    width: 150px;
-  }
 
-  @media screen and (min-width: $medium) {
+  @media screen and (min-width: $small) {
     width: 500px;
   }
+}
+
+@media screen and (max-width: $small) {
+  .dropdown-menu .dropdown-item {
+    font-size: 30px;
+  }
+    .dropdown-menu .dropdown-item svg {
+      width: 30px; 
+      height: 30px;
+    }
 }
