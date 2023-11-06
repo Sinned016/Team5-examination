@@ -62,6 +62,12 @@ export default function ScreeningsComponent() {
         <Dropdown.Menu>
           <Dropdown.Item eventKey="first">Första till sista dagen</Dropdown.Item>
           <Dropdown.Item eventKey="last">Sista till första dagen</Dropdown.Item>
+          <Dropdown.Divider />
+            {Object.keys(groupedData).map((date) => (
+            <Dropdown.Item key={date} >
+              {getFormattedDate(date)}
+            </Dropdown.Item>
+  ))}
         </Dropdown.Menu>
       </Dropdown>
 
