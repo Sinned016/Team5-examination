@@ -36,7 +36,6 @@ export default function MovieSeatsComponent(props) {
 
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
-    console.log(seatState)
 
     if(seat + tickets > 10) {
       seat = 10 - tickets;
