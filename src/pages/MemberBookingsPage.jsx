@@ -51,8 +51,8 @@ function MemberBookingsPage() {
     }
   };
 
-  let activeBookings = bookings.filter(booking => new Date() <= new Date(booking.date));
-  let oldBookings = bookings.filter(booking => new Date() > new Date(booking.date))
+  let activeBookings = bookings.filter((booking) => new Date() <= new Date(booking.date));
+  let oldBookings = bookings.filter((booking) => new Date() > new Date(booking.date));
   return (
     <>
       <div className="row mx-1 booking-details-container">
@@ -82,7 +82,10 @@ function MemberBookingsPage() {
                     </tr>
                     <tr>
                       <td className="tdata-left">Plats</td>
-                      <td className="tdata-right">Rad: {booking.seats[0][0] + 1}, Plats: {booking.seats[0][1] + 1}-{booking.seats[booking.seats.length - 1][1] + 1}</td>
+                      <td className="tdata-right">
+                        Rad: {booking.seats[0][0] + 1}, Plats: {booking.seats[0][1] + 1}-
+                        {booking.seats[booking.seats.length - 1][1] + 1}
+                      </td>
                     </tr>
                     <tr>
                       <td className="tdata-left">Pris (betalning sker på plats)</td>
@@ -112,20 +115,25 @@ function MemberBookingsPage() {
             <th className="tdata-left">Datum</th>
             <th className="tdata-left">Pris</th>
           </thead>
-          {oldBookings.length > 0
-          ? oldBookings.map((booking, index) => (
-            <tbody key={index} className="">
-              <tr className="align-bottom">
-                <td className="tdata-left">{booking.bookingNumber}</td>
-                <td className="tdata-left">{booking.movieTitle}</td>
-                <td className="tdata-left">
-                  {booking.date} {booking.time}
-                </td>
+          {oldBookings.length > 0 ? (
+            oldBookings.map((booking, index) => (
+              <tbody key={index} className="">
+                <tr className="align-bottom">
+                  <td className="tdata-left">{booking.bookingNumber}</td>
+                  <td className="tdata-left">{booking.movieTitle}</td>
+                  <td className="tdata-left">
+                    {booking.date} {booking.time}
+                  </td>
 
-                <td className="tdata-left">{booking.price} kr</td>
-              </tr>
-            </tbody>
-          )) : <td colSpan="4" className="px-2">Du har inga gamla bokningar.</td>}
+                  <td className="tdata-left">{booking.price} kr</td>
+                </tr>
+              </tbody>
+            ))
+          ) : (
+            <td colSpan="4" className="px-2">
+              Du har inga gamla bokningar.
+            </td>
+          )}
         </table>
       </div>
       <div className="d-flex justify-content-center mt-5">
