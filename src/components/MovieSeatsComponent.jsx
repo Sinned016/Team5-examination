@@ -13,13 +13,18 @@ export default function MovieSeatsComponent(props) {
   const chosenSeats = props.chosenSeats;
   const setChosenSeats = props.setChosenSeats;
   const setActiveItem = props.setActiveItem;
-
   const [isHovered, setIsHovered] = useState([]); // eslint-disable-line
-  const handleMouseEnter = (row, seat) => {
+
+  const handleMouseEnter = (row, seat, seatState) => {
     let toMark = [];
     for (let i = 0; i < tickets; i++) {
+
       if (seat + tickets > 10) {
         seat = 10 - tickets
+      }
+
+      if (seatState.includes("occupied-seat")) {
+        return;
       }
 
       toMark.push([row, seat+i]);
@@ -29,19 +34,15 @@ export default function MovieSeatsComponent(props) {
   const handleMouseLeave = (row, seat) => {setIsHovered([]);};
 
 
-
-
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
-    
-    const takenSeat = "Säte upptaget, välj en annan plats!";
+    console.log(seatState)
 
     if(seat + tickets > 10) {
       seat = 10 - tickets;
     }
 
     if (seatState.includes("occupied-seat")) {
-      alert(takenSeat)
       return;
     }
 
@@ -51,8 +52,8 @@ export default function MovieSeatsComponent(props) {
       if (seats[row][seat + i] === 0) {
         setChosenSeats(prevState => ([...prevState, ...[pickedSeats]]));
       } else {
-        alert(takenSeat)
         setChosenSeats([]);
+        return;
       }
     }
   }
@@ -77,7 +78,7 @@ export default function MovieSeatsComponent(props) {
           return (
             <div 
               onClick={() => pickSeats(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} 
-              onMouseEnter={() => handleMouseEnter(rowIndex, seatIndex)} 
+              onMouseEnter={() => handleMouseEnter(rowIndex, seatIndex, seat === 0 ? "available-seat" : "occupied-seat")} 
               onMouseLeave={() => handleMouseLeave(rowIndex, seatIndex)} 
               key={`${rowIndex} ${seatIndex}`} 
               className={seatClass}></div>
