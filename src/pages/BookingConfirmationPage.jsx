@@ -74,7 +74,7 @@ export default function BookingConfirmationPage() {
             </tr>
             <tr>
               <td className="tdata-left">Pris (betalning sker på plats):</td>
-              <td className="tdata-right">{bookingData.price} SEK</td>
+              <td className="tdata-right">{bookingData.price}kr</td>
             </tr>
           </tbody>
         </table>

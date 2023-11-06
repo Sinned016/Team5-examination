@@ -23,16 +23,18 @@
 .btn-outline-secondary {
   border-radius: 2px;
   border: 2px solid $border-color;
-} 
+}
 
 .table-border {
   border: 1px solid $border-color;
   background-color: rgba(0, 0, 0, 0.55);
 }
 
-.tdata-left, .tdata-right {
+.tdata-left,
+.tdata-right {
   padding-top: .5rem;
   padding-bottom: .5rem;
+  text-wrap: balance;
 }
 
 .tdata-right {
