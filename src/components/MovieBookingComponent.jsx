@@ -184,7 +184,7 @@ function MovieBookingComponent() {
 
       <Modal show={show} onHide={handleClose} style={{ color: "black" }}>
         <Modal.Header closeButton>
-          <Modal.Title>Bokningsbekräftelse</Modal.Title>
+          <Modal.Title>Bekräfta bokning</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Är du säker på att boka <span style={{ fontWeight: "bold" }}>{totalTickets} </span>

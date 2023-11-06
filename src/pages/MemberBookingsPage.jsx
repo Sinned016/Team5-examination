@@ -89,7 +89,7 @@ function MemberBookingsPage() {
                     </tr>
                     <tr>
                       <td className="tdata-left">Pris (betalning sker på plats)</td>
-                      <td className="tdata-right">{booking.price} SEK</td>
+                      <td className="tdata-right">{booking.price} kr</td>
                     </tr>
                   </tbody>
                 </table>
@@ -125,12 +125,12 @@ function MemberBookingsPage() {
                     {booking.date} {booking.time}
                   </td>
 
-                  <td className="tdata-left">{booking.price} SEK</td>
+                  <td className="tdata-left">{booking.price} kr</td>
                 </tr>
               </tbody>
             ))
           ) : (
-            <td colspan="4" className="px-2">
+            <td colSpan="4" className="px-2">
               Du har inga gamla bokningar.
             </td>
           )}
@@ -149,7 +149,7 @@ function MemberBookingsPage() {
       {selectedBooking && (
         <Modal show={showModal} onHide={handleCloseModal} style={{ color: "black" }}>
           <Modal.Header closeButton>
-            <Modal.Title>Avbrytbekräftelsen</Modal.Title>
+            <Modal.Title>Avbryt bokningen</Modal.Title>
           </Modal.Header>
           <Modal.Body>Är du säker på att avboka denna bokning?</Modal.Body>
           <Modal.Footer>
