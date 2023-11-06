@@ -29,14 +29,14 @@ function TicketWithPriceComponent({ onGetTickets }) {
   return (
     <div className="price-component">
       <TicketCategoryComponent
-        label="Vuxen:"
+        label="Vuxen"
         price={adultPrice}
         clicks={adultClicks}
         onAdd={() => handleAddBtnClick("adult", setAdultClicks)}
         onMinus={() => handleMinusBtnClick("adult", setAdultClicks)}
       />
       <TicketCategoryComponent
-        label="Pensionär:"
+        label="Pensionär 65+"
         price={seniorPrice}
         clicks={seniorClicks}
         onAdd={() => handleAddBtnClick("pension", setSeniorClicks)}
@@ -44,7 +44,7 @@ function TicketWithPriceComponent({ onGetTickets }) {
       />
 
       <TicketCategoryComponent
-        label="Barn:"
+        label="Barn 0-17år"
         price={childPrice}
         clicks={childClicks}
         onAdd={() => handleAddBtnClick("child", setChildClicks)}
@@ -59,7 +59,7 @@ function TicketWithPriceComponent({ onGetTickets }) {
           className="confirm-button"
           onClick={() => onGetTickets(adultClicks, seniorClicks, childClicks)}
         >
-          Välj antal
+          Gå vidare
         </button>
     </div>
   );
