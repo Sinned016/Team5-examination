@@ -3,26 +3,22 @@ import { Container, Row, Col, Dropdown } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import getFormattedDate from "../service/getFormattedDate";
+import FilterDateComponent from "./FilterDateComponent";
+import getCurrentDate from "../service/getCurrentDate";
 
 export default function ScreeningsComponent() {
   const g = useStates('globalMovies');
-  const [selectedFilter, setSelectedFilter] = useState('first');
   const navigate = useNavigate();
+  
 
   function navigateToMovie(movieId) {
     navigate(`/movieDetailPage/${movieId}`)
   }
 
-  let sortedData;
+  let sortedData = [...g.moviesAndScreenings].sort((a, b) => new Date(a.date) - new Date(b.date));
 
-  if(selectedFilter === "first") {
-    sortedData = [...g.moviesAndScreenings].sort((a, b) => new Date(a.date) - new Date(b.date));
-  } else if (selectedFilter === "last") {
-    sortedData = [...g.moviesAndScreenings].sort((a, b) => new Date(a.date) - new Date(b.date)).slice().reverse();
-  }
-
-   // Group the screenings by date
-   const groupedData = sortedData.reduce((acc, screening) => {
+  // Group the screenings by date
+  const groupedData = sortedData.reduce((acc, screening) => {
     const date = screening.date;
     if (!acc[date]) {
       acc[date] = [];
@@ -31,10 +27,16 @@ export default function ScreeningsComponent() {
     return acc;
   }, {});
 
-  const screenings = Object.entries(groupedData).map(([date, screenings]) => {
-    
-    let formattedDate = getFormattedDate(date);
- 
+  const dates = Object.keys(groupedData);
+  const earliestDate = dates[0];
+  const latestDate = dates[dates.length - 1];
+  const [selectedDate, setSelectedDate] = useState(getCurrentDate());
+
+  const filteredScreenings = Object.entries(groupedData)
+    .filter(([date]) => new Date(date) >= new Date(selectedDate))
+    .map(([date, screenings]) => {
+      let formattedDate = getFormattedDate(date);
+
     return (
       <div className="screeningsContainer" key={date}>
         <h3 className="underline text-center">{formattedDate}</h3>
@@ -47,33 +49,14 @@ export default function ScreeningsComponent() {
       </div>
     );
   });
-
-  function handleDropdownSelect(eventKey) {
-    setSelectedFilter(eventKey);
-  }
-
+  
   return (
     <Container>
-      <Dropdown className="text-center" onSelect={handleDropdownSelect}>
-        <Dropdown.Toggle id="dropdown-basic">
-          Sortera
-        </Dropdown.Toggle>
+      <FilterDateComponent earliestDate={earliestDate} latestDate={latestDate} selectedDate={selectedDate} setSelectedDate={setSelectedDate} /> 
 
-        <Dropdown.Menu>
-          <Dropdown.Item eventKey="first">Första till sista dagen</Dropdown.Item>
-          <Dropdown.Item eventKey="last">Sista till första dagen</Dropdown.Item>
-          <Dropdown.Divider />
-            {Object.keys(groupedData).map((date) => (
-            <Dropdown.Item key={date} >
-              {getFormattedDate(date)}
-            </Dropdown.Item>
-  ))}
-        </Dropdown.Menu>
-      </Dropdown>
-
-        <Row>
-          {screenings}
-        </Row>
+      <Row>
+        {filteredScreenings}
+      </Row>
     </Container>
   )
 }
