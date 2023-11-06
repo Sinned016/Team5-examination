@@ -17,9 +17,9 @@ export default function MovieDetailPage() {
   });
   
   return (
-    <>
+    <div className="site-container">
       <MovieDetailsComponent />
       <MovieBookingComponent />
-    </>
+    </div>
   )
 }
