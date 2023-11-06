@@ -70,7 +70,7 @@ export default function MovieSeatsComponent(props) {
       <div className="theatre-row" key={rowIndex}>
         
         {seatArray.map((seat, seatIndex) => {
-          const seatState = `${seat === 0 ? "available-seat" : "occupied-seat"} ${isHovered.find(([r,s]) => r === rowIndex && s === seatIndex) ? "hovered-seat" : ""}`;
+          const seatState = `default-seat ${seat === 0 ? "available-seat" : "occupied-seat"} ${isHovered.find(([r,s]) => r === rowIndex && s === seatIndex) ? "hovered-seat" : ""}`;
           const isSelected = chosenSeats.some(([row, seat]) => row === rowIndex && seat === seatIndex);
           const seatClass = isSelected ? `${seatState} selected-seat` : seatState;
 
@@ -91,8 +91,13 @@ export default function MovieSeatsComponent(props) {
     <div className="theater-container">
       <div className="theatre-screen"></div>
       {mappedSeats}
-      <div className="flex-item-right">
-        <button className="confirm-button" onClick={setActive}>Välj plats</button>
+      <div className="flex-space-between">
+        <div className="seats-explained">
+          <span className="flex-no-wrap"><div className="default-seat available-seat"></div><p>Ledig plats</p></span>
+          <span className="flex-no-wrap"><div className="default-seat selected-seat"></div><p>Vald plats</p></span>
+          <span className="flex-no-wrap"><div className="default-seat occupied-seat"></div><p>Upptagen plats</p></span>
+        </div>
+        <button className="confirm-button" onClick={setActive}>Gå vidare</button>
       </div>
     </div>
   )
