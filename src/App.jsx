@@ -16,7 +16,7 @@ export default function App() {
         </Container>
       </main>
 
-      <footer className="container-fixed mt-4">
+      <footer className="container-fixed">
         <Footer />
       </footer>
     </div>
