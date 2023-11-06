@@ -147,17 +147,17 @@ function MemberBookingsPage() {
 
       {/* Modal for cancellation confirmation */}
       {selectedBooking && (
-        <Modal show={showModal} onHide={handleCloseModal} style={{ color: "black" }}>
-          <Modal.Header closeButton>
+        <Modal show={showModal} onHide={handleCloseModal} style={{ color: "#ededed" }}>
+          <Modal.Header style={{ backgroundColor: "#2b2827"}}>
             <Modal.Title>Avbryt bokningen</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Är du säker på att avboka denna bokning?</Modal.Body>
-          <Modal.Footer>
+          <Modal.Body style={{ backgroundColor: "#c0c0c0", color: "black"}}>Är du säker på att avboka denna bokning?</Modal.Body>
+          <Modal.Footer style={{ backgroundColor: "#c0c0c0"}}>
             <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleCloseModal}>
-              AVBRYT
+              Avbryt
             </Button>
             <Button className="btn login-btn custom-hover-2" onClick={cancelBooking}>
-              JA
+              Avboka
             </Button>
           </Modal.Footer>
         </Modal>
