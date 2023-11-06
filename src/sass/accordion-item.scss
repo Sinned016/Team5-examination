@@ -22,10 +22,15 @@ input.form-control {
 
 .restart-button {
   position: absolute;
-  right: 3.8em;
+  right: .7em;
   background-color: $btn-color;
   border: 1px solid $border-color;
   color: $text-color;
   padding: 0.4em 0.6em;
+  
   font-size: 0.9rem;
+}
+
+.no-arrow-accordion .accordion-button::after {
+  display: none;
 }

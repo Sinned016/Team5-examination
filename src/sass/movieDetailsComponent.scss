@@ -1,7 +1,7 @@
 .movie-details-component {
   display: flex;
   flex-direction: column;
-  padding: 2em;
+  padding: 1em;
   margin-bottom: 2em;
   border: 1px solid $border-color;
 }
@@ -36,6 +36,7 @@
 
 .confirm-button {
   background-color: $btn-color;
+  aspect-ratio: 7 / 3;
   border: 1px solid $border-color;
   color: $text-color;
   padding: 0.4em 0.6em;
