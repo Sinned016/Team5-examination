@@ -56,7 +56,7 @@ export default function ScreeningsComponent() {
     <Container>
       <Dropdown className="text-center" onSelect={handleDropdownSelect}>
         <Dropdown.Toggle id="dropdown-basic">
-          Filter
+          Sortera
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
