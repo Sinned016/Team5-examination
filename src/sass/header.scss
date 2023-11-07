@@ -1,72 +1,34 @@
-.bg-body-tertiary {
-  background-color: $background-color !important;
-  position: sticky;
-  color: $text-color;
+.navbar-body { 
+  background-color: $background-color;
+}
+
+#dropdown-basic-button {
+  background-color: $background-color;
+  border: none;
 }
 
 .dropdown-menu {
-  background-color: $btn-color !important;
-  border-radius: 0px;
-  border-color: $border-color;
-  text-align: center;
+  background-color: $cards-color;
+  
 }
 
-#basic-nav-dropdown,
 .dropdown-item {
   color: $text-color;
 }
 
-.line-object {
-  border-bottom: solid white 1px;
-}
 
-$small: 450px;
-$medium: 991px;
+$small: 400px;
+$medium: 900px;
 
+/* Adjust the image width for specific screen widths */
 .company-logo {
-  margin-top: 30px;
-  width: 500px;
-
-  @media screen and (max-width: $medium) {
-    width: 360px;
-  }
+  width: 300px; /* Default width for large screens */
 
   @media screen and (max-width: $small) {
-    width: 300px;
-  }
-}
-
-@media screen and (max-width: $medium) {
-  .dropdown-menu .dropdown-item {
-    font-size: 25px;
-  }
-    .dropdown-menu .dropdown-item svg {
-      width: 25px; 
-      height: 25px;
-    }
-}
-
-@media screen and (max-width: $small) {
-  .dropdown-menu {
-    background-color: $btn-color !important;
-    text-align: center;
-    width: 100%;
-    border-radius: 0px;
-    border-color: $border-color;
-    border-left: none;
-    border-right: none;
+    width: 150px; /* Width for small screens */
   }
 
-  .nav-item.show{
-    position: static;
-    width: 100%;
-    }
-
-  .dropdown-menu .dropdown-item {
-    font-size: 30px;
+  @media screen and (min-width: $medium) {
+    width: 500px; /* Width for medium and larger screens */
   }
-    .dropdown-menu .dropdown-item svg {
-      width: 30px; 
-      height: 30px;
-    }
 }
