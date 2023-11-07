@@ -49,7 +49,7 @@ export default function Header() {
             id="basic-nav-dropdown">
             {!token && (
               <>
-            <NavDropdown.Item href="/register">
+            <NavDropdown.Item href="/register" className="line-object">
               Bli medlem{""}{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +85,7 @@ export default function Header() {
             )}
             {token && (
               <>
-            <NavDropdown.Item href="/bookings/">
+            <NavDropdown.Item href="/bookings/" className="line-object">
               Bokningar {""}{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"

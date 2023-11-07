@@ -6,10 +6,10 @@
 }
 
 .dropdown-menu {
-  background-color: $background-color !important;
-  border: none;
+  background-color: $btn-color !important;
+  border-radius: 0px;
+  border-color: $border-color;
   text-align: center;
-  
 }
 
 #basic-nav-dropdown,
@@ -17,15 +17,19 @@
   color: $text-color;
 }
 
+.line-object {
+  border-bottom: solid white 1px;
+}
+
 $small: 450px;
-$medium: 900px;
+$medium: 991px;
 
 .company-logo {
   margin-top: 30px;
   width: 500px;
 
   @media screen and (max-width: $medium) {
-    width: 400px;
+    width: 360px;
   }
 
   @media screen and (max-width: $small) {
@@ -44,6 +48,21 @@ $medium: 900px;
 }
 
 @media screen and (max-width: $small) {
+  .dropdown-menu {
+    background-color: $btn-color !important;
+    text-align: center;
+    width: 100%;
+    border-radius: 0px;
+    border-color: $border-color;
+    border-left: none;
+    border-right: none;
+  }
+
+  .nav-item.show{
+    position: static;
+    width: 100%;
+    }
+
   .dropdown-menu .dropdown-item {
     font-size: 30px;
   }

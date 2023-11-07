@@ -11,7 +11,7 @@ export default function App() {
       </header>
 
       <main>
-        <Container>
+        <Container fluid>
           <Outlet />
         </Container>
       </main>
