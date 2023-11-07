@@ -17,9 +17,15 @@ export default function MovieDetailPage() {
   });
   
   return (
-    <div className="site-container">
-      <MovieDetailsComponent />
-      <MovieBookingComponent />
+    <div className="container-xl">
+      <div class="row">
+        <div class="col-lg-6 col-xl-7 col-xxl-8">
+          <MovieDetailsComponent />
+        </div>
+        <div class="col-lg-6 col-xl-5 col-xxl-4">
+          <MovieBookingComponent />
+        </div>
+      </div>
     </div>
   )
 }
