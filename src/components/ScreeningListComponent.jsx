@@ -1,5 +1,6 @@
 import { useFetch, useStates } from "react-easier";
 import { useState } from "react";
+import getFormattedDate from "../service/getFormattedDate";
 
 export default function ScreeningList({ setScreening, setActiveItem }) {
     const movieFetch = useStates('globalMovieState');
@@ -27,9 +28,14 @@ export default function ScreeningList({ setScreening, setActiveItem }) {
         setActiveItem(1);
     }
 
+    
+
     return (
         <form className="screening-list" onSubmit={(e) => onScreenSubmit(e)}>
             {movieDetails.screenings.map((screening, i) => {
+
+                let formattedDateString = getFormattedDate(screening.date);
+
                 return (
                     <div key={i}>
                         <label>
@@ -39,7 +45,7 @@ export default function ScreeningList({ setScreening, setActiveItem }) {
                                 value={screening._id} 
                                 onChange={() => setScreeningSelection(screening._id)}
                             />
-                            {`${screening.date}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
+                            {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
                         </label>
                     </div>
             )})}

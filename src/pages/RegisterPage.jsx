@@ -49,7 +49,8 @@ export default function RegisterPage() {
       if (res.status >= 400) {
         setInfoMessage(data.message);
       } else {
-        setInfoMessage(data.message);
+        alert(data.message);
+        navigate("/login", { state: { userEmail: email } });
       }
     }
   }

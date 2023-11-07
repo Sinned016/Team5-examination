@@ -1,20 +1,28 @@
 import { Container, Row, Col } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import authService from "../service/authService";
 import memoryService from "../service/memoryService";
 import userService from "../service/userService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const userEmail = location.state?.userEmail;
+    console.log(userEmail);
+    if (userEmail) {
+      setEmail(userEmail);
+    }
+  }, [location.state]);
 
   const handleValidation = (e) => {
     let formIsValid = true;
@@ -72,7 +80,6 @@ export default function LoginPage() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "80%",
       }}
     >
       <form onSubmit={loginSubmit}>
@@ -87,6 +94,7 @@ export default function LoginPage() {
                 name="emailInput"
                 aria-describedby="emailHelp"
                 placeholder="E-mail"
+                value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
               <small className="text-danger form-text">{emailError}</small>
@@ -97,6 +105,7 @@ export default function LoginPage() {
                 type="password"
                 className="form-control with-icon"
                 placeholder="Lösenord"
+                value={password}
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
