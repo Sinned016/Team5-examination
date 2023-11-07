@@ -1,5 +1,8 @@
 .footer {
   background-color: $footer-color;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-items {
@@ -17,7 +20,3 @@
 //   color: $text-color;
   padding: 1em;
 }
-
-//Screensizes (desktop, phone)
-$small: 300px;
-$medium: 900px;
