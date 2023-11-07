@@ -1,15 +1,15 @@
-.site-container {
-    display: flex;
-    flex-direction: column;
-}
+// .site-container {
+//     display: flex;
+//     flex-direction: column;
+// }
 
-@media (min-width: 768px) {
-    .site-container {
-      flex-direction: row;
-      gap: 20px;
-    }
+// @media (min-width: 768px) {
+//     .site-container {
+//       flex-direction: row;
+//       gap: 20px;
+//     }
 
-    .site-container > * {
-      flex: 50%;
-    }
-  }
+//     .site-container > * {
+//       flex: 50%;
+//     }
+//   }
