@@ -12,6 +12,12 @@ function MemberBookingsPage() {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  function formatDateWithWeekday(dateString) {
+    const options = { weekday: "short", year: "numeric", month: "2-digit", day: "2-digit" };
+    const date = new Date(dateString);
+    return date.toLocaleDateString("sv-SE", options);
+  }
+
   useEffect(() => {
     const fetchBookings = async () => {
       try {
@@ -63,36 +69,33 @@ function MemberBookingsPage() {
         </div>
         {activeBookings.length > 0
           ? activeBookings.map((booking, index) => (
-              <div key={index} className="mb-4">
-                <table key={index} className="table-dark table-border mb-4">
-                  <tbody>
-                    <tr>
-                      <td className="tdata-left">Bokningsnummer</td>
-                      <td className="tdata-right">{booking.bookingNumber}</td>
-                    </tr>
-                    <tr>
-                      <td className="tdata-left">Film</td>
-                      <td className="tdata-right">{booking.movieTitle}</td>
-                    </tr>
-                    <tr>
-                      <td className="tdata-left">Datum</td>
-                      <td className="tdata-right">
-                        {booking.date} {booking.time}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="tdata-left">Plats</td>
-                      <td className="tdata-right">
-                        Rad: {booking.seats[0][0] + 1}, Plats: {booking.seats[0][1] + 1}-
-                        {booking.seats[booking.seats.length - 1][1] + 1}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="tdata-left">Pris (betalning sker på plats)</td>
-                      <td className="tdata-right">{booking.price} kr</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div key={index} className="mb-4 table-dark table-border">
+                <div className="d-flex justify-content-between my-3">
+                  <div>Bokningsnummer</div>
+                  <div className="tdata-right">{booking.bookingNumber}</div>
+                </div>
+                <div className="d-flex justify-content-between my-3">
+                  <div>Film</div>
+                  <div className="tdata-right">{booking.movieTitle}</div>
+                </div>
+                <div className="d-flex justify-content-between my-3">
+                  <div>Datum</div>
+                  <div className="tdata-right">
+                    {booking.time}, {formatDateWithWeekday(booking.date)}
+                  </div>
+                </div>
+                <div className="d-flex justify-content-between my-3">
+                  <div>Plats</div>
+                  <div className="tdata-right">
+                    {booking.theater}, Rad: {booking.seats[0][0] + 1}, Plats:{" "}
+                    {booking.seats[0][1] + 1}-{booking.seats[booking.seats.length - 1][1] + 1}
+                  </div>
+                </div>
+                <div className="d-flex justify-content-between my-3">
+                  <div>Kostnad (betalning sker på plats)</div>
+                  <div className="tdata-right">{booking.price} kr</div>
+                </div>
+
                 <div className="d-flex justify-content-center">
                   <button
                     className="btn btn-outline-secondary py-2 mb-4"
