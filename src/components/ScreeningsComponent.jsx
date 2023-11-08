@@ -53,7 +53,7 @@ export default function ScreeningsComponent() {
   return (
     <Container>
       <FilterDateComponent earliestDate={earliestDate} latestDate={latestDate} selectedDate={selectedDate} setSelectedDate={setSelectedDate} /> 
-
+      
       <Row>
         {filteredScreenings}
       </Row>
