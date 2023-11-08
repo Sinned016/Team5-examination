@@ -1,0 +1,249 @@
+// Styling for movieDetailsComponent
+.movie-details-component {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    margin-bottom: 2em;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+}
+  
+.movie-details-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+  
+  .movie-details-box > div {
+    display: flex;
+    flex-direction: column;
+}
+  
+.movie-details-trailer iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+  
+.text-primary-detail-color {
+    color: $primary-detail-color;
+}
+  
+.text-secondary-detail-color {
+    color: $secondary-detail-color;
+}
+  
+.confirm-button {
+    background-color: $btn-color;
+    aspect-ratio: 7 / 3;
+    border: 1px solid $border-color;
+    color: $text-color;
+    padding: 0.4em 0.6em;
+    font-size: 0.9rem;
+}
+  
+  
+
+// Styling for MovieBookingComponent Accordion
+.accordion-item {
+    margin: auto, auto;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 3px !important;
+}
+  
+form {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+  
+input.form-control {
+    width: 100%;
+}
+  
+.form-text {
+    color: white;
+}
+  
+.restart-button {
+    position: absolute;
+    right: .7em;
+    background-color: $btn-color;
+    border: 1px solid $border-color;
+    color: $text-color;
+    padding: 0.4em 0.6em;
+    
+    font-size: 0.9rem;
+}
+  
+.no-arrow-accordion .accordion-button::after {
+    display: none;
+}
+
+
+
+// Styling for ScreeningListComponent
+.screening-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+  
+.screening-list button {
+    align-self: end;
+}
+
+
+
+/* Style for each ticket category */
+.ticket-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.7rem;
+}
+  
+.ticket-category label {
+    width: 33%;
+    display: inline-block;
+    text-align: right;
+}
+  
+.ticket-category .counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.ticket-category button {
+    background-color: #3e7580;
+    font-size: 0.8 rem;
+    color: #fff;
+    border: none;
+    width: 27px;
+    height: 27px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin: 0 0.5em;
+}
+  
+.ticket-category button:hover {
+    background-color: #254549;
+}
+  
+.ticket-category span {
+    font-size: 1.2rem;
+    margin: 0 0.5em;
+}
+  
+
+
+/* Style for TicketWithPriceComponent */
+.price-component {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+  
+.white-line {
+    border: 1px solid #fff;
+    width: 100%;
+}
+/* Style for the total price */
+.total-price {
+    margin-top: 0.8 rem;
+    align-self: self-end;
+    font-size: 1.2rem;
+}
+.total-price .total-value {
+    font-weight: bold;
+}
+  
+  
+
+// Styling for MovieSeatsComponent
+.theater-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.theatre-screen {
+    background-color: #fff;
+    width: 80%;
+    aspect-ratio: 5 / 1;
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.7);
+    transform: perspective(8px) rotateX(-1deg);
+    margin: 2vw auto 5vw;
+    
+}
+
+.theatre-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.seats-explained {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+.default-seat {
+    width: 9%;
+    min-width: 20px;
+    aspect-ratio: 1 / 1;
+    align-self: center;
+    border-radius: 50% 50% 0 0;
+    border: 3px solid rgba(0, 0, 0, .4);
+    margin-bottom: 10px;
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-no-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-no-wrap > * {
+    margin: 0 .5em 4px 0;
+}
+
+.available-seat {
+    background-color: #CCC;
+    cursor: pointer;
+}
+
+.selected-seat {
+    background-color: $important-color;
+}
+
+.occupied-seat {
+    background-color: $cards-color;
+    pointer-events: none;
+}
+
+.occupied-seat::after {
+    content: '\2716';
+    line-height: 20px;
+    color: #111;
+    overflow: clip;
+}
+
+.hovered-seat {
+    background-color: $text-color;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
