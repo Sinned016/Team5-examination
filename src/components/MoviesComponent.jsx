@@ -42,7 +42,7 @@ export default function Movies() {
           src={movieScreening.movieDetails[0].movieImg}
           alt={`Picture of the movie ${movieScreening.movieDetails[0].title}`}
         />
-        <p className="movieTitle">
+        <p className="pMovieTitle">
           {movieScreening.movieDetails[0].title.length > 18
             ? movieScreening.movieDetails[0].title.slice(0, 18) + "..."
             : movieScreening.movieDetails[0].title}
