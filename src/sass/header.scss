@@ -9,6 +9,7 @@
   border-radius: 0px;
   border-color: $border-color;
   text-align: center;
+  padding: 10px 16px;
 }
 
 #basic-nav-dropdown,
@@ -39,11 +40,11 @@ $medium: 991px;
 
 @media screen and (max-width: $medium) {
   .dropdown-menu .dropdown-item {
-    font-size: 22.5px;
+    font-size: 21.5px;
   }
     .dropdown-menu .dropdown-item svg {
-      width: 22.5px; 
-      height: 22.5px;
+      width: 21.5px; 
+      height: 21.5px;
     }
 }
 
@@ -64,11 +65,11 @@ $medium: 991px;
     }
 
   .dropdown-menu .dropdown-item {
-    font-size: 24px;
+    font-size: 23px;
   }
     .dropdown-menu .dropdown-item svg {
-      width: 24px; 
-      height: 24px;
+      width: 23px; 
+      height: 23px;
     }
 }
 
