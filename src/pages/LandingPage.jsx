@@ -1,12 +1,16 @@
 import { useStates, useFetch } from "react-easier";
 import MoviesComponent from "../components/MoviesComponent";
 import ScreeningsComponent from "../components/ScreeningsComponent";
+import useWindowSize from "../service/useWindowSize";
 
 export default function LandingPage() {
   // Fetching all the movies and all the screenings and sharing this useStates with all child components.
   const g = useStates("globalMovies", {
     moviesAndScreenings: useFetch("/api/screeningsAndMovies"),
   });
+
+  const size = useWindowSize();
+  const breakPoint = 992;
 
   const handleScrollToScreenings = () => {
     const screeningsComponentBtn = document.getElementById(
@@ -31,31 +35,35 @@ export default function LandingPage() {
   };
 
   return (
-    <>
-      <h2 className="text-center mb-4">På bio just nu</h2>
-      <div className="d-flex justify-content-center mb-3">
-        <button
-          className="nav-btn important"
-          id="moviesComponentBtn"
-          onClick={handleScrollToScreenings}
-        >
-          KALENDER
-        </button>
+    <div class="container-xl">
+      <div class="row">
+        <div class="col-lg-6 col-xl-7 col-xxl-8">
+          <h2 className="text-center mb-4">På bio just nu</h2>
+          <div className="d-flex justify-content-center mb-3">
+            {size.width < breakPoint ? <button
+              className="nav-btn important"
+              id="moviesComponentBtn"
+              onClick={handleScrollToScreenings}
+            >
+              KALENDER
+            </button> : ""}
+          </div>
+          <MoviesComponent />
+        </div>
+          <div class="col-lg-6 col-xl-5 col-xxl-4">
+          <div className="d-flex justify-content-center mb-3 mt-5">
+            {size.width < breakPoint ? <button
+              className="nav-btn important"
+              id="screeningsComponentBtn"
+              onClick={handleScrollToMovies}
+            >
+              FILMER
+            </button> : ""}
+          </div>
+
+          <ScreeningsComponent />
+        </div>
       </div>
-
-      <MoviesComponent />
-
-      <div className="d-flex justify-content-center mb-3 mt-5">
-        <button
-          className="nav-btn important"
-          id="screeningsComponentBtn"
-          onClick={handleScrollToMovies}
-        >
-          FILMER
-        </button>
-      </div>
-
-      <ScreeningsComponent />
-    </>
+    </div>
   );
 }

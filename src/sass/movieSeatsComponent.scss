@@ -56,7 +56,7 @@
 }
 
 .available-seat {
-    background-color: $text-color;
+    background-color: #CCC;
     cursor: pointer;
 }
 
@@ -70,14 +70,13 @@
 }
 
 .occupied-seat::after {
-    content: '\d7';
-    font-size: 1.9rem;
+    content: '\2716';
     line-height: 20px;
     color: #111;
     overflow: clip;
 }
 
 .hovered-seat {
-    background-color: $important-color;
+    background-color: $text-color;
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }

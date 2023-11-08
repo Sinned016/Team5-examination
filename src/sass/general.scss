@@ -4,13 +4,25 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     color: #EDEDED;
     background-color: #1D1B1A;
+    position: relative;
+    margin: 0;
+    min-height: 100%;
 }
 
 .important {
     background-color: #3E7580;
+}
+
+.container-fluid {
+    padding: 10px;
+    margin-bottom: 150px;
 }
 
 .nav-btn {
