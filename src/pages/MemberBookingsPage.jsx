@@ -119,10 +119,10 @@ function MemberBookingsPage() {
         {oldBookings.length > 0 ? (
           oldBookings.map((booking, index) => (
             <div key={index} className="table-dark mb-4 d-flex justify-content-between py-3">
-              <div>{booking.bookingNumber}</div>
-              <div>{booking.movieTitle}</div>
-              <div>{booking.date}</div>
-              <div>{booking.price} kr</div>
+              <div className="booking-data">{booking.bookingNumber}</div>
+              <div className="booking-data">{booking.movieTitle}</div>
+              <div className="booking-data">{booking.date}</div>
+              <div className="booking-data">{booking.price} kr</div>
             </div>
           ))
         ) : (

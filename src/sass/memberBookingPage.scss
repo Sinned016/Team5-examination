@@ -30,7 +30,8 @@
   padding-left: 2em;
 }
 
-@media screen and (min-width: 992) {
-  .booking-container {
-  }
+.booking-data {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
