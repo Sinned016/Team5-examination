@@ -16,9 +16,10 @@
   color: $text-color;
 }
 
-.line-object {
-  border-bottom: solid white 1px;
+.dropdown-divider {
+  border-color: $text-color;
 }
+
 
 $small: 450px;
 $medium: 991px;

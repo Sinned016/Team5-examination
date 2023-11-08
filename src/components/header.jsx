@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import memoryService from "../service/memoryService";
+// import memoryService from "../service/memoryService";
 import { NavDropdown } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import { useContext } from "react";
@@ -55,6 +55,7 @@ export default function Header() {
                     <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z" />
                   </svg>
                 </NavDropdown.Item>
+                <div className="dropdown-divider"></div>
                 <NavDropdown.Item href="/login">
                   Logga in {""}{" "}
                   <svg
@@ -89,6 +90,7 @@ export default function Header() {
                     <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5ZM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5h-13Z" />
                   </svg>
                 </NavDropdown.Item>
+                <div className="dropdown-divider"></div>
                 <NavDropdown.Item href="/" onClick={logOut}>
                   Logga ut {""}
                   {""}
