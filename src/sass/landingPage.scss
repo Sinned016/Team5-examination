@@ -78,3 +78,15 @@
 .filterScreenings::-webkit-clear-button {
   display: none;
 }
+
+p{
+  text-align: center;
+  font-weight: bold;
+  margin:0px;
+  padding-top: 4px;
+}
+
+.movieImages {
+  border: solid;
+  border-color: $text-color;
+}
