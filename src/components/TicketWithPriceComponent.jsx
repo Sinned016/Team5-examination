@@ -44,7 +44,7 @@ function TicketWithPriceComponent({ onGetTickets }) {
       />
 
       <TicketCategoryComponent
-        label="Barn, (0-17 år)"
+        label="Barn, (0-12 år)"
         price={childPrice}
         clicks={childClicks}
         onAdd={() => handleAddBtnClick("child", setChildClicks)}
