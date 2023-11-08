@@ -21,7 +21,7 @@
   border-color: $text-color;
 }
 
-
+$minimal: 375px;
 $small: 450px;
 $medium: 991px;
 
@@ -36,15 +36,20 @@ $medium: 991px;
   @media screen and (max-width: $small) {
     width: 300px;
   }
+  @media screen and (max-width: $minimal) {
+    width: 240px;
+  }
 }
+
 
 @media screen and (max-width: $medium) {
   .dropdown-menu .dropdown-item {
     font-size: 21.5px;
   }
-    .dropdown-menu .dropdown-item svg {
-      width: 21.5px; 
-      height: 21.5px;
+
+    .bi-person-circle {
+      width: 23px; 
+      height: 23px;
     }
 }
 
@@ -67,9 +72,15 @@ $medium: 991px;
   .dropdown-menu .dropdown-item {
     font-size: 23px;
   }
-    .dropdown-menu .dropdown-item svg {
-      width: 23px; 
-      height: 23px;
-    }
+  .bi-person-circle {
+    width: 22px; 
+    height: 22px;
+  }
 }
 
+@media screen and (max-width: $minimal) {
+  .bi-person-circle {
+    width: 20px; 
+    height: 20px;
+  }
+}
