@@ -71,7 +71,7 @@ function MemberBookingsPage() {
         </div>
         {activeBookings.length > 0 ? (
           activeBookings.map((booking, index) => (
-            <div key={index} className="mb-4 table-dark table-border">
+            <div key={index} className="mb-4 table-dark">
               <div className="d-flex justify-content-between my-3">
                 <div>Bokningsnummer</div>
                 <div className="booking-info">{booking.bookingNumber}</div>
@@ -118,16 +118,12 @@ function MemberBookingsPage() {
 
         {oldBookings.length > 0 ? (
           oldBookings.map((booking, index) => (
-            <table key={index} className="table-dark table-border mb-4">
-              <tbody className="">
-                <tr className="align-bottom">
-                  <td className="tdata-left">Bokning{booking.bookingNumber}</td>
-                  <td className="tdata-left">{booking.movieTitle}</td>
-                  <td className="tdata-left">{booking.date}</td>
-                  <td className="tdata-left">{booking.price} kr</td>
-                </tr>
-              </tbody>
-            </table>
+            <div key={index} className="table-dark mb-4 d-flex justify-content-between py-3">
+              <div>{booking.bookingNumber}</div>
+              <div>{booking.movieTitle}</div>
+              <div>{booking.date}</div>
+              <div>{booking.price} kr</div>
+            </div>
           ))
         ) : (
           <p>Du har inga gamla bokningar.</p>
@@ -137,7 +133,6 @@ function MemberBookingsPage() {
           <button
             onClick={() => navigateToHome("/")}
             className="btn btn-outline-secondary py-2 mb-4 "
-            style={{ zIndex: "100" }}
           >
             STARTSIDA
           </button>
