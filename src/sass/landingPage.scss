@@ -47,3 +47,22 @@
   color: #ededed;
   padding: 0.3em 0.7em;
 }
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.filterScreenings {
+  padding: .3em .5em;
+}
+
+.resetBtn {
+  background-color: $btn-color;
+  border: 1px solid $border-color;
+  color: $text-color;
+  padding: 0.4em 0.6em;
+  width: 8em;
+}
