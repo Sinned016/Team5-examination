@@ -38,7 +38,7 @@ export default function Movies() {
     })
 
   return (
-    <Container>
+    <Container className=" mb-4">
         <Row className="d-flex justify-content-center">
         {movies}
         </Row>

@@ -12,6 +12,14 @@
   object-fit: cover;
 }
 
+.nav-btn {
+  border: none;
+  border-radius: 2px;
+  color: white;
+  padding: 0.5em 1.5em;
+  margin-bottom: 1em;
+}
+
 .screeningsContainer {
   border: 1px solid $border-color;
   padding: 1em;
@@ -46,4 +54,27 @@
   border: none;
   color: #ededed;
   padding: 0.3em 0.7em;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.filterScreenings {
+  padding: .3em .5em;
+}
+
+.resetBtn {
+  background-color: $btn-color;
+  border: 1px solid $border-color;
+  color: $text-color;
+  padding: 0.4em 0.6em;
+  width: 8em;
+}
+
+.filterScreenings::-webkit-clear-button {
+  display: none;
 }
