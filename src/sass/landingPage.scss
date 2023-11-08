@@ -66,3 +66,15 @@
   padding: 0.4em 0.6em;
   width: 8em;
 }
+
+p{
+  text-align: center;
+  font-weight: bold;
+  margin:0px;
+  padding-top: 4px;
+}
+
+.movieImages {
+  border: solid;
+  border-color: $text-color;
+}
