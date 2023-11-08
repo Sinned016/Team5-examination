@@ -30,7 +30,7 @@ export default function ScreeningsComponent() {
   const dates = Object.keys(groupedData);
   const earliestDate = dates[0];
   const latestDate = dates[dates.length - 1];
-  const [selectedDate, setSelectedDate] = useState(getCurrentDate());
+  const [selectedDate, setSelectedDate] = useState(getCurrentDate);
 
   const filteredScreenings = Object.entries(groupedData)
     .filter(([date]) => new Date(date) >= new Date(selectedDate))
