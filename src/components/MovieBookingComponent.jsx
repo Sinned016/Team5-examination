@@ -1,5 +1,5 @@
 import Accordion from "react-bootstrap/Accordion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TicketWithPriceComponent from "./TicketWithPriceComponent";
 import ScreeningListComponent from "./ScreeningListComponent";
@@ -7,6 +7,9 @@ import MovieSeatsComponent from "./MovieSeatsComponent";
 import userService from "../service/userService";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { socket } from "../socket/socketio";
+import { useStates } from "react-easier";
+
 
 function MovieBookingComponent() {
   const [activeItem, setActiveItem] = useState(0);
@@ -18,8 +21,12 @@ function MovieBookingComponent() {
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
   const [screening, setScreening] = useState("");
+  const [screeningSelection, setScreeningSelection] = useState();
   const [show, setShow] = useState(false);
+  const [update, setUpdate] = useState();
+
   const navigate = useNavigate();
+  const ref = useRef(false);
 
   useEffect(() => {
     const token = localStorage.getItem("JWT_TOKEN");
@@ -29,6 +36,30 @@ function MovieBookingComponent() {
     const email = userService.getUserEmail();
     setEmail(email);
   }, [])
+
+
+  // SOCKET.IO -->
+  useEffect(() => {
+    if(ref.current === false) {
+      ref.current = true;
+
+      console.log(socket);
+
+      socket.on("seat-update", updateSeats);  
+    }
+  }, [update]) // can't put updateSeats here or i get an infinite loop
+
+  async function updateSeats(message) {
+    console.log(message);
+    console.log(screeningSelection);
+    const result = await fetch(`/api/screening/${screeningSelection}`);
+    const data = await result.json();
+
+    //setScreening(data);
+    console.log(data)
+  }
+  // <-- SOCKET.IO
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -71,6 +102,11 @@ function MovieBookingComponent() {
 
     let resp = await userService.bookSeats(screening._id, body);
     console.log(resp);
+    
+    //console.log(screeningSelection);
+    setUpdate("");
+    // SOCKET CALL
+    socket.emit("seat-selected", "Hello World!");
 
     navigate("/bookingConfirmation", { state: { data: resp } });
   };
@@ -79,8 +115,6 @@ function MovieBookingComponent() {
     e.preventDefault();
     handleClose();
 
-    console.log("connecting with backend");
-    // Here can make put request to book tickets
     bookSeats();
   }
 
@@ -115,7 +149,7 @@ function MovieBookingComponent() {
             )}
           </Accordion.Header>
           <Accordion.Body>
-            <ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} />
+            <ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} screeningSelection={screeningSelection} setScreeningSelection={setScreeningSelection}/>
           </Accordion.Body>
         </Accordion.Item>
 
@@ -151,6 +185,7 @@ function MovieBookingComponent() {
             <MovieSeatsComponent
               setActiveItem={setActiveItem}
               screening={screening}
+              setScreening={setScreening}
               totalTickets={totalTickets}
               chosenSeats={chosenSeats}
               setChosenSeats={setChosenSeats}

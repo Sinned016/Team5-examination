@@ -1,5 +1,5 @@
-import { useStates } from "react-easier"
-import { useState } from "react"
+import { useStates } from "react-easier";
+import { useState } from "react";
 
 // Made by Dennis and Mikael
 export default function MovieSeatsComponent(props) {
@@ -14,6 +14,8 @@ export default function MovieSeatsComponent(props) {
   const setChosenSeats = props.setChosenSeats;
   const setActiveItem = props.setActiveItem;
   const [isHovered, setIsHovered] = useState([]); // eslint-disable-line
+
+
 
   const handleMouseEnter = (row, seat, seatState) => {
     let toMark = [];
@@ -59,6 +61,7 @@ export default function MovieSeatsComponent(props) {
 
   function setActive() {
     if (chosenSeats.length > 0) {
+
       setActiveItem(3);
     } else {
       alert("Välj säten innan du fortsätter");
