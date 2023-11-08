@@ -1,13 +1,14 @@
 import { Container, Row, Col } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import authService from "../service/authService";
-import memoryService from "../service/memoryService";
 import userService from "../service/userService";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { AuthContext } from "../App";
 
 export default function LoginPage() {
+  const { logIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState("");
@@ -62,7 +63,7 @@ export default function LoginPage() {
       } else {
         setInfoMessage(data.message);
 
-        memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
+        logIn(data.accessToken);
         const role = userService.getUserRole();
         if (role === "member") {
           console.log("member", data.accessToken);

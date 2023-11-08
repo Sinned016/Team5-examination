@@ -1,20 +1,13 @@
-import React, { useState } from "react";
-// import { useStates } from "react-easier"
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import memoryService from "../service/memoryService";
-import userService from "../service/userService";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import { NavDropdown } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
+import { useContext } from "react";
+import { AuthContext } from "../App";
 
 export default function Header() {
-  const token = localStorage.getItem("JWT_TOKEN");
-
-  async function logout() {
-    memoryService.clearLocalValue("JWT_TOKEN");
-  }
+  const { loggedIn, logOut } = useContext(AuthContext);
 
   return (
     <Navbar sticky="top" className="bg-body-tertiary">
@@ -47,7 +40,7 @@ export default function Header() {
               </svg>
             }
             id="basic-nav-dropdown">
-            {!token && (
+            {!loggedIn ? (
               <>
                 <NavDropdown.Item href="/register" className="line-object">
                   Bli medlem{""}{" "}
@@ -82,8 +75,7 @@ export default function Header() {
                   </svg>
                 </NavDropdown.Item>
               </>
-            )}
-            {token && (
+            ) : (
               <>
                 <NavDropdown.Item href="/bookings/" className="line-object">
                   Bokningar {""}{" "}
@@ -97,7 +89,7 @@ export default function Header() {
                     <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5ZM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5h-13Z" />
                   </svg>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/" onClick={logout}>
+                <NavDropdown.Item href="/" onClick={logOut}>
                   Logga ut {""}
                   {""}
                   <svg
