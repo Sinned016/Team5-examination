@@ -12,10 +12,9 @@ export default function FilterDateComponent({earliestDate, latestDate, selectedD
   }
 
   return (
-    <div className="screeningsFilter">
-      <label htmlFor="">Filtrera på datum</label>
-      <input type="date" id="" name="" value={selectedDate} min={earliestDate} max={latestDate} onChange={handleDateChange}/>
-      <button className="confirm-button" onClick={resetDate}>Återställ</button>
+    <div className="filterContainer">
+      <input className="filterScreenings" type="date" value={selectedDate} min={earliestDate} max={latestDate} onChange={handleDateChange}/>
+      <button className="resetBtn" onClick={resetDate}>Återställ</button>
     </div>
   )
 }
