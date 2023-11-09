@@ -51,7 +51,7 @@ function MovieBookingComponent() {
 
   async function updateSeats(message) {
     console.log(message);
-    console.log(screeningSelection);
+    console.log(chosenSeats);
     const result = await fetch(`/api/screening/${screeningSelection}`);
     const data = await result.json();
 
