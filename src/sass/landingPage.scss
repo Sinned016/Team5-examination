@@ -65,6 +65,10 @@
 
 .filterScreenings {
   padding: .3em .5em;
+  cursor: pointer;
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
 }
 
 .resetBtn {
