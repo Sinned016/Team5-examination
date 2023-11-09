@@ -23,7 +23,6 @@ function MovieBookingComponent() {
   const [screening, setScreening] = useState("");
   const [screeningSelection, setScreeningSelection] = useState();
   const [show, setShow] = useState(false);
-  const [update, setUpdate] = useState();
 
   const navigate = useNavigate();
   const ref = useRef(false);
@@ -37,29 +36,20 @@ function MovieBookingComponent() {
     setEmail(email);
   }, [])
 
-
   // SOCKET.IO -->
   useEffect(() => {
-    if(ref.current === false) {
-      ref.current = true;
+    socket.on("seat-update", async screeningId => {
+      const result = await fetch(`/api/screening/${screeningId}`);
+      const data = await result.json();
+  
+      setScreening(data);
 
-      console.log(socket);
-
-      socket.on("seat-update", updateSeats);  
-    }
-  }, [update]) // can't put updateSeats here or i get an infinite loop
-
-  async function updateSeats(message) {
-    console.log(message);
-    console.log(chosenSeats);
-    const result = await fetch(`/api/screening/${screeningSelection}`);
-    const data = await result.json();
-
-    //setScreening(data);
-    console.log(data)
-  }
+      return () => {
+        socket.off("seat-update");
+      }
+    });
+  }, [])
   // <-- SOCKET.IO
-
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -102,11 +92,9 @@ function MovieBookingComponent() {
 
     let resp = await userService.bookSeats(screening._id, body);
     console.log(resp);
-    
-    //console.log(screeningSelection);
-    setUpdate("");
+
     // SOCKET CALL
-    socket.emit("seat-selected", "Hello World!");
+    socket.emit("new-booking", screening._id);
 
     navigate("/bookingConfirmation", { state: { data: resp } });
   };
