@@ -42,11 +42,3 @@
   font-size: 0.9rem;
 }
 
-$minimal: 375px;
-
-// Small devices (landscape phones, 576px and up)
-@media screen and (max-width: $minimal) {
-  .movie-details-box {
-    flex-wrap: wrap;
-  }
-}
