@@ -78,3 +78,16 @@
 .filterScreenings::-webkit-clear-button {
   display: none;
 }
+
+.pMovieTitle{
+  text-align: center;
+  font-weight: bold;
+  margin:0px;
+  padding-top: 4px;
+  color: $text-color
+}
+
+.movieImages {
+  border: solid;
+  border-color: $text-color;
+}
