@@ -38,8 +38,9 @@ export default function ScreeningList({ setScreening, setActiveItem }) {
 
                 return (
                     <div key={i}>
-                        <label>
-                            <input 
+                        <label className="choose-screening">
+                            <input
+                                className="choose-screening"
                                 type="radio"
                                 name="selectedScreening" 
                                 value={screening._id} 

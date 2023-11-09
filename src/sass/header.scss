@@ -17,6 +17,14 @@
   color: $text-color;
 }
 
+.dropdown-item:hover {
+  background: darken(#ffffff, 1.5%);
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-decoration: none;
+  transition: all 250ms linear;
+}
+
 .dropdown-divider {
   border-color: $text-color;
 }

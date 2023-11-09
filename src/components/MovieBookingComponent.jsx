@@ -172,7 +172,7 @@ function MovieBookingComponent() {
                 }}
                 className="form-control"
               ></input>
-              <Button onClick={handleShow} className="btn login-btn custom-hover-1 ms-2">
+              <Button onClick={handleShow} id="booking-btn" className="btn login-btn ms-2">
                 Boka
               </Button>
             </form>

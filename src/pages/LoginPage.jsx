@@ -127,10 +127,10 @@ export default function LoginPage() {
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
-              <button className="btn cancel-btn me-2" onClick={() => navigate("/")}>
+              <button id="cancel-btn" className="btn cancel-btn me-2" onClick={() => navigate("/")}>
                 AVBRYT
               </button>
-              <button className="btn login-btn  ms-2" type="submit">
+              <button id="login-btn" className="btn login-btn  ms-2" type="submit">
                 LOGGA IN
               </button>
             </div>
