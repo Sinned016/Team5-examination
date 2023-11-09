@@ -1,4 +1,7 @@
 .booking-details-container {
+  max-width: 750px;
+  margin-left: auto !important;
+  margin-right: auto !important;
   h1 {
     font-size: 2.125rem;
   }
@@ -32,22 +35,26 @@
 
 .tdata-left,
 .tdata-right {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   text-wrap: balance;
 }
 
 .tdata-right {
   text-align: right;
-  padding-right: .5rem;
+  padding-right: 0.5rem;
   color: $secondary-detail-color;
 }
 
 .tdata-left {
   text-align: left;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
 }
 
 .bi-check-circle {
   color: $important-color;
+}
+
+.d-flex {
+  margin-bottom: 80px;
 }
