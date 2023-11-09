@@ -77,7 +77,7 @@ export default function LoginPage() {
     <Container
       fluid
       style={{
-        margin: "10em auto",
+        margin: "8em auto",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

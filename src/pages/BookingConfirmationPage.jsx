@@ -80,7 +80,7 @@ export default function BookingConfirmationPage() {
         </table>
       </div>
       <h4 className="text-center mt-4 mb-4">Vi ser fram emot ditt besök!</h4>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center mb-5">
         <button onClick={() => navigate("/")} className="btn btn-outline-secondary py-2 mb-4">
           STARTSIDA
         </button>
