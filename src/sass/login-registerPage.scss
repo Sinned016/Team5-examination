@@ -21,6 +21,12 @@
   margin-bottom: 10px;
 }
 
+.container-fluid {
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 100px;
+}
+
 .icon {
   position: absolute;
   left: 10px;
@@ -43,3 +49,12 @@
   background-color: transparent !important;
   border: 1px solid black;
 }
+
+.justify-content-center.col{
+  width: 20em;
+ 
+}
+.col{
+  width: 20em;
+}
+

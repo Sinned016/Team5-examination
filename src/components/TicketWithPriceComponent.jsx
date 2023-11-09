@@ -36,7 +36,7 @@ function TicketWithPriceComponent({ onGetTickets }) {
         onMinus={() => handleMinusBtnClick("adult", setAdultClicks)}
       />
       <TicketCategoryComponent
-        label="Pensionär 65+"
+        label="Pensionär, 65+"
         price={seniorPrice}
         clicks={seniorClicks}
         onAdd={() => handleAddBtnClick("pension", setSeniorClicks)}
@@ -44,7 +44,7 @@ function TicketWithPriceComponent({ onGetTickets }) {
       />
 
       <TicketCategoryComponent
-        label="Barn 0-17år"
+        label="Barn, (0-12 år)"
         price={childPrice}
         clicks={childClicks}
         onAdd={() => handleAddBtnClick("child", setChildClicks)}

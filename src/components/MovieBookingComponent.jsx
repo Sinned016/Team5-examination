@@ -216,12 +216,12 @@ function MovieBookingComponent() {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-
-      <Modal show={show} onHide={handleClose} style={{ color: "black" }}>
-        <Modal.Header closeButton>
-          <Modal.Title>Bekräfta bokning</Modal.Title>
+      
+      <Modal show={show} onHide={handleClose} style={{ color: "#ededed"}}>
+        <Modal.Header style={{ backgroundColor: "#2b2827"}}>
+          <Modal.Title >Bekräfta bokning</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ backgroundColor: "#c0c0c0", color: "black"}}>
           Är du säker på att boka <span style={{ fontWeight: "bold" }}>{totalTickets} </span>
           biljetter för filmen{" "}
           <span style={{ fontWeight: "bold" }}>
@@ -231,7 +231,7 @@ function MovieBookingComponent() {
           </span>
           ?
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer style={{ backgroundColor: "#c0c0c0"}}>
           <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleClose}>
             Avbryt
           </Button>
