@@ -79,11 +79,12 @@
   display: none;
 }
 
-p{
+.pMovieTitle{
   text-align: center;
   font-weight: bold;
   margin:0px;
   padding-top: 4px;
+  color: $text-color
 }
 
 .movieImages {
