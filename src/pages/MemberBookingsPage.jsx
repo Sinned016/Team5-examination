@@ -15,7 +15,10 @@ function MemberBookingsPage() {
   function formatDateWithWeekday(dateString) {
     const options = { weekday: "short", year: "numeric", month: "2-digit", day: "2-digit" };
     const date = new Date(dateString);
-    return date.toLocaleDateString("sv-SE", options);
+    const formattedDate = date.toLocaleDateString("sv-SE", options);
+    const [weekday, datePart] = formattedDate.split(", ");
+    const [year, month, day] = datePart.split("-");
+    return `${weekday}, ${day}-${month}-${year}`;
   }
 
   useEffect(() => {
@@ -121,7 +124,7 @@ function MemberBookingsPage() {
             <div key={index} className="table-dark mb-4 d-flex justify-content-between py-3">
               <div className="booking-data">{booking.bookingNumber}</div>
               <div className="booking-data">{booking.movieTitle}</div>
-              <div className="booking-data">{booking.date}</div>
+              <div className="booking-data">{formatDateWithWeekday(booking.date)}</div>
               <div className="booking-data">{booking.price} kr</div>
             </div>
           ))
