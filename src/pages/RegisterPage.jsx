@@ -94,7 +94,7 @@ export default function RegisterPage() {
             <small className="form-text text-center text-danger">{infoMessage}</small>
             <p className="text-center mt-3">
               Är du redan medlem?
-              <Link to="/login">
+              <Link className="no-underline" to="/login">
                 <span style={{ color: "#FFD700" }}> Logga in här!</span>
               </Link>
             </p>

@@ -46,7 +46,7 @@ export default function ScreeningList({ setScreening, setActiveItem }) {
                                 value={screening._id} 
                                 onChange={() => setScreeningSelection(screening._id)}
                             />
-                            {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
+                            {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text `}
                         </label>
                     </div>
             )})}

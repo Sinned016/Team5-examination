@@ -12,8 +12,17 @@ form {
   color: white;
 }
 
-input.form-control {
-  width: 100%;
+form.screening-list {
+  align-items: center;
+}
+
+input {
+  margin-right: 10px;
+}
+
+label.choose-screening {
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 .form-text {
