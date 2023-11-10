@@ -69,7 +69,6 @@
 #moviesComponentBtn, #screeningsComponentBtn {
   border: none;
   color: #ededed;
-  padding: 0.3em 0.7em;
   border-radius: 2px;
 
   &:hover {
@@ -92,9 +91,7 @@
 .filterScreenings {
   padding: .3em .5em;
   cursor: pointer;
-  &::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-  }
+  width: 8em;
 }
 
 .resetBtn {
