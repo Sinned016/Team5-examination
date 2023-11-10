@@ -4,7 +4,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 export default function FilterDateComponent({earliestDate, latestDate, selectedDate, setSelectedDate}) {
 
-  
   function handleDateChange(event) {
     setSelectedDate(event.target.value);
   }
