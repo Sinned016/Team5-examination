@@ -1,19 +1,29 @@
-import { useStates } from "react-easier"
-import { useState } from "react"
+import { useStates } from "react-easier";
+import { useEffect, useState } from "react";
+import { socket } from "../socket/socketio";
+
 
 // Made by Dennis and Mikael
 export default function MovieSeatsComponent(props) {
-  
-  if(props.screening == "") {
-    return;
-  }
-
   const seats = props.screening.seats;
   const tickets = props.totalTickets;
   const chosenSeats = props.chosenSeats;
   const setChosenSeats = props.setChosenSeats;
   const setActiveItem = props.setActiveItem;
   const [isHovered, setIsHovered] = useState([]); // eslint-disable-line
+
+  useEffect(() => {
+
+    if(props.screening == "") {
+      return;
+    }
+
+    socket.emit("view-screening", props.screening._id);
+  }, [props.screening]);
+  
+  if(props.screening == "") {
+    return;
+  }
 
   const handleMouseEnter = (row, seat, seatState) => {
     let toMark = [];
@@ -26,7 +36,6 @@ export default function MovieSeatsComponent(props) {
       if (seatState.includes("occupied-seat")) {
         return;
       }
-
       toMark.push([row, seat+i]);
     }
     setIsHovered(toMark);
@@ -59,6 +68,7 @@ export default function MovieSeatsComponent(props) {
 
   function setActive() {
     if (chosenSeats.length > 0) {
+
       setActiveItem(3);
     } else {
       alert("Välj säten innan du fortsätter");

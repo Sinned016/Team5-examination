@@ -2,10 +2,9 @@ import { useFetch, useStates } from "react-easier";
 import { useState } from "react";
 import getFormattedDate from "../service/getFormattedDate";
 
-export default function ScreeningList({ setScreening, setActiveItem }) {
+export default function ScreeningList({ setScreening, setActiveItem, screeningSelection, setScreeningSelection }) {
     const movieFetch = useStates('globalMovieState');
     const selectedScreening = useStates('globalSelectedScreening');
-    const [screeningSelection, setScreeningSelection] = useState();
     
     const movieDetails = movieFetch.movieDetails[0];
 

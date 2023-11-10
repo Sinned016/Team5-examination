@@ -28,32 +28,32 @@ httpServer.listen(port, () => {
   console.log(`backend started on http://localhost:${port}`);
 });
 
+let clients = [];
 // Listening for new connections from clients
 // Each connection presented by the 'socket' object which has a unique 'id'
 io.on("connection", (socket) => {
   console.log("A user connected: " + socket.id);
-  // Event listeners for individual sockets, we have different events to listen on (adjustable to our case)
-  // The server takes "seatInfo" and sends the same event to all other connected clients
-  socket.on("seat-selected", (seatInfo) => {
-    socket.broadcast.emit("seat-selected", seatInfo); // 'broadcast.emit' method sends the event and seatInfo to every client except for the sender
+  clients.push({socket});
+
+  socket.on("new-booking", (screeningId) => {
+    clients
+      .filter(client => client.screeningId === screeningId)
+      .forEach(client => {
+        client.socket.emit("seat-update", screeningId);
+      });
   });
 
-  socket.on("seat-unselected", (seatInfo) => {
-    socket.broadcast.emit("seat-unselected", seatInfo);
-  });
-
-  socket.on("seat-booked", (seatInfo) => {
-    socket.broadcast.emit("seat-booked", seatInfo);
-  });
-
-  socket.on("seat-cancelled ", (seatInfo) => {
-    socket.broadcast.emit("seat-cancelled", seatInfo);
+  socket.on("view-screening", (screeningId) => {
+    let client = clients.find(client => client.socket.id === socket.id);
+    client.screeningId = screeningId;
+    console.log(clients);
   });
 
   // Handling disconnections
   // When a client disconnects, the server logs a message which user/socket's unique id has disconnected
   socket.on("disconnect", () => {
     console.log("A user disconnected: " + socket.id);
+    clients = clients.filter(client => client.socket.id !== socket.id)
   });
 });
 
