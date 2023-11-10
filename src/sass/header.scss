@@ -17,6 +17,15 @@
   color: $text-color;
 }
 
+.dropdown-item:hover {
+  color: white;
+  background: darken(#3E7580, 1.5%);
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-decoration: none;
+  transition: all 250ms linear;
+}
+
 .dropdown-divider {
   border-color: $text-color;
 }
@@ -64,6 +73,10 @@ $medium: 991px;
     border-right: none;
   }
 
+  .dropdown-menu {
+    box-shadow: 0px 10px 5px rgba(#242222, .7);
+  }
+
   .nav-item.show{
     position: static;
     width: 100%;
@@ -82,5 +95,8 @@ $medium: 991px;
   .bi-person-circle {
     width: 20px; 
     height: 20px;
+  }
+  .dropdown-menu {
+    box-shadow: 0px 10px 5px rgba(#242222, .7);
   }
 }

@@ -14,6 +14,7 @@
   padding: 0.4em 1em;
   width: 8em;
   font-size: 0.9rem;
+  border-radius: 2px !important;
 }
 
 .input-icon-container {
@@ -35,20 +36,51 @@
   color: #3b3837;
 }
 
+.no-underline {
+  text-decoration: none !important;
+}
+
 .form-control.with-icon {
   padding-left: 30px;
 }
 
-.custom-hover-1:hover {
-  background-color: transparent !important;
-  /* Add other styles if needed, like changing the text color, border, etc. */
+.form-check-input {
+  cursor:  pointer !important;
 }
 
-.custom-hover-2:hover {
-  color: black;
-  background-color: transparent !important;
-  border: 1px solid black;
+#cancel-btn:hover {
+  border-color: rgb(128, 62, 66);
 }
+
+#login-btn {
+  border-color: #3e7580;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3e7580 inset, 0 0 0 0 #3e7580;
+  transition: all 150ms ease-in-out;
+  
+  &:hover {
+    box-shadow: 0 0 10px 0 #3e7580 inset, 0 0 10px 4px #3e7580;
+  }
+}
+
+// #login-btn {
+//   border: 0 solid;
+//   box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+//   outline: 1px solid;
+//   outline-color: rgba(255, 255, 255, .5);
+//   outline-offset: 0px;
+//   text-shadow: none;
+//   transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+// } 
+
+// #login-btn:hover {
+//   border: 1px solid;
+//   background-color: #3E7580;
+//   box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+//   outline-color: rgba(255, 255, 255, 0);
+//   outline-offset: 15px;
+//   text-shadow: 1px 1px 2px #427388; 
+// }
 
 .justify-content-center.col{
   width: 20em;

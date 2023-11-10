@@ -54,6 +54,32 @@
   border: none;
   color: #ededed;
   padding: 0.3em 0.7em;
+  border-radius: 2px;
+}
+
+.screeningsBtn:hover {
+  background: darken($btn-color, 1.5%);
+  box-shadow: inset 0 0 0 1px #fff;
+  // box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-decoration: none;
+  color: lighten(white, 18%); 
+  transition: all 250ms linear;
+}
+
+#moviesComponentBtn, #screeningsComponentBtn {
+  border: none;
+  color: #ededed;
+  padding: 0.3em 0.7em;
+  border-radius: 2px;
+
+  &:hover {
+    background: darken($btn-color, 1.5%);
+    box-shadow: inset 0 0 0 1px #fff;
+    // box-shadow: 1px 1px 2px rgba(#fff, .2);
+    text-decoration: none;
+    color: lighten(white, 18%); 
+    transition: all 250ms linear;
+  }
 }
 
 .filterContainer {
@@ -77,6 +103,15 @@
   color: $text-color;
   padding: 0.4em 0.6em;
   width: 8em;
+  border-radius: 2px;
+}
+
+.resetBtn:hover {
+  background: darken(#3E7580, 1.5%);
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-decoration: none;
+  transition: all 250ms linear;
 }
 
 .filterScreenings::-webkit-clear-button {

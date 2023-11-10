@@ -94,15 +94,15 @@ export default function RegisterPage() {
             <small className="form-text text-center text-danger">{infoMessage}</small>
             <p className="text-center mt-3">
               Är du redan medlem?
-              <Link to="/login">
+              <Link className="no-underline" to="/login">
                 <span style={{ color: "#FFD700" }}> Logga in här!</span>
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
-              <button className="btn cancel-btn me-2" onClick={() => navigate("/")}>
+              <button id="cancel-btn" className="btn cancel-btn me-2" onClick={() => navigate("/")}>
                 AVBRYT
               </button>
-              <button className="btn register-btn  ms-2" type="submit">
+              <button id="login-btn" className="btn register-btn  ms-2" type="submit">
                 BLI MEDLEM
               </button>
             </div>

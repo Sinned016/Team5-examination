@@ -12,8 +12,17 @@ form {
   color: white;
 }
 
-input.form-control {
-  width: 100%;
+form.screening-list {
+  align-items: center;
+}
+
+input {
+  margin-right: 10px;
+}
+
+label.choose-screening {
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 .form-text {
@@ -27,8 +36,40 @@ input.form-control {
   border: 1px solid $border-color;
   color: $text-color;
   padding: 0.4em 0.6em;
-  
+  border-radius: 2px !important;
   font-size: 0.9rem;
+}
+
+.restart-button:hover {
+  background: darken(#3E7580, 1.5%);
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-decoration: none;
+  transition: all 250ms linear;
+}
+
+.confirm-button:hover {
+  background: darken(#3E7580, 1.5%);
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-decoration: none;
+  transition: all 250ms linear;
+}
+
+.accordion-button:hover {
+  cursor: default !important;
+}
+
+#booking-btn {
+  border-color: #3e7580;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3e7580 inset, 0 0 0 0 #3e7580;
+  transition: all 150ms ease-in-out;
+  
+  &:hover {
+    box-shadow: 0 0 10px 0 #3e7580 inset, 0 0 10px 4px #3e7580;
+    background-color: transparent !important;
+  }
 }
 
 .no-arrow-accordion .accordion-button::after {

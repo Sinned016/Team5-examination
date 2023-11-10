@@ -37,14 +37,15 @@ export default function ScreeningList({ setScreening, setActiveItem, screeningSe
 
                 return (
                     <div key={i}>
-                        <label>
-                            <input 
+                        <label className="choose-screening">
+                            <input
+                                className="choose-screening"
                                 type="radio"
                                 name="selectedScreening" 
                                 value={screening._id} 
                                 onChange={() => setScreeningSelection(screening._id)}
                             />
-                            {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
+                            {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text `}
                         </label>
                     </div>
             )})}
