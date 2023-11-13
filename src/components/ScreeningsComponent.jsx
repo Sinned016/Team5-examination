@@ -2,9 +2,9 @@ import { useStates } from "react-easier"
 import { Container, Row, Col, Dropdown } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import getFormattedDate from "../service/getFormattedDate";
+import getFormattedDate from "../utils/getFormattedDate";
 import FilterDateComponent from "./FilterDateComponent";
-import getCurrentDate from "../service/getCurrentDate";
+import getCurrentDate from "../utils/getCurrentDate";
 
 export default function ScreeningsComponent() {
   const g = useStates('globalMovies');
