@@ -10,6 +10,7 @@
 .movieCard:hover {
   cursor: pointer !important;
   transform: scale(1.1);
+  z-index: 1;
 }
 
 .movieImages {

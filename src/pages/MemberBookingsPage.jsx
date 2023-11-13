@@ -105,7 +105,7 @@ function MemberBookingsPage() {
 
               <div className="d-flex justify-content-center">
                 <button
-                  className="btn btn-outline-secondary py-2 m-3"
+                  className="cancel-booking-btn btn btn-outline-secondary py-2 m-3"
                   onClick={() => handleShowModal(booking)}
                 >
                   AVBOKA
@@ -137,7 +137,7 @@ function MemberBookingsPage() {
         <div className="d-flex justify-content-center mt-5">
           <button
             onClick={() => navigateToHome("/")}
-            className="btn btn-outline-secondary py-2 mb-4 "
+            className="startpage-btn btn btn-outline-secondary py-2 mb-4"
           >
             STARTSIDA
           </button>
