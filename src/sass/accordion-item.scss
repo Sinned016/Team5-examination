@@ -74,3 +74,21 @@ label.choose-screening {
 .no-arrow-accordion .accordion-button::after {
   display: none;
 }
+
+
+
+$medium: 992px;
+//tablet sizes
+
+@media screen and (max-width: $medium) and (min-width: 600px){
+  .movie-details-component{
+    margin: 1em 3em;
+  }
+  .no-arrow-accordion{
+    margin: 0em 5em;
+  }
+  .theatre-row{
+    margin: 0em 3em;
+    padding: 0em 2em;
+  }
+}
