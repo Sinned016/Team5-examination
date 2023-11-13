@@ -61,8 +61,10 @@ function MemberBookingsPage() {
       
       <div className="row mx-1 booking-container" style={{ marginBottom: "120px" }}>
 
+        {/* Current bookings */}
         <BookingsComponent email={email} activeBookings={activeBookings} handleShowModal={handleShowModal}/>
         
+        {/* Old bookings */}
         <BookingsHistoryComponent oldBookings={oldBookings} />
 
         <div className="d-flex justify-content-center mt-5">
