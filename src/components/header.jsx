@@ -97,7 +97,7 @@ export default function Header() {
                 </NavDropdown.Item>
                 <div className="dropdown-divider"></div>
                 <NavDropdown.Item href="/" onClick={logOut}>
-                  <Link to="/" style={{ textDecoration: "none", color: "#ededed" }}>
+                  <Link to="/" className="text-decoration-none text-primary">
                     <span>Logga ut</span>
                   </Link>
                   {""}
