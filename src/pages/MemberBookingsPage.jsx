@@ -64,7 +64,7 @@ function MemberBookingsPage() {
   let oldBookings = bookings.filter((booking) => new Date() > new Date(booking.date));
   return (
     <>
-      <div className="row mx-1 booking-container" style={{ marginBottom: "120px" }}>
+      <div className="row booking-container my-3">
         <h1>Mina bokningar </h1>
         <p>
           Du är inloggad som <span className="user-email">{email}</span>
@@ -145,14 +145,14 @@ function MemberBookingsPage() {
       </div>
       {/* Modal for cancellation confirmation */}
       {selectedBooking && (
-        <Modal show={showModal} onHide={handleCloseModal} style={{ color: "#ededed" }}>
-          <Modal.Header style={{ backgroundColor: "#2b2827" }}>
+        <Modal show={showModal} onHide={handleCloseModal} className="text-primary">
+          <Modal.Header className="bg-info">
             <Modal.Title>Avbryt bokningen</Modal.Title>
           </Modal.Header>
-          <Modal.Body style={{ backgroundColor: "#c0c0c0", color: "black" }}>
+          <Modal.Body className="bg-secondary text-info">
             Är du säker på att avboka denna bokning?
           </Modal.Body>
-          <Modal.Footer style={{ backgroundColor: "#c0c0c0" }}>
+          <Modal.Footer className="bg-secondary">
             <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleCloseModal}>
               Avbryt
             </Button>
