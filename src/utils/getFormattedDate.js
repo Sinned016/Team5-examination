@@ -5,5 +5,5 @@ export default function getFormattedDate(date) {
     const day = ("0" + today.getDate()).slice(-2); // Same as month, to avoid single digit dates.
     const weekday = today.getDay();
     const weekdayArray = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"]
-    return `${weekdayArray[weekday]}, ${day}-${month}-${year}`;
+    return `${weekdayArray[weekday]}, ${year}-${month}-${day}`;
 }
