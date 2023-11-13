@@ -44,7 +44,7 @@ export default function BookingsComponent({email, activeBookings, handleShowModa
 
               <div className="d-flex justify-content-center">
                 <button
-                  className="btn btn-outline-secondary py-2 m-3"
+                  className="cancel-booking-btn btn btn-outline-secondary py-2 m-3"
                   onClick={() => handleShowModal(booking)}
                 >
                   AVBOKA
