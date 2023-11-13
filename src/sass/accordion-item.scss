@@ -1,4 +1,3 @@
-/* style for MovieBookingComponent */
 .accordion-item {
   margin: auto, auto;
   margin-bottom: 20px;
@@ -14,6 +13,10 @@ form {
 
 form.screening-list {
   align-items: center;
+}
+
+.screening-input {
+  margin-right: 10px;
 }
 
 label.choose-screening {

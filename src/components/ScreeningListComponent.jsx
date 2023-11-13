@@ -39,7 +39,7 @@ export default function ScreeningList({ setScreening, setActiveItem, screeningSe
                     <div key={i}>
                         <label className="choose-screening">
                             <input
-                                className="choose-screening"
+                                className="screening-input"
                                 type="radio"
                                 name="selectedScreening" 
                                 value={screening._id} 
