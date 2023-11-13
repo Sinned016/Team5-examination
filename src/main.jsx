@@ -10,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage";
 import MemberBookingsPage from "./pages/MemberBookingsPage";
 import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import MapPage from "./pages/MapPage";
+import ContactPage from "./pages/ContactPage";
 
 export const pages = [
   { path: "/", label: "LandingPage", element: <LandingPage /> },
@@ -19,6 +20,7 @@ export const pages = [
   { path: "/bookings", element: <MemberBookingsPage /> },
   { path: "/bookingConfirmation", element: <BookingConfirmationPage /> },
   { path: "/location", element: <MapPage /> },
+  { path: "/contact", element: <ContactPage />}
 ];
 
 const router = createBrowserRouter([
