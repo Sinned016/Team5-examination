@@ -70,7 +70,7 @@ function MemberBookingsPage() {
         <div className="d-flex justify-content-center mt-5">
           <button
             onClick={() => navigateToHome("/")}
-            className="btn btn-outline-secondary py-2 mb-4 "
+            className="startpage-btn btn btn-outline-secondary py-2 mb-4"
           >
             STARTSIDA
           </button>
@@ -79,14 +79,14 @@ function MemberBookingsPage() {
 
       {/* Modal for cancellation confirmation */}
       {selectedBooking && (
-        <Modal show={showModal} onHide={handleCloseModal} style={{ color: "#ededed" }}>
-          <Modal.Header style={{ backgroundColor: "#2b2827" }}>
+        <Modal show={showModal} onHide={handleCloseModal} className="text-primary">
+          <Modal.Header className="bg-info">
             <Modal.Title>Avbryt bokningen</Modal.Title>
           </Modal.Header>
-          <Modal.Body style={{ backgroundColor: "#c0c0c0", color: "black" }}>
+          <Modal.Body className="bg-secondary text-info">
             Är du säker på att avboka denna bokning?
           </Modal.Body>
-          <Modal.Footer style={{ backgroundColor: "#c0c0c0" }}>
+          <Modal.Footer className="bg-secondary">
             <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleCloseModal}>
               Avbryt
             </Button>

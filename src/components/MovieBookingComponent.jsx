@@ -30,26 +30,26 @@ function MovieBookingComponent() {
 
   useEffect(() => {
     const token = localStorage.getItem("JWT_TOKEN");
-    if(!token) {
+    if (!token) {
       return;
     }
     const email = userService.getUserEmail();
     setEmail(email);
-  }, [])
+  }, []);
 
   // SOCKET.IO -->
   useEffect(() => {
-    socket.on("seat-update", async screeningId => {
+    socket.on("seat-update", async (screeningId) => {
       const result = await fetch(`/api/screening/${screeningId}`);
       const data = await result.json();
-  
+
       setScreening(data);
 
       return () => {
         socket.off("seat-update");
-      }
+      };
     });
-  }, [])
+  }, []);
   // <-- SOCKET.IO
 
   const handleClose = () => setShow(false);
@@ -122,7 +122,12 @@ function MovieBookingComponent() {
             )}
           </Accordion.Header>
           <Accordion.Body>
-            <ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} screeningSelection={screeningSelection} setScreeningSelection={setScreeningSelection}/>
+            <ScreeningListComponent
+              setActiveItem={setActiveItem}
+              setScreening={setScreening}
+              screeningSelection={screeningSelection}
+              setScreeningSelection={setScreeningSelection}
+            />
           </Accordion.Body>
         </Accordion.Item>
 
