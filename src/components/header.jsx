@@ -13,13 +13,14 @@ export default function Header() {
   return (
     <Navbar sticky="top" className="bg-body-tertiary">
       <Container className="header">
-        <Navbar.Brand href="/">
-          {" "}
-          <img
-            className="company-logo"
-            src="/public/images/filmvisarna_logotyp.png"
-            alt="Company Logo"
-          />
+        <Navbar.Brand>
+          <Link to="/">
+            <img
+              className="company-logo"
+              src="/public/images/filmvisarna_logotyp.png"
+              alt="Company Logo"
+            />
+          </Link>{" "}
         </Navbar.Brand>
 
         <Nav className="nav-top">
@@ -90,7 +91,7 @@ export default function Header() {
                   <Link
                     to="/bookings/"
                     className="text-decoration-none text-primary">
-                    Bokningar {""} {""}{" "}
+                    Bokningar {""} {""}
                   </Link>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +104,7 @@ export default function Header() {
                   </svg>{" "}
                 </NavDropdown.Item>
                 <div className="dropdown-divider"></div>
-                <NavDropdown.Item href="/" onClick={logOut}>
+                <NavDropdown.Item onClick={logOut}>
                   <Link to="/" className="text-decoration-none text-primary">
                     <span>Logga ut</span>
                   </Link>
