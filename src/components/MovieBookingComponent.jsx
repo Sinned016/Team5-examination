@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { socket } from "../socket/socketio";
 import { useStates } from "react-easier";
+import { resetBooking } from "../utils/resetBooking";
 
 
 function MovieBookingComponent() {
@@ -106,22 +107,6 @@ function MovieBookingComponent() {
     bookSeats();
   }
 
-  function restart(identifier) {
-    if (identifier === "screening") {
-      setScreening("");
-      setTotalTickets(0);
-      setChosenSeats([]);
-      setActiveItem(0);
-    } else if (identifier === "ticketType") {
-      setTotalTickets(0);
-      setChosenSeats([]);
-      setActiveItem(1);
-    } else if (identifier === "seats") {
-      setChosenSeats([]);
-      setActiveItem(2);
-    }
-  }
-
   return (
     <>
       <Accordion className="no-arrow-accordion" activeKey={activeItem + ""}>
@@ -129,7 +114,7 @@ function MovieBookingComponent() {
           <Accordion.Header>
             1. Välj visning{" "}
             {screening ? (
-              <button className="restart-button" onClick={() => restart("screening")}>
+              <button className="restart-button" onClick={() => resetBooking("screening", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
               </button>
             ) : (
@@ -145,7 +130,7 @@ function MovieBookingComponent() {
           <Accordion.Header>
             2. Biljettyp och antal{" "}
             {totalTickets > 0 ? (
-              <button className="restart-button" onClick={() => restart("ticketType")}>
+              <button className="restart-button" onClick={() => resetBooking("ticketType", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
               </button>
             ) : (
@@ -161,7 +146,7 @@ function MovieBookingComponent() {
           <Accordion.Header>
             3. Välj platser{" "}
             {chosenSeats.length > 0 ? (
-              <button className="restart-button" onClick={() => restart("seats")}>
+              <button className="restart-button" onClick={() => resetBooking("seats", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
               </button>
             ) : (
