@@ -89,6 +89,9 @@
 .filterScreenings {
   padding: .3em .5em;
   cursor: pointer;
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
   width: 8em;
 }
 
