@@ -12,6 +12,14 @@
   padding: 10px 16px;
 }
 
+#basic-nav-dropdown {
+  transition: transform 250ms ease-in-out;
+}
+
+#basic-nav-dropdown:hover {
+  transform: scale(1.15);
+}
+
 #basic-nav-dropdown,
 .dropdown-item {
   color: $text-color;
