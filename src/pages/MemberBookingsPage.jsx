@@ -93,7 +93,9 @@ function MemberBookingsPage() {
                 <div>Plats</div>
                 <div className="booking-info">
                   {booking.theater}, Rad: {booking.seats[0][0] + 1}, Plats:{" "}
-                  {booking.seats[0][1] + 1}-{booking.seats[booking.seats.length - 1][1] + 1}
+                  {booking.seats.length > 1
+                    ? `${booking.seats[0][1] + 1}-${booking.seats[booking.seats.length - 1][1] + 1}`
+                    : booking.seats[0][1] + 1}
                 </div>
               </div>
               <div className="d-flex justify-content-between my-3">
