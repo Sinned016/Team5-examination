@@ -8,8 +8,6 @@ import userService from "../service/userService";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { socket } from "../socket/socketio";
-import { useStates } from "react-easier";
-
 
 function MovieBookingComponent() {
   const [activeItem, setActiveItem] = useState(0);
@@ -29,26 +27,26 @@ function MovieBookingComponent() {
 
   useEffect(() => {
     const token = localStorage.getItem("JWT_TOKEN");
-    if(!token) {
+    if (!token) {
       return;
     }
     const email = userService.getUserEmail();
     setEmail(email);
-  }, [])
+  }, []);
 
   // SOCKET.IO -->
   useEffect(() => {
-    socket.on("seat-update", async screeningId => {
+    socket.on("seat-update", async (screeningId) => {
       const result = await fetch(`/api/screening/${screeningId}`);
       const data = await result.json();
-  
+
       setScreening(data);
 
       return () => {
         socket.off("seat-update");
-      }
+      };
     });
-  }, [])
+  }, []);
   // <-- SOCKET.IO
 
   const handleClose = () => setShow(false);
@@ -137,7 +135,12 @@ function MovieBookingComponent() {
             )}
           </Accordion.Header>
           <Accordion.Body>
-            <ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} screeningSelection={screeningSelection} setScreeningSelection={setScreeningSelection}/>
+            <ScreeningListComponent
+              setActiveItem={setActiveItem}
+              setScreening={setScreening}
+              screeningSelection={screeningSelection}
+              setScreeningSelection={setScreeningSelection}
+            />
           </Accordion.Body>
         </Accordion.Item>
 
@@ -204,22 +207,22 @@ function MovieBookingComponent() {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      
-      <Modal show={show} onHide={handleClose} style={{ color: "#ededed"}}>
-        <Modal.Header style={{ backgroundColor: "#2b2827"}}>
-          <Modal.Title >Bekräfta bokning</Modal.Title>
+
+      <Modal show={show} onHide={handleClose} className="text-primary">
+        <Modal.Header className="bg-info">
+          <Modal.Title>Bekräfta bokning</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ backgroundColor: "#c0c0c0", color: "black"}}>
-          Är du säker på att boka <span style={{ fontWeight: "bold" }}>{totalTickets} </span>
+        <Modal.Body className="bg-secondary text-info">
+          Är du säker på att boka <span className="fw-bold">{totalTickets} </span>
           biljetter för filmen{" "}
-          <span style={{ fontWeight: "bold" }}>
+          <span className="fw-bold">
             {screening && screening.movieDetails && screening.movieDetails.length > 0
               ? screening.movieDetails[0].title
               : "ingen filmtitle"}
           </span>
           ?
         </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: "#c0c0c0"}}>
+        <Modal.Footer className="bg-secondary">
           <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleClose}>
             Avbryt
           </Button>

@@ -100,7 +100,7 @@ export default function Header() {
                   <Link to="/" className="text-decoration-none text-primary">
                     <span>Logga ut</span>
                   </Link>
-                  {""}
+                  {""}{" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
