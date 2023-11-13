@@ -1,6 +1,6 @@
 import { useFetch, useStates } from "react-easier";
 import { useState } from "react";
-import getFormattedDate from "../service/getFormattedDate";
+import getFormattedDate from "../utils/getFormattedDate";
 
 export default function ScreeningList({ setScreening, setActiveItem, screeningSelection, setScreeningSelection }) {
     const movieFetch = useStates('globalMovieState');
@@ -39,7 +39,7 @@ export default function ScreeningList({ setScreening, setActiveItem, screeningSe
                     <div key={i}>
                         <label className="choose-screening">
                             <input
-                                className="choose-screening"
+                                className="screening-input"
                                 type="radio"
                                 name="selectedScreening" 
                                 value={screening._id} 

@@ -8,7 +8,8 @@ import userService from "../service/userService";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { socket } from "../socket/socketio";
-import { useStates } from "react-easier";
+import { resetBooking } from "../utils/resetBooking";
+import ConfirmBookingComponent from "./ConfirmBookingComponent";
 
 
 function MovieBookingComponent() {
@@ -29,26 +30,26 @@ function MovieBookingComponent() {
 
   useEffect(() => {
     const token = localStorage.getItem("JWT_TOKEN");
-    if(!token) {
+    if (!token) {
       return;
     }
     const email = userService.getUserEmail();
     setEmail(email);
-  }, [])
+  }, []);
 
   // SOCKET.IO -->
   useEffect(() => {
-    socket.on("seat-update", async screeningId => {
+    socket.on("seat-update", async (screeningId) => {
       const result = await fetch(`/api/screening/${screeningId}`);
       const data = await result.json();
-  
+
       setScreening(data);
 
       return () => {
         socket.off("seat-update");
-      }
+      };
     });
-  }, [])
+  }, []);
   // <-- SOCKET.IO
 
   const handleClose = () => setShow(false);
@@ -106,22 +107,6 @@ function MovieBookingComponent() {
     bookSeats();
   }
 
-  function restart(identifier) {
-    if (identifier === "screening") {
-      setScreening("");
-      setTotalTickets(0);
-      setChosenSeats([]);
-      setActiveItem(0);
-    } else if (identifier === "ticketType") {
-      setTotalTickets(0);
-      setChosenSeats([]);
-      setActiveItem(1);
-    } else if (identifier === "seats") {
-      setChosenSeats([]);
-      setActiveItem(2);
-    }
-  }
-
   return (
     <>
       <Accordion className="no-arrow-accordion" activeKey={activeItem + ""}>
@@ -129,7 +114,7 @@ function MovieBookingComponent() {
           <Accordion.Header>
             1. Välj visning{" "}
             {screening ? (
-              <button className="restart-button" onClick={() => restart("screening")}>
+              <button className="restart-button" onClick={() => resetBooking("screening", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
               </button>
             ) : (
@@ -137,7 +122,12 @@ function MovieBookingComponent() {
             )}
           </Accordion.Header>
           <Accordion.Body>
-            <ScreeningListComponent setActiveItem={setActiveItem} setScreening={setScreening} screeningSelection={screeningSelection} setScreeningSelection={setScreeningSelection}/>
+            <ScreeningListComponent
+              setActiveItem={setActiveItem}
+              setScreening={setScreening}
+              screeningSelection={screeningSelection}
+              setScreeningSelection={setScreeningSelection}
+            />
           </Accordion.Body>
         </Accordion.Item>
 
@@ -145,7 +135,7 @@ function MovieBookingComponent() {
           <Accordion.Header>
             2. Biljettyp och antal{" "}
             {totalTickets > 0 ? (
-              <button className="restart-button" onClick={() => restart("ticketType")}>
+              <button className="restart-button" onClick={() => resetBooking("ticketType", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
               </button>
             ) : (
@@ -161,7 +151,7 @@ function MovieBookingComponent() {
           <Accordion.Header>
             3. Välj platser{" "}
             {chosenSeats.length > 0 ? (
-              <button className="restart-button" onClick={() => restart("seats")}>
+              <button className="restart-button" onClick={() => resetBooking("seats", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
               </button>
             ) : (
@@ -204,30 +194,8 @@ function MovieBookingComponent() {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      
-      <Modal show={show} onHide={handleClose} style={{ color: "#ededed"}}>
-        <Modal.Header style={{ backgroundColor: "#2b2827"}}>
-          <Modal.Title >Bekräfta bokning</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ backgroundColor: "#c0c0c0", color: "black"}}>
-          Är du säker på att boka <span style={{ fontWeight: "bold" }}>{totalTickets} </span>
-          biljetter för filmen{" "}
-          <span style={{ fontWeight: "bold" }}>
-            {screening && screening.movieDetails && screening.movieDetails.length > 0
-              ? screening.movieDetails[0].title
-              : "ingen filmtitle"}
-          </span>
-          ?
-        </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: "#c0c0c0"}}>
-          <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleClose}>
-            Avbryt
-          </Button>
-          <Button className="btn login-btn custom-hover-2" onClick={submitBooking}>
-            Boka
-          </Button>
-        </Modal.Footer>
-      </Modal>
+
+      <ConfirmBookingComponent show={show} handleClose={handleClose} totalTickets={totalTickets} screening={screening} submitBooking={submitBooking}/>
     </>
   );
 }

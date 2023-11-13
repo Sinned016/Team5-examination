@@ -46,7 +46,7 @@ export default function Header() {
                 <NavDropdown.Item className="line-object">
                   <Link
                     to="/register"
-                    style={{ textDecoration: "none", color: "#ededed" }}>
+                    className="text-decoration-none text-primary">
                     <span>
                       Bli medlem {""} {""}
                     </span>
@@ -68,7 +68,7 @@ export default function Header() {
                 <NavDropdown.Item className="line-object">
                   <Link
                     to="/login"
-                    style={{ textDecoration: "none", color: "#ededed" }}>
+                    className="text-decoration-none text-primary">
                     <span>
                       Logga in {""} {""}
                     </span>
@@ -89,7 +89,7 @@ export default function Header() {
                 <NavDropdown.Item className="line-object">
                   <Link
                     to="/bookings/"
-                    style={{ textDecoration: "none", color: "#ededed" }}>
+                    className="text-decoration-none text-primary">
                     Bokningar {""} {""}{" "}
                   </Link>
                   <svg
@@ -103,14 +103,11 @@ export default function Header() {
                   </svg>{" "}
                 </NavDropdown.Item>
                 <div className="dropdown-divider"></div>
-
-                <NavDropdown.Item onClick={logOut}>
-                  <Link
-                    to="/"
-                    style={{ textDecoration: "none", color: "#ededed" }}>
+                <NavDropdown.Item href="/" onClick={logOut}>
+                  <Link to="/" className="text-decoration-none text-primary">
                     <span>Logga ut</span>
                   </Link>
-                  {""} {""}
+                  {""}{" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"

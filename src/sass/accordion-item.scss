@@ -1,4 +1,3 @@
-/* style for MovieBookingComponent */
 .accordion-item {
   margin: auto, auto;
   margin-bottom: 20px;
@@ -16,9 +15,17 @@ form.screening-list {
   align-items: center;
 }
 
+.screening-input {
+  margin-right: 10px;
+}
+
 label.choose-screening {
   margin-bottom: 5%;
   margin-top: 5%;
+}
+
+.choose-screening {
+    cursor: pointer !important;
 }
 
 .form-text {
@@ -70,4 +77,22 @@ label.choose-screening {
 
 .no-arrow-accordion .accordion-button::after {
   display: none;
+}
+
+
+
+$medium: 992px;
+//tablet sizes
+
+@media screen and (max-width: $medium) and (min-width: 600px){
+  .movie-details-component{
+    margin: 1em 3em;
+  }
+  .no-arrow-accordion{
+    margin: 1em 3em;
+  }
+  .theatre-row{
+    margin: 0em 3em;
+    padding: 0em 2em;
+  }
 }
