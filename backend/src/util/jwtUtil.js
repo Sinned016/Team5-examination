@@ -26,7 +26,7 @@ function verify(token) {
   } catch (err) {
     let error = new Error(); // custom verification error
 
-    if (err.name == "JsonWebTokenError") {
+    if (err.name === "JsonWebTokenError") {
       error.clientMessage = "Digital signing is invalid";
       error.serverMessage = "Token verification failed";
     }
@@ -36,7 +36,10 @@ function verify(token) {
       error.serverMessage = "Token expired";
     }
 
-    throw error;
+    throw {
+      clientMessage: error.clientMessage,
+      serverMessage: error.serverMessage,
+    };
   }
 }
 

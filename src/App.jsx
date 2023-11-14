@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import Header from "./components/Header";
@@ -12,6 +12,7 @@ export const AuthContext = createContext({
 });
 
 export default function App() {
+  const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -21,6 +22,11 @@ export default function App() {
   const logIn = (token) => {
     memoryService.saveLocalValue("JWT_TOKEN", token);
     setLoggedIn(true);
+    setTimeout(() => {
+      logOut();
+      alert("Du har varit inaktiv under lång tid. Vänligen logga in igen!");
+      navigate("/login");
+    }, 2700000);
   };
 
   const logOut = () => {
