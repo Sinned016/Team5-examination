@@ -6,7 +6,7 @@ function authorize(req, res, next) {
 
   if (authHeader == undefined) {
     res.status(400); // bad request
-    res.send("Authorization header is missing");
+    res.json({ error: "Authorization header is missing" });
   } else {
     const authToken = authHeader.replace("Bearer ", "");
 
@@ -17,7 +17,7 @@ function authorize(req, res, next) {
       }
     } catch (err) {
       res.status(403); // forbidden
-      res.send(err.clientMessage);
+      res.json({ error: err.clientMessage });
     }
   }
 }
