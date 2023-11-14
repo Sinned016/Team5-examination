@@ -12,7 +12,7 @@ export default function Footer() {
           Hitta hit
         </Link>
       </Container>
-      <div className="text-center p-3">© Filmvisarna</div>
+      <div className="text-center pb-3">© Filmvisarna</div>
     </footer>
   );
 }

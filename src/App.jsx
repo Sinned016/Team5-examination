@@ -41,7 +41,7 @@ export default function App() {
           </Container>
         </main>
 
-        <footer className="container-fixed">
+        <footer>
           <Footer />
         </footer>
       </AuthContext.Provider>
