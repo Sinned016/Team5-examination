@@ -54,24 +54,31 @@ function MemberBookingsPage() {
     }
   };
 
-  let activeBookings = bookings.filter((booking) => new Date() <= new Date(booking.date));
-  let oldBookings = bookings.filter((booking) => new Date() > new Date(booking.date));
+  let activeBookings = bookings.filter(
+    (booking) => new Date() <= new Date(booking.date)
+  );
+  let oldBookings = bookings.filter(
+    (booking) => new Date() > new Date(booking.date)
+  );
   return (
     <>
-      
-      <div className="row mx-1 booking-container" style={{ marginBottom: "120px" }}>
-
+      <div
+        className="row mx-1 booking-container"
+        style={{ marginBottom: "120px" }}>
         {/* Current bookings */}
-        <BookingsComponent email={email} activeBookings={activeBookings} handleShowModal={handleShowModal}/>
-        
+        <BookingsComponent
+          email={email}
+          activeBookings={activeBookings}
+          handleShowModal={handleShowModal}
+        />
+
         {/* Old bookings */}
         <BookingsHistoryComponent oldBookings={oldBookings} />
 
         <div className="d-flex justify-content-center mt-5">
           <button
             onClick={() => navigateToHome("/")}
-            className="startpage-btn btn btn-outline-secondary py-2 mb-4"
-          >
+            className="startpage-btn btn btn-outline-secondary py-2 mb-4">
             STARTSIDA
           </button>
         </div>
@@ -79,18 +86,25 @@ function MemberBookingsPage() {
 
       {/* Modal for cancellation confirmation */}
       {selectedBooking && (
-        <Modal show={showModal} onHide={handleCloseModal} className="text-primary">
+        <Modal
+          show={showModal}
+          onHide={handleCloseModal}
+          className="text-primary">
           <Modal.Header className="bg-info">
             <Modal.Title>Avbryt bokningen</Modal.Title>
           </Modal.Header>
           <Modal.Body className="bg-secondary text-info">
-            Är du säker på att avboka denna bokning?
+            Är du säker på att avboka?
           </Modal.Body>
           <Modal.Footer className="bg-secondary">
-            <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleCloseModal}>
+            <Button
+              className="btn cancel-btn custom-hover-2 me-2"
+              onClick={handleCloseModal}>
               Avbryt
             </Button>
-            <Button className="btn login-btn custom-hover-2" onClick={cancelBooking}>
+            <Button
+              className="btn login-btn custom-hover-2"
+              onClick={cancelBooking}>
               Avboka
             </Button>
           </Modal.Footer>
