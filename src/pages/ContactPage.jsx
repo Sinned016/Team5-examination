@@ -11,7 +11,7 @@ export default function ContactPage() {
                 <p>Har du några frågor om din bokning? Eller har du andra funderingar om Filmvisarnas biograf.</p>
                 <p />Ring oss på telefonnummer:
                     <br />
-                    <a href="020123456" className="text-decoration-none"><FontAwesomeIcon icon={faPhone} />  020-123456</a>
+                    <FontAwesomeIcon icon={faPhone} />  020-123456
                 <p>eller skicka din fråga via formuläret nedan</p>
             </div>
             
