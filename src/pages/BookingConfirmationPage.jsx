@@ -81,8 +81,8 @@ export default function BookingConfirmationPage() {
       </div>
       <h4 className="text-center mt-4 mb-4">Vi ser fram emot ditt besök!</h4>
       <div className="d-flex justify-content-center mb-5">
-        <button onClick={() => navigate("/")} className="btn btn-outline-secondary py-2 mb-4">
-          STARTSIDA
+        <button onClick={() => navigate("/")} className="startpage-btn btn btn-outline-secondary py-2 mb-4">
+          Startsida
         </button>
       </div>
     </>

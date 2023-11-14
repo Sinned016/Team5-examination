@@ -44,15 +44,11 @@ export default function Header() {
             id="basic-nav-dropdown">
             {!loggedIn ? (
               <>
-                <NavDropdown.Item className="line-object">
-                  <Link
-                    to="/register"
-                    className="text-decoration-none text-primary">
-                    <span>
-                      Bli medlem {""} {""}
-                    </span>
-                  </Link>
-
+                <NavDropdown.Item
+                  className="line-object text-decoration-none text-primary"
+                  as={Link}
+                  to="/register">
+                  Bli medlem {""} {""}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -66,14 +62,11 @@ export default function Header() {
                 </NavDropdown.Item>
 
                 <div className="dropdown-divider"></div>
-                <NavDropdown.Item className="line-object">
-                  <Link
-                    to="/login"
-                    className="text-decoration-none text-primary">
-                    <span>
-                      Logga in {""} {""}
-                    </span>
-                  </Link>
+                <NavDropdown.Item
+                  as={Link}
+                  className="line-object text-decoration-none text-primary"
+                  to="/login">
+                  Logga in {""} {""}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -87,12 +80,11 @@ export default function Header() {
               </>
             ) : (
               <>
-                <NavDropdown.Item className="line-object">
-                  <Link
-                    to="/bookings/"
-                    className="text-decoration-none text-primary">
-                    Bokningar {""} {""}
-                  </Link>
+                <NavDropdown.Item
+                  className="line-object text-decoration-none text-primary"
+                  as={Link}
+                  to="/bookings/">
+                  Bokningar {""} {""}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -104,10 +96,12 @@ export default function Header() {
                   </svg>{" "}
                 </NavDropdown.Item>
                 <div className="dropdown-divider"></div>
-                <NavDropdown.Item onClick={logOut}>
-                  <Link to="/" className="text-decoration-none text-primary">
-                    <span>Logga ut</span>
-                  </Link>
+                <NavDropdown.Item
+                  onClick={logOut}
+                  className="text-decoration-none text-primary"
+                  as={Link}
+                  to="/">
+                  Logga ut
                   {""}{" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -73,7 +73,7 @@ function MemberBookingsPage() {
             onClick={() => navigateToHome("/")}
             className="startpage-btn btn btn-outline-secondary py-2 mb-4"
           >
-            STARTSIDA
+            Startsida
           </button>
         </div>
       </div>
@@ -81,17 +81,17 @@ function MemberBookingsPage() {
       {/* Modal for cancellation confirmation */}
       {selectedBooking && (
         <Modal show={showModal} onHide={handleCloseModal} className="text-primary">
-          <Modal.Header className="bg-info">
-            <Modal.Title>Avbryt bokningen</Modal.Title>
+          <Modal.Header className="modal-header border-0 bg-info">
+            <Modal.Title>Avbryt bokning</Modal.Title>
           </Modal.Header>
-          <Modal.Body className="bg-secondary text-info">
-            Är du säker på att avboka denna bokning?
+          <Modal.Body className="modal-body bg-secondary text-info">
+            Vill du ta bort denna bokning?
           </Modal.Body>
-          <Modal.Footer className="bg-secondary">
-            <Button className="btn cancel-btn custom-hover-2 me-2" onClick={handleCloseModal}>
+          <Modal.Footer className="modal-footer border-0 bg-secondary">
+            <Button className="modal-undo-btn btn cancel-btn" onClick={handleCloseModal}>
               Avbryt
             </Button>
-            <Button className="btn login-btn custom-hover-2" onClick={cancelBooking}>
+            <Button className="modal-cancel-btn btn cancel-btn" onClick={cancelBooking}>
               Avboka
             </Button>
           </Modal.Footer>
