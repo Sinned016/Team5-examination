@@ -53,7 +53,7 @@ export default function BookingsComponent({email, activeBookings, handleShowModa
             </div>
           ))
         ) : (
-          <p>Du har inga aktiva bokningar nu.</p>
+          <p>Du har inga aktiva bokningar.</p>
         )}
     </>
   )
