@@ -47,13 +47,13 @@ export default function BookingsComponent({email, activeBookings, handleShowModa
                   className="cancel-booking-btn btn btn-outline-secondary py-2 m-3"
                   onClick={() => handleShowModal(booking)}
                 >
-                  AVBOKA
+                  Avboka
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <p>Du har inga aktiva bokningar nu.</p>
+          <p>Du har inga aktiva bokningar.</p>
         )}
     </>
   )
