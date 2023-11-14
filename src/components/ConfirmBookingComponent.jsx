@@ -4,7 +4,7 @@ export default function ConfirmBookingComponent({show, handleClose, totalTickets
   return (
     <>
         <Modal show={show} onHide={handleClose} style={{ color: "#ededed"}}>
-            <Modal.Header className="border-0" style={{ backgroundColor: "#2b2827"}}>
+            <Modal.Header style={{ backgroundColor: "#2b2827"}}>
             <Modal.Title >Bekräfta bokning</Modal.Title>
             </Modal.Header>
 
@@ -19,7 +19,7 @@ export default function ConfirmBookingComponent({show, handleClose, totalTickets
             ?
             </Modal.Body>
 
-            <Modal.Footer className="border-0" style={{ backgroundColor: "#c0c0c0"}}>
+            <Modal.Footer style={{ backgroundColor: "#c0c0c0"}}>
             <Button className="modal-cancel-btn btn cancel-btn" onClick={handleClose}>
                 Avbryt
             </Button>
