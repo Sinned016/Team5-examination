@@ -81,13 +81,13 @@ function MemberBookingsPage() {
       {/* Modal for cancellation confirmation */}
       {selectedBooking && (
         <Modal show={showModal} onHide={handleCloseModal} className="text-primary">
-          <Modal.Header className="modal-header border-0 bg-info">
+          <Modal.Header className="modal-header bg-info">
             <Modal.Title>Avbryt bokning</Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-body bg-secondary text-info">
             Vill du ta bort denna bokning?
           </Modal.Body>
-          <Modal.Footer className="modal-footer border-0 bg-secondary">
+          <Modal.Footer className="modal-footer bg-secondary">
             <Button className="modal-undo-btn btn cancel-btn" onClick={handleCloseModal}>
               Avbryt
             </Button>
