@@ -5,7 +5,6 @@ import { Nav } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../App";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 
 export default function Header() {
   const { loggedIn, logOut } = useContext(AuthContext);
