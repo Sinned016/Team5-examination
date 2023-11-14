@@ -11,6 +11,7 @@ import MemberBookingsPage from "./pages/MemberBookingsPage";
 import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import MapPage from "./pages/MapPage";
 import ContactPage from "./pages/ContactPage";
+import AboutUsPage from "./pages/AboutUs";
 
 export const pages = [
   { path: "/", label: "LandingPage", element: <LandingPage /> },
@@ -20,7 +21,8 @@ export const pages = [
   { path: "/bookings", element: <MemberBookingsPage /> },
   { path: "/bookingConfirmation", element: <BookingConfirmationPage /> },
   { path: "/location", element: <MapPage /> },
-  { path: "/contact", element: <ContactPage />}
+  { path: "/contact", element: <ContactPage /> },
+  { path: "/aboutUs", element: <AboutUsPage /> }
 ];
 
 const router = createBrowserRouter([

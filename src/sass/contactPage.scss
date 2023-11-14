@@ -1,4 +1,4 @@
-.sendFormBtn {
+.send-form-btn {
   background-color: #3e7580;
   border: none;
 }
@@ -9,19 +9,19 @@ $large: 1400px;
 
 //Tablet
 @media screen and (max-width: $medium) and (min-width: 600px){
-    .contactPage{
+    .contact-page{
         margin: 1em 5em !important;
     }
-    .contactForm {
+    .contact-form {
         width: 75%;
     };
 }
 // Desktop
 @media screen and (max-width: $large) and (min-width: 993px){
-    .contactPage{
+    .contact-page{
         margin: 1em 5em !important;
     }
-    .contactForm {
+    .contact-form {
         width: 75%;
     };
 }
