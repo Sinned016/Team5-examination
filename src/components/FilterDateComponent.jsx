@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import getCurrentDate from "../service/getCurrentDate";
+import getCurrentDate from "../utils/getCurrentDate";
 import { Container, Row, Col } from 'react-bootstrap';
 
 export default function FilterDateComponent({earliestDate, latestDate, selectedDate, setSelectedDate}) {
