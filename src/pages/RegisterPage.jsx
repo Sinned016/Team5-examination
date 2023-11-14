@@ -56,18 +56,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <Container
-      fluid
-      style={{
-        margin: "10em auto",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <form onSubmit={registerSubmit}>
-        <Row className="justify-content-center">
-          <Col className="justify-content-center">
+    <Container fluid className=" d-flex justify-content-center my-5 mx-auto">
+      <form className="mt-5" onSubmit={registerSubmit}>
+        <Row className="mt-5">
+          <Col>
             <h1 className="text-center mb-4">Bli medlem</h1>
             <div className="input-icon-container">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
@@ -94,15 +86,15 @@ export default function RegisterPage() {
             <small className="form-text text-center text-danger">{infoMessage}</small>
             <p className="text-center mt-3">
               Är du redan medlem?
-              <Link to="/login">
-                <span style={{ color: "#FFD700" }}> Logga in här!</span>
+              <Link className="text-decoration-none text-success" to="/login">
+                <span> Logga in här!</span>
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
-              <button className="btn cancel-btn me-2" onClick={() => navigate("/")}>
+            <button id="cancel-btn" className="btn cancel-btn me-2" onClick={() => navigate("/")}>
                 AVBRYT
               </button>
-              <button className="btn register-btn  ms-2" type="submit">
+              <button id="login-btn" className="btn register-btn  ms-2" type="submit">
                 BLI MEDLEM
               </button>
             </div>

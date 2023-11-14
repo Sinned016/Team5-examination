@@ -74,17 +74,9 @@ export default function LoginPage() {
   }
 
   return (
-    <Container
-      fluid
-      style={{
-        margin: "10em auto",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <form onSubmit={loginSubmit}>
-        <Row className="justify-content-center">
+    <Container fluid className=" d-flex justify-content-center my-5 mx-auto">
+      <form className="mt-5" onSubmit={loginSubmit}>
+        <Row className="mt-5">
           <Col>
             <h1 className="text-center mb-4">Logga in</h1>
             <div className="input-icon-container">
@@ -118,19 +110,19 @@ export default function LoginPage() {
             <small className="form-text text-center text-danger">{infoMessage}</small>
 
             <p className="text-center mt-3" onClick={() => alert("Fungerar inte för tillfället!")}>
-              Glöm ditt lösenord? <span style={{ color: "#FFD700" }}>Återställ här!</span>
+              Glömt ditt lösenord? <span className="text-success">Återställ här!</span>
             </p>
             <p className="text-center">
               Är du inte medlem men vill bli?
-              <Link to="/register">
-                <span style={{ color: "#FFD700" }}> Klicka här!</span>
+              <Link className="text-decoration-none text-success" to="/register">
+                <span> Klicka här!</span>
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
-              <button className="btn cancel-btn me-2" onClick={() => navigate("/")}>
+              <button id="cancel-btn" className="btn cancel-btn me-2" onClick={() => navigate("/")}>
                 AVBRYT
               </button>
-              <button className="btn login-btn  ms-2" type="submit">
+              <button id="login-btn" className="btn login-btn  ms-2" type="submit">
                 LOGGA IN
               </button>
             </div>

@@ -4,12 +4,27 @@
   padding: 0.5em;
   border-radius: 2px;
   background-color: #2b2827;
+  transition: transform 350ms ease-in-out;
+}
+
+.movieCard:hover {
+  cursor: pointer !important;
+  transform: scale(1.1);
+  z-index: 1;
 }
 
 .movieImages {
   width: 100%;
   aspect-ratio: 2/3;
   object-fit: cover;
+}
+
+.nav-btn {
+  border: none;
+  border-radius: 2px;
+  color: white;
+  padding: 0.5em 1.5em;
+  margin-bottom: 1em;
 }
 
 .screeningsContainer {
@@ -46,6 +61,29 @@
   border: none;
   color: #ededed;
   padding: 0.3em 0.7em;
+  border-radius: 2px;
+}
+
+.screeningsBtn:hover {
+  background: darken($btn-color, 1.5%);
+  box-shadow: inset 0 0 0 1px #fff;
+  text-decoration: none;
+  color: lighten(white, 18%); 
+  transition: all 250ms linear;
+}
+
+#moviesComponentBtn, #screeningsComponentBtn {
+  border: none;
+  color: #ededed;
+  border-radius: 2px;
+
+  &:hover {
+    background: darken($btn-color, 1.5%);
+    box-shadow: inset 0 0 0 1px #fff;
+    text-decoration: none;
+    color: lighten(white, 18%); 
+    transition: all 250ms linear;
+  }
 }
 
 .filterContainer {
@@ -57,6 +95,11 @@
 
 .filterScreenings {
   padding: .3em .5em;
+  cursor: pointer;
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
+  width: 8em;
 }
 
 .resetBtn {
@@ -65,4 +108,30 @@
   color: $text-color;
   padding: 0.4em 0.6em;
   width: 8em;
+  border-radius: 2px;
+}
+
+.resetBtn:hover {
+  background: darken(#3E7580, 1.5%);
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-decoration: none;
+  transition: all 250ms linear;
+}
+
+.filterScreenings::-webkit-clear-button {
+  display: none;
+}
+
+.pMovieTitle{
+  text-align: center;
+  font-weight: bold;
+  margin:0px;
+  padding-top: 4px;
+  color: $text-color
+}
+
+.movieImages {
+  border: solid;
+  border-color: $text-color;
 }

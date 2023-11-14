@@ -1,11 +1,10 @@
 import { useFetch, useStates } from "react-easier";
 import { useState } from "react";
-import getFormattedDate from "../service/getFormattedDate";
+import getFormattedDate from "../utils/getFormattedDate";
 
-export default function ScreeningList({ setScreening, setActiveItem }) {
+export default function ScreeningList({ setScreening, setActiveItem, screeningSelection, setScreeningSelection }) {
     const movieFetch = useStates('globalMovieState');
     const selectedScreening = useStates('globalSelectedScreening');
-    const [screeningSelection, setScreeningSelection] = useState();
     
     const movieDetails = movieFetch.movieDetails[0];
 
@@ -38,14 +37,15 @@ export default function ScreeningList({ setScreening, setActiveItem }) {
 
                 return (
                     <div key={i}>
-                        <label>
-                            <input 
+                        <label className="choose-screening">
+                            <input
+                                className="screening-input"
                                 type="radio"
                                 name="selectedScreening" 
                                 value={screening._id} 
                                 onChange={() => setScreeningSelection(screening._id)}
                             />
-                            {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text. `}
+                            {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text `}
                         </label>
                     </div>
             )})}

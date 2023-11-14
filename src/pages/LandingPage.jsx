@@ -37,9 +37,9 @@ export default function LandingPage() {
   return (
     <div className="container-xl">
       <div className="row">
+      <h2 className="text-center mb-4">På bio just nu</h2>
         <div className="col-lg-6 col-xl-7 col-xxl-8">
-          <h2 className="text-center mb-4">På bio just nu</h2>
-          <div className="d-flex justify-content-center mb-3">
+          <div className="d-flex justify-content-center">
             {size.width < breakPoint ? <button
               className="nav-btn important"
               id="moviesComponentBtn"
@@ -51,7 +51,7 @@ export default function LandingPage() {
           <MoviesComponent />
         </div>
           <div className="col-lg-6 col-xl-5 col-xxl-4">
-          <div className="d-flex justify-content-center mb-3 mt-5">
+          <div className="d-flex justify-content-center">
             {size.width < breakPoint ? <button
               className="nav-btn important"
               id="screeningsComponentBtn"
