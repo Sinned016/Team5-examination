@@ -45,7 +45,9 @@ export default function ScreeningList({ setScreening, setActiveItem, screeningSe
                                 value={screening._id} 
                                 onChange={() => setScreeningSelection(screening._id)}
                             />
+                            <div className="custom-radio-button">
                             {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text `}
+                            </div>
                         </label>
                     </div>
             )})}
