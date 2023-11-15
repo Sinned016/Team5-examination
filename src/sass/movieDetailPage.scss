@@ -91,6 +91,14 @@ label.choose-screening {
   width: 100%;
 }
 
+.custom-radio-button:hover {
+  background: darken(#3e7580, 1.5%);
+  border: 1px solid rgba(#000, 0.05);
+  box-shadow: 1px 1px 2px rgba(#fff, 0.2);
+  text-decoration: none;
+  transition: all 250ms linear;
+}
+
 /* Style for the custom radio button when it is selected */
 .choose-screening input:checked + .custom-radio-button {
   background-color: $important-color; 
