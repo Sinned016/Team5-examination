@@ -1,7 +1,7 @@
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormControl, FormGroup, FormLabel, FormText } from "react-bootstrap";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 export default function ContactPage() {
   return (
