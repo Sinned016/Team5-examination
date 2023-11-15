@@ -40,5 +40,8 @@ button {
   font-family: "Nunito", sans-serif !important;
 }
 
+input[type=checkbox]:checked{   background-color: $important-color !important; }
+
+
 //import bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";

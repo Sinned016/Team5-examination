@@ -4,7 +4,6 @@ import userService from "../service/userService";
 import fetchOptions from "../service/fetchService";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { formatDateWithWeekday } from "../utils/formatDateWithWeekday";
 import BookingsComponent from "../components/BookingsComponent";
 import BookingsHistoryComponent from "../components/BookingsHistoryComponent";
 
@@ -58,12 +57,14 @@ function MemberBookingsPage() {
   let oldBookings = bookings.filter((booking) => new Date() > new Date(booking.date));
   return (
     <>
-      
       <div className="row mx-1 booking-container" style={{ marginBottom: "120px" }}>
-
         {/* Current bookings */}
-        <BookingsComponent email={email} activeBookings={activeBookings} handleShowModal={handleShowModal}/>
-        
+        <BookingsComponent
+          email={email}
+          activeBookings={activeBookings}
+          handleShowModal={handleShowModal}
+        />
+
         {/* Old bookings */}
         <BookingsHistoryComponent oldBookings={oldBookings} />
 
@@ -80,13 +81,13 @@ function MemberBookingsPage() {
       {/* Modal for cancellation confirmation */}
       {selectedBooking && (
         <Modal show={showModal} onHide={handleCloseModal} className="text-primary">
-          <Modal.Header className="modal-header border-0 bg-info">
+          <Modal.Header className="modal-header bg-info">
             <Modal.Title>Avbryt bokning</Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-body bg-secondary text-info">
             Vill du ta bort denna bokning?
           </Modal.Body>
-          <Modal.Footer className="modal-footer border-0 bg-secondary">
+          <Modal.Footer className="modal-footer bg-secondary">
             <Button className="modal-undo-btn btn cancel-btn" onClick={handleCloseModal}>
               Avbryt
             </Button>
