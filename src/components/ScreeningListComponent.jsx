@@ -36,8 +36,7 @@ export default function ScreeningList({ setScreening, setActiveItem, screeningSe
                 let formattedDateString = getFormattedDate(screening.date);
 
                 return (
-                    <div key={i}>
-                        <label className="choose-screening">
+                        <label className="choose-screening"  key={i}>
                             <input
                                 className="screening-input"
                                 type="radio"
@@ -49,7 +48,6 @@ export default function ScreeningList({ setScreening, setActiveItem, screeningSe
                             {`${formattedDateString}, ${screening.time}, ${movieDetails.language.slice(0, 3)} tal, ${movieDetails.subtitles.slice(0, 3)} text `}
                             </div>
                         </label>
-                    </div>
             )})}
 
             <button type="submit" name="selectedScreening" className="confirm-button">Gå vidare</button>

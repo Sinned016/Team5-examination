@@ -76,8 +76,8 @@ form.screening-list {
 }
 
 label.choose-screening {
-  margin-bottom: 5%;
-  margin-top: 5%;
+  margin-bottom: 12px;
+  width: 100%;
 }
 
 /* Style for the custom radio button */
@@ -88,6 +88,7 @@ label.choose-screening {
   border: 1px solid $border-color; /* Change this to your desired background color */
   color: $text-color; 
   cursor: pointer;
+  width: 100%;
 }
 
 .custom-radio-button:hover {
