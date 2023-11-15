@@ -5,8 +5,8 @@ import { Form, Button } from "react-bootstrap";
 
 export default function ContactPage() {
     return (
-        <div className="contactPage d-flex row m-2">
-            <div className="contactText">
+        <div className="contact-page d-flex row m-2">
+            <div className="contact-text">
                 <h1>Kontakta oss</h1>
                 <p>Har du några frågor om din bokning? Eller har du andra funderingar om Filmvisarnas biograf.</p>
                 <p />Ring oss på telefonnummer:
@@ -15,7 +15,7 @@ export default function ContactPage() {
                 <p>eller skicka din fråga via formuläret nedan</p>
             </div>
             
-            <Form className="contactForm d-flex row mt-2 justify-content-center">
+            <Form className="contact-form d-flex row mt-2 justify-content-center">
                 <FormGroup className="mb-3" controlId="formName">
                     <FormLabel>Namn</FormLabel>
                     <FormControl placeholder="Skriv ditt namn här" />
@@ -28,7 +28,7 @@ export default function ContactPage() {
                     <FormLabel>Meddelande</FormLabel>
                     <FormControl as="textarea" rows={3} placeholder="Ställ din fråga här"/>
                 </FormGroup>
-                <Button className="sendFormBtn mb-4" type="submit">Skicka</Button>
+                <Button className="send-form-btn mb-4" type="submit">Skicka</Button>
             </Form>
         </div>
     )
