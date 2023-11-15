@@ -6,7 +6,8 @@ export default function Footer() {
     <footer className="footer">
       <Container className="footer-items">
         <p className="footer-item">Om oss</p>
-        <p className="footer-item">Kontakt</p>
+        <Link to="/contact" className="footer-item text-decoration-none text-primary">
+          Kontakt</Link>
         <Link to="/location" className="footer-item text-decoration-none text-primary">
           Hitta hit
         </Link>
