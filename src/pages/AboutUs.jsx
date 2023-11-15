@@ -20,12 +20,14 @@ export default function AboutUsPage() {
 
         <div className="shop">
           <h3>Filmvisarnas shop</h3>
-          <p>Vi har försäljning av popcorn, chips, godis och dricka .</p>
+          <p>Vi har försäljning av popcorn, chips, godis och dricka.</p>
         </div>
         <div className="mt-3">
           <br />
-          <button onClick={() => navigate("/")} className="about-us-btn">
-            Tillbaka till filmer
+          <button
+            onClick={() => navigate("/")}
+            className="startpage-btn btn btn-outline-secondary py-2 mb-4">
+            Startsida
           </button>
         </div>
       </div>
