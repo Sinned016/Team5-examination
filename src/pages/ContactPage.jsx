@@ -40,7 +40,14 @@ export default function ContactPage() {
                 placeholder="Ställ din fråga här"
               />
             </FormGroup>
-            <Button className="send-form-btn mb-4" type="submit">
+            <Button
+              className="send-form-btn mb-4"
+              type="submit"
+              onClick={() =>
+                alert(
+                  "Denna funktion fungerar tyvärr inte. Var vänlig ring 020-123456 istället. Tack!"
+                )
+              }>
               Skicka
             </Button>
           </Form>
