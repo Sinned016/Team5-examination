@@ -37,7 +37,7 @@ export default function App() {
   return (
     <div>
       <AuthContext.Provider value={{ loggedIn, logIn, logOut }}>
-        <header id="header">
+        <header className="sticky-top">
           <Header />
         </header>
 
