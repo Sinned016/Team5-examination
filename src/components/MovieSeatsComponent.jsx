@@ -12,6 +12,7 @@ export default function MovieSeatsComponent(props) {
   const setActiveItem = props.setActiveItem;
   const [isHovered, setIsHovered] = useState([]); // eslint-disable-line
 
+
   useEffect(() => {
 
     if(props.screening == "") {
@@ -45,7 +46,7 @@ export default function MovieSeatsComponent(props) {
   };
   const handleMouseLeave = (row, seat) => {setIsHovered([]);};
 
-  
+
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
 
