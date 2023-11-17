@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-let URL = "ws://";
+let URL = location.protocol === "https:" ? "wss://" : "ws://";
 
 export const socket = io(URL, {
   extraHeaders: {
