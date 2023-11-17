@@ -35,7 +35,7 @@ function MemberBookingsPage() {
     setShowModal(false);
     setSelectedBooking(null);
   };
-  console.log(selectedBooking);
+
   const cancelBooking = async () => {
     setShowModal(false);
     if (!selectedBooking) return;
