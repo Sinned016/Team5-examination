@@ -27,10 +27,13 @@ export default function MovieSeatsComponent(props) {
 
   const handleMouseEnter = (row, seat, seatState) => {
     let toMark = [];
+
+    const rowLength = seats[row].length;
+
     for (let i = 0; i < tickets; i++) {
 
-      if (seat + tickets > 10) {
-        seat = 10 - tickets
+      if (seat + tickets > rowLength) {
+        seat = rowLength - tickets;
       }
 
       if (seatState.includes("occupied-seat")) {
@@ -42,12 +45,14 @@ export default function MovieSeatsComponent(props) {
   };
   const handleMouseLeave = (row, seat) => {setIsHovered([]);};
 
-
+  
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
 
-    if(seat + tickets > 10) {
-      seat = 10 - tickets;
+    const rowLength = seats[row].length;
+
+    if(seat + tickets > rowLength) {
+      seat = rowLength - tickets;
     }
 
     if (seatState.includes("occupied-seat")) {
@@ -64,6 +69,7 @@ export default function MovieSeatsComponent(props) {
         return;
       }
     }
+    console.log(chosenSeats);
   }
 
   function setActive() {
