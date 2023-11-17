@@ -34,7 +34,6 @@ export default function BookingsHistoryComponent({oldBookings, }) {
               <div>Kostnad</div>
               <div className="booking-info">{booking.price} kr</div>
             </div>
-
             <div className="d-flex justify-content-center">
             </div>
           </div>
