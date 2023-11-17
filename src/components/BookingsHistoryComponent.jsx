@@ -7,17 +7,10 @@ export default function BookingsHistoryComponent({oldBookings, }) {
     <>
                 <div className="table-responsive mt-3 mb-1">
           <h2>Bokningshistorik</h2>
-
-          {/* Kommentar */}
-
         </div>
         {oldBookings.length > 0 ? (
           oldBookings.map((booking, index) => (
             <div key={index} className="mb-4 table-dark">
-            {/* <div className="d-flex justify-content-between my-3">
-              <div>Bokningsnummer</div>
-              <div className="booking-info">{booking.bookingNumber}</div>
-            </div> */}
             <div className="d-flex justify-content-between my-3">
               <div>Film</div>
               <div className="booking-info">{booking.movieTitle}</div>
@@ -45,15 +38,6 @@ export default function BookingsHistoryComponent({oldBookings, }) {
             <div className="d-flex justify-content-center">
             </div>
           </div>
-
-                  // Gamla exemplet
-
-            // <div key={index} className="table-dark mb-4 d-flex justify-content-between py-3">
-            //   <div className="booking-data">{booking.bookingNumber}</div>
-            //   <div className="booking-data">{booking.movieTitle}</div>
-            //   <div className="booking-data">{formatDateWithWeekday(booking.date)}</div>
-            //   <div className="booking-data">{booking.price} kr</div>
-            // </div>
           ))
         ) : (
           <p>Du har inga gamla bokningar.</p>
