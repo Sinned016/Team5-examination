@@ -70,7 +70,6 @@ export default function MovieSeatsComponent(props) {
         return;
       }
     }
-    console.log(chosenSeats);
   }
 
   function setActive() {
