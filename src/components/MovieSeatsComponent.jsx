@@ -12,6 +12,7 @@ export default function MovieSeatsComponent(props) {
   const setActiveItem = props.setActiveItem;
   const [isHovered, setIsHovered] = useState([]); // eslint-disable-line
 
+
   useEffect(() => {
 
     if(props.screening == "") {
@@ -27,10 +28,13 @@ export default function MovieSeatsComponent(props) {
 
   const handleMouseEnter = (row, seat, seatState) => {
     let toMark = [];
+
+    const rowLength = seats[row].length;
+
     for (let i = 0; i < tickets; i++) {
 
-      if (seat + tickets > 10) {
-        seat = 10 - tickets
+      if (seat + tickets > rowLength) {
+        seat = rowLength - tickets;
       }
 
       if (seatState.includes("occupied-seat")) {
@@ -46,8 +50,10 @@ export default function MovieSeatsComponent(props) {
   function pickSeats(row, seat, seatState) {
     setChosenSeats([])
 
-    if(seat + tickets > 10) {
-      seat = 10 - tickets;
+    const rowLength = seats[row].length;
+
+    if(seat + tickets > rowLength) {
+      seat = rowLength - tickets;
     }
 
     if (seatState.includes("occupied-seat")) {
