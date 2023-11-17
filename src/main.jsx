@@ -15,14 +15,14 @@ import AboutUsPage from "./pages/AboutUs";
 
 export const pages = [
   { path: "/", label: "LandingPage", element: <LandingPage /> },
-  { path: "/movieDetailPage/:id", label: "LandingPage", element: <MovieDetailPage /> },
-  { path: "/login", element: <LoginPage /> },
-  { path: "/register", element: <RegisterPage /> },
-  { path: "/bookings", element: <MemberBookingsPage /> },
-  { path: "/bookingConfirmation", element: <BookingConfirmationPage /> },
-  { path: "/location", element: <MapPage /> },
-  { path: "/contact", element: <ContactPage /> },
-  { path: "/aboutUs", element: <AboutUsPage /> }
+  { path: "/filmer/:id", label: "LandingPage", element: <MovieDetailPage /> },
+  { path: "/logga-in", element: <LoginPage /> },
+  { path: "/registrera", element: <RegisterPage /> },
+  { path: "/bokningar", element: <MemberBookingsPage /> },
+  { path: "/bokningsbekraftelse", element: <BookingConfirmationPage /> },
+  { path: "/hitta-hit", element: <MapPage /> },
+  { path: "/kontakt", element: <ContactPage /> },
+  { path: "/om-oss", element: <AboutUsPage /> }
 ];
 
 const router = createBrowserRouter([

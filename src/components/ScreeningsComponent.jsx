@@ -12,7 +12,7 @@ export default function ScreeningsComponent() {
   
 
   function navigateToMovie(movieId) {
-    navigate(`/movieDetailPage/${movieId}`)
+    navigate(`/filmer/${movieId}`)
   }
 
   let sortedData = [...g.moviesAndScreenings].sort((a, b) => new Date(a.date) - new Date(b.date));
