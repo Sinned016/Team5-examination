@@ -25,7 +25,7 @@ export default function BookingsHistoryComponent({oldBookings, }) {
             <div className="d-flex justify-content-between my-3">
               <div>Datum</div>
               <div className="booking-info">
-                {(booking.date)}
+                {formatDateWithWeekday (booking.date)}
               </div>
             </div>
             <div className="d-flex justify-content-between my-3">
