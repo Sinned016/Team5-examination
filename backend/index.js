@@ -32,7 +32,6 @@ let clients = [];
 // Listening for new connections from clients
 // Each connection presented by the 'socket' object which has a unique 'id'
 io.on("connection", (socket) => {
-  console.log("A user connected: " + socket.id);
   clients.push({socket});
 
   socket.on("new-booking", (screeningId) => {
@@ -46,13 +45,11 @@ io.on("connection", (socket) => {
   socket.on("view-screening", (screeningId) => {
     let client = clients.find(client => client.socket.id === socket.id);
     client.screeningId = screeningId;
-    console.log(clients);
   });
 
   // Handling disconnections
   // When a client disconnects, the server logs a message which user/socket's unique id has disconnected
   socket.on("disconnect", () => {
-    console.log("A user disconnected: " + socket.id);
     clients = clients.filter(client => client.socket.id !== socket.id)
   });
 });
