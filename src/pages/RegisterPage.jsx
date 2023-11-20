@@ -13,36 +13,14 @@ export default function RegisterPage() {
   const [passwordError, setPasswordError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
 
-  const handleValidation = (e) => {
-    let formIsValid = true;
-
-    if (password.length < 6) {
-      formIsValid = false;
-      setPasswordError("Lösenordet måste innehålla minst 6 tecken!");
-      return false;
-    }
-
-    if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
-      formIsValid = false;
-      setPasswordError("Stor bokstav, liten bokstav och siffra krävs för lösenord!");
-      return false;
-    }
-
-    if (/\s/.test(password)) {
-      formIsValid = false;
-      setPasswordError("Lösenordet får inte innehålla mellanrum!");
-      return false;
-    } else {
-      setPasswordError("");
-      formIsValid = true;
-    }
-
-    return formIsValid;
-  };
-
   async function registerSubmit(e) {
     e.preventDefault();
-    const formIsValid = handleValidation();
+    const formIsValid = authService.handleValidation(
+      password,
+      email,
+      setPasswordError,
+      setEmailError
+    );
     if (formIsValid) {
       let res = await authService.register({ email, password });
       let data = await res.json();
@@ -71,7 +49,6 @@ export default function RegisterPage() {
                 placeholder="E-post"
                 onChange={(event) => setEmail(event.target.value)}
               />
-              <small className="text-danger form-text">{emailError}</small>
             </div>
             <div className="input-icon-container mt-3">
               <FontAwesomeIcon icon={faLock} className="icon" />
@@ -83,6 +60,7 @@ export default function RegisterPage() {
               />
             </div>
             <small className="text-danger form-text">{passwordError}</small>
+            <small className="text-danger form-text">{emailError}</small>
             <small className="form-text text-center text-danger">{infoMessage}</small>
             <p className="text-center mt-3">
               Är du redan medlem?
@@ -91,7 +69,7 @@ export default function RegisterPage() {
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
-            <button id="cancel-btn" className="btn cancel-btn me-2" onClick={() => navigate("/")}>
+              <button id="cancel-btn" className="btn cancel-btn me-2" onClick={() => navigate("/")}>
                 AVBRYT
               </button>
               <button id="login-btn" className="btn register-btn  ms-2" type="submit">

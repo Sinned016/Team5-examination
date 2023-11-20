@@ -12,14 +12,11 @@ export default function BookingConfirmationPage() {
   }
   const formattedDate = formatDateWithWeekday(data.date);
 
-  // Extracting the row number and seat numbers
   const row = data.seats[0][0] + 1;
   const seatNumbers = data.seats.map((seat) => seat[1] + 1);
 
-  // Assuming seats are consecutive, use the first and the last seat number for the range
   const seatRange = `rad ${row}, plats ${seatNumbers[0]}-${seatNumbers[seatNumbers.length - 1]}`;
 
-  // Function to process the seat data
   const bookingData = {
     email: data.email,
     bookingNumber: data.bookingNumber,
@@ -81,7 +78,10 @@ export default function BookingConfirmationPage() {
       </div>
       <h4 className="text-center mt-4 mb-4">Vi ser fram emot ditt besök!</h4>
       <div className="d-flex justify-content-center mb-5">
-        <button onClick={() => navigate("/")} className="startpage-btn btn btn-outline-secondary py-2 mb-4">
+        <button
+          onClick={() => navigate("/")}
+          className="startpage-btn btn btn-outline-secondary py-2 mb-4"
+        >
           Startsida
         </button>
       </div>

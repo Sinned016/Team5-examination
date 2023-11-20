@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Container from "react-bootstrap/Container";
 
 export default function AboutUsPage() {
   const navigate = useNavigate();
@@ -26,7 +25,8 @@ export default function AboutUsPage() {
           <br />
           <button
             onClick={() => navigate("/")}
-            className="startpage-btn btn btn-outline-secondary py-2 mb-4">
+            className="startpage-btn btn btn-outline-secondary py-2 mb-4"
+          >
             Startsida
           </button>
         </div>

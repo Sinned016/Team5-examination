@@ -1,6 +1,6 @@
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FormControl, FormGroup, FormLabel, FormText } from "react-bootstrap";
+import { FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { Form, Button } from "react-bootstrap";
 
 export default function ContactPage() {
@@ -34,11 +34,7 @@ export default function ContactPage() {
             </FormGroup>
             <FormGroup className="mb-3" controlId="formTextField">
               <FormLabel>Meddelande</FormLabel>
-              <FormControl
-                as="textarea"
-                rows={3}
-                placeholder="Ställ din fråga här"
-              />
+              <FormControl as="textarea" rows={3} placeholder="Ställ din fråga här" />
             </FormGroup>
             <Button
               className="send-form-btn mb-4"
@@ -47,7 +43,8 @@ export default function ContactPage() {
                 alert(
                   "Denna funktion fungerar tyvärr inte. Var vänlig ring 020-123456 istället. Tack!"
                 )
-              }>
+              }
+            >
               Skicka
             </Button>
           </Form>

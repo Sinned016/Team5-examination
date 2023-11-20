@@ -4,7 +4,6 @@ import ScreeningsComponent from "../components/ScreeningsComponent";
 import useWindowSize from "../service/useWindowSize";
 
 export default function LandingPage() {
-  // Fetching all the movies and all the screenings and sharing this useStates with all child components.
   const g = useStates("globalMovies", {
     moviesAndScreenings: useFetch("/api/screeningsAndMovies"),
   });
@@ -13,9 +12,7 @@ export default function LandingPage() {
   const breakPoint = 992;
 
   const handleScrollToScreenings = () => {
-    const screeningsComponentBtn = document.getElementById(
-      "screeningsComponentBtn"
-    );
+    const screeningsComponentBtn = document.getElementById("screeningsComponentBtn");
     if (screeningsComponentBtn) {
       window.scrollTo({
         top: screeningsComponentBtn.offsetTop,
@@ -37,28 +34,36 @@ export default function LandingPage() {
   return (
     <div className="container-xl">
       <div className="row">
-      <h2 className="text-center mb-4">På bio just nu</h2>
+        <h2 className="text-center mb-4">På bio just nu</h2>
         <div className="col-lg-6 col-xl-7 col-xxl-8">
           <div className="d-flex justify-content-center">
-            {size.width < breakPoint ? <button
-              className="nav-btn important"
-              id="moviesComponentBtn"
-              onClick={handleScrollToScreenings}
-            >
-              KALENDER
-            </button> : ""}
+            {size.width < breakPoint ? (
+              <button
+                className="nav-btn important"
+                id="moviesComponentBtn"
+                onClick={handleScrollToScreenings}
+              >
+                KALENDER
+              </button>
+            ) : (
+              ""
+            )}
           </div>
           <MoviesComponent />
         </div>
-          <div className="col-lg-6 col-xl-5 col-xxl-4">
+        <div className="col-lg-6 col-xl-5 col-xxl-4">
           <div className="d-flex justify-content-center">
-            {size.width < breakPoint ? <button
-              className="nav-btn important"
-              id="screeningsComponentBtn"
-              onClick={handleScrollToMovies}
-            >
-              FILMER
-            </button> : ""}
+            {size.width < breakPoint ? (
+              <button
+                className="nav-btn important"
+                id="screeningsComponentBtn"
+                onClick={handleScrollToMovies}
+              >
+                FILMER
+              </button>
+            ) : (
+              ""
+            )}
           </div>
 
           <ScreeningsComponent />

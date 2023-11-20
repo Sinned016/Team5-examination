@@ -19,42 +19,20 @@ export default function LoginPage() {
 
   useEffect(() => {
     const userEmail = location.state?.userEmail;
-    console.log(userEmail);
+
     if (userEmail) {
       setEmail(userEmail);
     }
   }, [location.state]);
 
-  const handleValidation = (e) => {
-    let formIsValid = true;
-
-    if (password.length < 6) {
-      formIsValid = false;
-      setPasswordError("Lösenordet måste innehålla minst 6 tecken!");
-      return false;
-    }
-
-    if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
-      formIsValid = false;
-      setPasswordError("Stor bokstav, liten bokstav och siffra krävs för lösenord!");
-      return false;
-    }
-
-    if (/\s/.test(password)) {
-      formIsValid = false;
-      setPasswordError("Lösenordet får inte innehålla mellanrum!");
-      return false;
-    } else {
-      setPasswordError("");
-      formIsValid = true;
-    }
-
-    return formIsValid;
-  };
-
   async function loginSubmit(e) {
     e.preventDefault();
-    const formIsValid = handleValidation();
+    const formIsValid = authService.handleValidation(
+      password,
+      email,
+      setPasswordError,
+      setEmailError
+    );
     if (formIsValid) {
       let res = await authService.authenticate({ email, password });
       let data = await res.json();
@@ -66,7 +44,6 @@ export default function LoginPage() {
         logIn(data.accessToken);
         const role = userService.getUserRole();
         if (role === "member") {
-          console.log("member", data.accessToken);
           navigate("/bokningar");
         }
       }
@@ -90,7 +67,6 @@ export default function LoginPage() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
-              <small className="text-danger form-text">{emailError}</small>
             </div>
             <div className="input-icon-container mt-3">
               <FontAwesomeIcon icon={faLock} className="icon" />
@@ -103,6 +79,7 @@ export default function LoginPage() {
               />
             </div>
             <small className="text-danger form-text">{passwordError}</small>
+            <small className="text-danger form-text">{emailError}</small>
             <div className="form-group form-check">
               <input type="checkbox" className="form-check-input" />
               <label className="form-check-label">Kom ihåg mig</label>
