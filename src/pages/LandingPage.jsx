@@ -50,7 +50,12 @@ export default function LandingPage() {
           </div>
           <MoviesComponent />
         </div>
-          <div className="col-lg-6 col-xl-5 col-xxl-4">
+         
+
+          <ScreeningsComponent />
+
+        </div>
+        <div className="col-lg-6 col-xl-5 col-xxl-4 mt-2">
           <div className="d-flex justify-content-center">
             {size.width < breakPoint ? <button
               className="nav-btn important"
@@ -60,9 +65,6 @@ export default function LandingPage() {
               FILMER
             </button> : ""}
           </div>
-
-          <ScreeningsComponent />
-        </div>
       </div>
     </div>
   );

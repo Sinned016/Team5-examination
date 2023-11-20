@@ -5,6 +5,7 @@
   border-radius: 2px;
   background-color: #2b2827;
   transition: transform 350ms ease-in-out;
+  margin-bottom: 4px;
 }
 
 .movieCard:hover {
@@ -53,7 +54,7 @@
   flex-direction: column;
 }
 
-.screeningsFilter > * {
+.screeningsFilter>* {
   margin-bottom: .5em;
 }
 
@@ -68,11 +69,12 @@
   background: darken($btn-color, 1.5%);
   box-shadow: inset 0 0 0 1px #fff;
   text-decoration: none;
-  color: lighten(white, 18%); 
+  color: lighten(white, 18%);
   transition: all 250ms linear;
 }
 
-#moviesComponentBtn, #screeningsComponentBtn {
+#moviesComponentBtn,
+#screeningsComponentBtn {
   border: none;
   color: #ededed;
   border-radius: 2px;
@@ -81,7 +83,7 @@
     background: darken($btn-color, 1.5%);
     box-shadow: inset 0 0 0 1px #fff;
     text-decoration: none;
-    color: lighten(white, 18%); 
+    color: lighten(white, 18%);
     transition: all 250ms linear;
   }
 }
@@ -96,9 +98,11 @@
 .filterScreenings {
   padding: .3em .5em;
   cursor: pointer;
+
   &::-webkit-calendar-picker-indicator {
     cursor: pointer;
   }
+
   width: 8em;
 }
 
@@ -123,10 +127,10 @@
   display: none;
 }
 
-.pMovieTitle{
+.pMovieTitle {
   text-align: center;
   font-weight: bold;
-  margin:0px;
+  margin: 0px;
   padding-top: 4px;
   color: $text-color
 }
