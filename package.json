@@ -10,7 +10,6 @@
     "preview": "vite preview",
     "backend": "nodemon --watch backend backend/index.js",
     "backend-prod": "node backend backend/index.js",
-
     "start": "concurrently \"npm:backend\" \"npm:dev\""
   },
   "dependencies": {
