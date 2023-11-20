@@ -15,7 +15,12 @@ export default function RegisterPage() {
 
   async function registerSubmit(e) {
     e.preventDefault();
-    const formIsValid = authService.handleValidation(password, setPasswordError);
+    const formIsValid = authService.handleValidation(
+      password,
+      email,
+      setPasswordError,
+      setEmailError
+    );
     if (formIsValid) {
       let res = await authService.register({ email, password });
       let data = await res.json();
@@ -44,7 +49,6 @@ export default function RegisterPage() {
                 placeholder="Email"
                 onChange={(event) => setEmail(event.target.value)}
               />
-              <small className="text-danger form-text">{emailError}</small>
             </div>
             <div className="input-icon-container mt-3">
               <FontAwesomeIcon icon={faLock} className="icon" />
@@ -56,6 +60,7 @@ export default function RegisterPage() {
               />
             </div>
             <small className="text-danger form-text">{passwordError}</small>
+            <small className="text-danger form-text">{emailError}</small>
             <small className="form-text text-center text-danger">{infoMessage}</small>
             <p className="text-center mt-3">
               Är du redan medlem?
