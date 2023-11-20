@@ -1,13 +1,11 @@
 $minimal: 375px;
 
-// Small devices (landscape phones, 576px and up)
 @media screen and (max-width: $minimal) {
   .movie-details-box {
     flex-wrap: wrap;
   }
 }
 
-// Styling for movieDetailsComponent
 .movie-details-component {
   display: flex;
   flex-direction: column;
@@ -52,7 +50,6 @@ $minimal: 375px;
   font-size: 0.9rem;
 }
 
-// Styling for MovieBookingComponent Accordion
 .accordion-item {
   margin: auto, auto;
   margin-bottom: 20px;
@@ -80,12 +77,11 @@ label.choose-screening {
   width: 100%;
 }
 
-/* Style for the custom radio button */
 .custom-radio-button {
   display: inline-block;
   padding: .8em;
   background-color: $background-color;
-  border: 1px solid $border-color; /* Change this to your desired background color */
+  border: 1px solid $border-color; 
   color: $text-color; 
   cursor: pointer;
   width: 100%;
@@ -99,7 +95,6 @@ label.choose-screening {
   transition: all 250ms linear;
 }
 
-/* Style for the custom radio button when it is selected */
 .choose-screening input:checked + .custom-radio-button {
   background-color: $important-color; 
 }
@@ -156,7 +151,6 @@ label.choose-screening {
 }
 
 $medium: 992px;
-//tablet sizes
 
 @media screen and (max-width: $medium) and (min-width: 600px) {
   .movie-details-component {
@@ -171,7 +165,6 @@ $medium: 992px;
   }
 }
 
-// Styling for ScreeningListComponent
 .screening-list {
   display: flex;
   flex-direction: column;
@@ -183,7 +176,6 @@ $medium: 992px;
   border-radius: 2px;
 }
 
-/* Style for each ticket category */
 .ticket-category {
   display: flex;
   justify-content: space-between;
@@ -226,7 +218,6 @@ $medium: 992px;
   margin: 0 0.5em;
 }
 
-/* Style for TicketWithPriceComponent */
 .price-component {
   display: flex;
   flex-direction: column;
@@ -237,7 +228,7 @@ $medium: 992px;
   border: 1px solid #fff;
   width: 100%;
 }
-/* Style for the total price */
+
 .total-price {
   margin-top: 0.8 rem;
   align-self: self-end;
@@ -247,7 +238,6 @@ $medium: 992px;
   font-weight: bold;
 }
 
-// Styling for MovieSeatsComponent
 .theater-container {
   display: flex;
   flex-direction: column;
