@@ -63,7 +63,7 @@ export default function LoginPage() {
                 className="form-control with-icon"
                 name="emailInput"
                 aria-describedby="emailHelp"
-                placeholder="E-mail"
+                placeholder="E-post"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />

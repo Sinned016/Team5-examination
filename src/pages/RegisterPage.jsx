@@ -46,7 +46,7 @@ export default function RegisterPage() {
                 className="form-control with-icon"
                 name="emailInput"
                 aria-describedby="emailHelp"
-                placeholder="Email"
+                placeholder="E-post"
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>

@@ -28,7 +28,7 @@ async function register(credential) {
 const handleValidation = (password, email, setPasswordError, setEmailError) => {
   let formIsValid = true;
   if (email === "") {
-    setEmailError("E-mail kan inte vara tom!");
+    setEmailError("E-post kan inte vara tom!");
   }
 
   if (password.length < 6) {
