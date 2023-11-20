@@ -24,7 +24,7 @@ function MemberBookingsPage() {
       }
     };
     fetchBookings();
-  }, [email]); // Dependency on 'email', if it changes, fetch bookings again
+  }, [email]);
 
   const handleShowModal = (booking) => {
     setSelectedBooking(booking);
@@ -58,14 +58,12 @@ function MemberBookingsPage() {
   return (
     <>
       <div className="row mx-1 booking-container" style={{ marginBottom: "120px" }}>
-        {/* Current bookings */}
         <BookingsComponent
           email={email}
           activeBookings={activeBookings}
           handleShowModal={handleShowModal}
         />
 
-        {/* Old bookings */}
         <BookingsHistoryComponent oldBookings={oldBookings} />
 
         <div className="d-flex justify-content-center mt-5">
@@ -78,7 +76,6 @@ function MemberBookingsPage() {
         </div>
       </div>
 
-      {/* Modal for cancellation confirmation */}
       {selectedBooking && (
         <Modal show={showModal} onHide={handleCloseModal} className="text-primary">
           <Modal.Header className="modal-header bg-info">

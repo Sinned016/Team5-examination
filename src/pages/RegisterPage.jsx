@@ -13,7 +13,7 @@ export default function RegisterPage() {
   const [passwordError, setPasswordError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
 
-  const handleValidation = (e) => {
+  const handleValidation = () => {
     let formIsValid = true;
 
     if (password.length < 6) {
@@ -91,7 +91,7 @@ export default function RegisterPage() {
               </Link>
             </p>
             <div className="d-flex justify-content-center mt-4">
-            <button id="cancel-btn" className="btn cancel-btn me-2" onClick={() => navigate("/")}>
+              <button id="cancel-btn" className="btn cancel-btn me-2" onClick={() => navigate("/")}>
                 AVBRYT
               </button>
               <button id="login-btn" className="btn register-btn  ms-2" type="submit">

@@ -19,13 +19,13 @@ export default function LoginPage() {
 
   useEffect(() => {
     const userEmail = location.state?.userEmail;
-    console.log(userEmail);
+
     if (userEmail) {
       setEmail(userEmail);
     }
   }, [location.state]);
 
-  const handleValidation = (e) => {
+  const handleValidation = () => {
     let formIsValid = true;
 
     if (password.length < 6) {
@@ -66,7 +66,6 @@ export default function LoginPage() {
         logIn(data.accessToken);
         const role = userService.getUserRole();
         if (role === "member") {
-          console.log("member", data.accessToken);
           navigate("/bokningar");
         }
       }
