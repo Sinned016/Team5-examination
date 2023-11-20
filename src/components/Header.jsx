@@ -17,7 +17,7 @@ export default function Header() {
           <Link to="/">
             <img
               className="company-logo"
-              src="/public/images/filmvisarna_logotyp.png"
+              src="/images/Filmvisarna_Logotyp.png"
               alt="Company Logo"
             />
           </Link>{" "}

@@ -271,7 +271,9 @@ $medium: 992px;
 .theatre-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 0;
+  gap: 2px;
 }
 
 .seats-explained {
@@ -281,8 +283,8 @@ $medium: 992px;
 }
 
 .default-seat {
-  width: 9%;
-  min-width: 20px;
+  width: 8%;
+  min-width: 15px;
   aspect-ratio: 1 / 1;
   align-self: center;
   border-radius: 50% 50% 0 0;
@@ -327,5 +329,5 @@ $medium: 992px;
 
 .hovered-seat {
   background-color: $text-color;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }

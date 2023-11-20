@@ -49,13 +49,13 @@ export default function MovieCard() {
       <div>
         <p>
           <span className="text-secondary-detail-color">Genre:</span>{" "}
-          {movieDetails.genre.join(", ")}
+          {movieDetails.genre.join(",  ")}
         </p>
       </div>
       <div className="movie-details-actors">
         <p>
           <span className="text-secondary-detail-color">Skådespelare:</span>{" "}
-          {movieDetails.actors.join(", ")}
+          {movieDetails.actors.join(",  ")}
         </p>
       </div>
       <div className="movie-details-director">
