@@ -7,7 +7,7 @@ export default function Movies() {
   const navigate = useNavigate();
 
   function navigateToMovie(movieId) {
-    navigate(`/film/${movieId}`);
+    navigate(`/filmbokning/${movieId}`);
   }
 
   let previousMovieDetails = [];
