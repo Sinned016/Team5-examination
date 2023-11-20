@@ -1,0 +1,21 @@
+.footer {
+  background-color: $footer-color;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    
+}
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  align-items: center;
+  padding: 1em;
+}

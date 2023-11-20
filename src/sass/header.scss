@@ -1,0 +1,110 @@
+.bg-body-tertiary {
+  background-color: $background-color !important;
+  position: sticky;
+  color: $text-color;
+}
+
+.dropdown-menu {
+  background-color: $btn-color !important;
+  border-radius: 0px;
+  border-color: $border-color;
+  text-align: center;
+  padding: 10px 16px;
+}
+
+#basic-nav-dropdown {
+  transition: transform 250ms ease-in-out;
+}
+
+#basic-nav-dropdown:hover {
+  transform: scale(1.15);
+}
+
+#basic-nav-dropdown,
+.dropdown-item {
+  color: $text-color;
+}
+
+.dropdown-item:hover {
+  color: white;
+  background: darken(#3E7580, 1.5%);
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-decoration: none;
+  transition: all 250ms linear;
+}
+
+.dropdown-divider {
+  border-color: $text-color;
+}
+
+$minimal: 375px;
+$small: 450px;
+$medium: 991px;
+
+.company-logo {
+  margin-top: 30px;
+  width: 500px;
+
+  @media screen and (max-width: $medium) {
+    width: 360px;
+  }
+
+  @media screen and (max-width: $small) {
+    width: 300px;
+  }
+  @media screen and (max-width: $minimal) {
+    width: 240px;
+  }
+}
+
+
+@media screen and (max-width: $medium) {
+  .dropdown-menu .dropdown-item {
+    font-size: 21.5px;
+  }
+
+    .bi-person-circle {
+      width: 23px; 
+      height: 23px;
+    }
+}
+
+@media screen and (max-width: $small) {
+  .dropdown-menu {
+    background-color: $btn-color !important;
+    text-align: center;
+    width: 100%;
+    border-radius: 0px;
+    border-color: $border-color;
+    border-left: none;
+    border-right: none;
+  }
+
+  .dropdown-menu {
+    box-shadow: 0px 10px 5px rgba(#242222, .7);
+  }
+
+  .nav-item.show{
+    position: static;
+    width: 100%;
+    }
+
+  .dropdown-menu .dropdown-item {
+    font-size: 23px;
+  }
+  .bi-person-circle {
+    width: 22px; 
+    height: 22px;
+  }
+}
+
+@media screen and (max-width: $minimal) {
+  .bi-person-circle {
+    width: 20px; 
+    height: 20px;
+  }
+  .dropdown-menu {
+    box-shadow: 0px 10px 5px rgba(#242222, .7);
+  }
+}

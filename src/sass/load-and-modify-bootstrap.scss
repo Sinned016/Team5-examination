@@ -1,7 +1,41 @@
 // Variable overrides changing the look of Bootstrap
-// "theming Bootstrap"
-//$body-bg: black;
-//$body-color: #eee;
-// $font-family-base: 'Roboto Slab';
-// Import Bootstrap
+
+$accordion-button-color: #ededed; // text color on button
+$accordion-button-active-bg: #3e7580;
+$accordion-button-active-color: white; //text color on button
+$accordion-button-bg: #2b2827; // bg color in the accordion header(button)
+$accordion-border-color: white; // border color of each item
+$accordion-bg: #2b2827; // bg in the accordion body
+$accordion-color: white; // font color in the accordion body
+$accordion-icon-color: white;
+
+$background-color: #1d1b1a;
+$text-color: #ededed;
+$border-color: #c0c0c0;
+$btn-color: #2b2827;
+$cards-color: #2b2827;
+$important-color: #3e7580;
+$primary-detail-color: #ffd700;
+$secondary-detail-color: #f9d3b4;
+$footer-color: #141414;
+$primary: #ededed;
+$secondary: #c0c0c0;
+$info: #2b2827;
+$success: #ffd700;
+* {
+  font-family: "PT Sans", sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+button {
+  font-family: "Nunito", sans-serif !important;
+}
+
+input[type=checkbox]:checked{   background-color: $important-color !important; }
+
+
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";

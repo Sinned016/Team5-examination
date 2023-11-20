@@ -1,11 +1,38 @@
 // Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&");
 
 // Import Bootstrap and variable modifications
-@import './load-and-modify-bootstrap';
+@import "./load-and-modify-bootstrap.scss";
 
-// Import our own styling (one or several files)
-@import './own-styling.scss';
+// General stylings for everything
+@import "./general.scss";
 
-// Footer
-@import './sticky-footer.scss';
+// Header
+@import "./header.scss";
+
+//Footer
+@import "./footer.scss";
+
+// Landing page
+@import "./landingPage.scss";
+
+// Movie Detail page
+@import "./movieDetailPage.scss";
+
+// LoginPage
+@import "./login-registerPage.scss";
+
+// BookingConfirmationPage
+@import "./bookingConfirmationPage.scss";
+
+// MemberBookingPage 
+@import "./memberBookingPage.scss"; 
+
+//MovieDetailPage
+@import "./movieDetailPage.scss";
+
+//ContactPage
+@import "./contactPage.scss";
+
+//AboutUsPage
+@import "./aboutUsPage.scss";

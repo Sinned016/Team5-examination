@@ -1,9 +1,9 @@
-//import * as dotenv from "dotenv"
-//dotenv.config()
-import { MongoClient } from 'mongodb';
+import { MongoClient } from "mongodb";
+import * as env from "dotenv";
+env.config();
 
 let db = undefined;
-
+const appDatabaseName = "filmvisarna";
 
 export function fetchCollection(name) {
   return fetchDatabase().collection(name);
@@ -14,10 +14,11 @@ function fetchDatabase() {
     return db;
   }
 
-  const url = `mongodb+srv://username:password@team5.b809lmc.mongodb.net/`;
+  const url = `mongodb+srv://team5-user:Myz0fpusrD9YfT44@team5.b809lmc.mongodb.net/?retryWrites=true&w=majority`;
+
   const client = new MongoClient(url);
 
-  db = client.db("filmvisarna"); // Samling av collections (skapas dynamisk, har ej skapats explicit i atlas)
+  db = client.db(appDatabaseName);
 
   return db;
 }
