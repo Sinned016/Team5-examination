@@ -65,7 +65,6 @@ function MovieBookingComponent() {
     setSeniorTickets(seniorTickets);
     setChildTickets(childTickets);
     setTotalTickets(adultTickets + seniorTickets + childTickets);
-    console.log("adult:", adultTickets, "senior:", seniorTickets, "child:", childTickets);
 
     if (adultTickets > 0 || seniorTickets > 0 || childTickets > 0) {
       setActiveItem(2);
@@ -92,7 +91,6 @@ function MovieBookingComponent() {
     };
 
     let resp = await userService.bookSeats(screening._id, body);
-    console.log(resp);
 
     // SOCKET CALL
     socket.emit("new-booking", screening._id);
