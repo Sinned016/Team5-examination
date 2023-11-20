@@ -47,7 +47,7 @@ export default function Header() {
                 <NavDropdown.Item
                   className="line-object text-decoration-none text-primary"
                   as={Link}
-                  to="/register">
+                  to="/registrera">
                   Bli medlem {""} {""}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ export default function Header() {
                 <NavDropdown.Item
                   as={Link}
                   className="line-object text-decoration-none text-primary"
-                  to="/login">
+                  to="/logga-in">
                   Logga in {""} {""}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@ export default function Header() {
                 <NavDropdown.Item
                   className="line-object text-decoration-none text-primary"
                   as={Link}
-                  to="/bookings/">
+                  to="/bokningar/">
                   Bokningar {""} {""}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

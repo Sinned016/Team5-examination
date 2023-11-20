@@ -1,6 +1,6 @@
 import express from "express";
 import router from "./src/router/router.js";
-import { dirname, join } from "path";
+import { dirname, join, } from "path";
 import { fileURLToPath } from "url";
 import { createServer } from "http";
 import { Server } from "socket.io";
@@ -75,4 +75,9 @@ app.use("/api", authRouter);
 // serve the dist folder (the production code for our frontend)
 // that you generate by writing "npm run build"
 const distFolder = join(__dirname, "../", "dist");
+
 app.use(express.static(distFolder));
+
+app.get('*', (req, res) => {
+  res.sendFile(join(distFolder, 'index.html'));
+});
