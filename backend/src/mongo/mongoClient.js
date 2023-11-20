@@ -15,6 +15,7 @@ function fetchDatabase() {
   }
 
   const url = `mongodb+srv://team5-user:Myz0fpusrD9YfT44@team5.b809lmc.mongodb.net/?retryWrites=true&w=majority`;
+
   const client = new MongoClient(url);
 
   db = client.db(appDatabaseName);
