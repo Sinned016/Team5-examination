@@ -9,6 +9,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "backend": "nodemon --watch backend backend/index.js",
+    "backend-prod": "node backend backend/index.js",
+
     "start": "concurrently \"npm:backend\" \"npm:dev\""
   },
   "dependencies": {
