@@ -114,9 +114,9 @@ function MovieBookingComponent() {
           <Accordion.Header>
             1. Välj visning{" "}
             {screening ? (
-              <button className="restart-button" onClick={() => resetBooking("screening", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
+              <div className="restart-button" onClick={() => resetBooking("screening", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
-              </button>
+              </div>
             ) : (
               ""
             )}
@@ -135,9 +135,9 @@ function MovieBookingComponent() {
           <Accordion.Header>
             2. Biljettyp och antal{" "}
             {totalTickets > 0 ? (
-              <button className="restart-button" onClick={() => resetBooking("ticketType", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
+              <div className="restart-button" onClick={() => resetBooking("ticketType", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
-              </button>
+              </div>
             ) : (
               ""
             )}
