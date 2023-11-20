@@ -65,7 +65,6 @@ function MovieBookingComponent() {
     setSeniorTickets(seniorTickets);
     setChildTickets(childTickets);
     setTotalTickets(adultTickets + seniorTickets + childTickets);
-    console.log("adult:", adultTickets, "senior:", seniorTickets, "child:", childTickets);
 
     if (adultTickets > 0 || seniorTickets > 0 || childTickets > 0) {
       setActiveItem(2);
@@ -92,7 +91,6 @@ function MovieBookingComponent() {
     };
 
     let resp = await userService.bookSeats(screening._id, body);
-    console.log(resp);
 
     // SOCKET CALL
     socket.emit("new-booking", screening._id);
@@ -114,9 +112,9 @@ function MovieBookingComponent() {
           <Accordion.Header>
             1. Välj visning{" "}
             {screening ? (
-              <button className="restart-button" onClick={() => resetBooking("screening", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
+              <div className="restart-button" onClick={() => resetBooking("screening", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
-              </button>
+              </div>
             ) : (
               ""
             )}
@@ -135,9 +133,9 @@ function MovieBookingComponent() {
           <Accordion.Header>
             2. Biljettyp och antal{" "}
             {totalTickets > 0 ? (
-              <button className="restart-button" onClick={() => resetBooking("ticketType", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
+              <div className="restart-button" onClick={() => resetBooking("ticketType", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
-              </button>
+              </div>
             ) : (
               ""
             )}
@@ -151,9 +149,9 @@ function MovieBookingComponent() {
           <Accordion.Header>
             3. Välj platser{" "}
             {chosenSeats.length > 0 ? (
-              <button className="restart-button" onClick={() => resetBooking("seats", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
+              <div className="restart-button" onClick={() => resetBooking("seats", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
-              </button>
+              </div>
             ) : (
               ""
             )}
