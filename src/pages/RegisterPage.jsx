@@ -13,36 +13,9 @@ export default function RegisterPage() {
   const [passwordError, setPasswordError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
 
-  const handleValidation = () => {
-    let formIsValid = true;
-
-    if (password.length < 6) {
-      formIsValid = false;
-      setPasswordError("Lösenordet måste innehålla minst 6 tecken!");
-      return false;
-    }
-
-    if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
-      formIsValid = false;
-      setPasswordError("Stor bokstav, liten bokstav och siffra krävs för lösenord!");
-      return false;
-    }
-
-    if (/\s/.test(password)) {
-      formIsValid = false;
-      setPasswordError("Lösenordet får inte innehålla mellanrum!");
-      return false;
-    } else {
-      setPasswordError("");
-      formIsValid = true;
-    }
-
-    return formIsValid;
-  };
-
   async function registerSubmit(e) {
     e.preventDefault();
-    const formIsValid = handleValidation();
+    const formIsValid = authService.handleValidation(password, setPasswordError);
     if (formIsValid) {
       let res = await authService.register({ email, password });
       let data = await res.json();

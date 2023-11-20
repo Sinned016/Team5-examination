@@ -25,5 +25,32 @@ async function register(credential) {
   return resp;
 }
 
-const authService = { authenticate, register };
+const handleValidation = (password, setPasswordError) => {
+  let formIsValid = true;
+
+  if (password.length < 6) {
+    formIsValid = false;
+    setPasswordError("Lösenordet måste innehålla minst 6 tecken!");
+    return false;
+  }
+
+  if (!/[A-Z]/.test(password) || !/\d/.test(password) || !/[a-z]/.test(password)) {
+    formIsValid = false;
+    setPasswordError("Stor bokstav, liten bokstav och siffra krävs för lösenord!");
+    return false;
+  }
+
+  if (/\s/.test(password)) {
+    formIsValid = false;
+    setPasswordError("Lösenordet får inte innehålla mellanrum!");
+    return false;
+  } else {
+    setPasswordError("");
+    formIsValid = true;
+  }
+
+  return formIsValid;
+};
+
+const authService = { authenticate, register, handleValidation };
 export default authService;
