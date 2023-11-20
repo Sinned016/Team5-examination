@@ -5,11 +5,11 @@ export default function Footer() {
   return (
     <footer className="footer">
       <Container className="footer-items">
-      <Link to="/aboutUs" className="footer-item text-decoration-none text-primary">
+      <Link to="/om-oss" className="footer-item text-decoration-none text-primary">
           Om oss</Link>
-        <Link to="/contact" className="footer-item text-decoration-none text-primary">
+        <Link to="/kontakt" className="footer-item text-decoration-none text-primary">
           Kontakt</Link>
-        <Link to="/location" className="footer-item text-decoration-none text-primary">
+        <Link to="/hitta-hit" className="footer-item text-decoration-none text-primary">
           Hitta hit
         </Link>
       </Container>

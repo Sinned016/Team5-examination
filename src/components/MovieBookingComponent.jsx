@@ -97,7 +97,7 @@ function MovieBookingComponent() {
     // SOCKET CALL
     socket.emit("new-booking", screening._id);
 
-    navigate("/bookingConfirmation", { state: { data: resp } });
+    navigate("/bokningsbekraftelse", { state: { data: resp } });
   };
 
   function submitBooking(e) {

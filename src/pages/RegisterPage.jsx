@@ -50,7 +50,7 @@ export default function RegisterPage() {
         setInfoMessage(data.message);
       } else {
         alert(data.message);
-        navigate("/login", { state: { userEmail: email } });
+        navigate("/logga-in", { state: { userEmail: email } });
       }
     }
   }
@@ -86,7 +86,7 @@ export default function RegisterPage() {
             <small className="form-text text-center text-danger">{infoMessage}</small>
             <p className="text-center mt-3">
               Är du redan medlem?
-              <Link className="text-decoration-none text-success" to="/login">
+              <Link className="text-decoration-none text-success" to="/logga-in">
                 <span> Logga in här!</span>
               </Link>
             </p>

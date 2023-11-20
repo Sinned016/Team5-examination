@@ -67,7 +67,7 @@ export default function LoginPage() {
         const role = userService.getUserRole();
         if (role === "member") {
           console.log("member", data.accessToken);
-          navigate("/bookings");
+          navigate("/bokningar");
         }
       }
     }
@@ -114,7 +114,7 @@ export default function LoginPage() {
             </p>
             <p className="text-center">
               Är du inte medlem men vill bli?
-              <Link className="text-decoration-none text-success" to="/register">
+              <Link className="text-decoration-none text-success" to="/registrera">
                 <span> Klicka här!</span>
               </Link>
             </p>
