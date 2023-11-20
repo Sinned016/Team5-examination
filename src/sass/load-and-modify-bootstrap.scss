@@ -1,10 +1,5 @@
 // Variable overrides changing the look of Bootstrap
-// "theming Bootstrap"
-//$body-bg: black;
-//$body-color: #eee;
-// $font-family-base: 'Roboto Slab';
-// Import Bootstrap
-//Override bootstrap variable
+
 $accordion-button-color: #ededed; // text color on button
 $accordion-button-active-bg: #3e7580;
 $accordion-button-active-color: white; //text color on button
@@ -43,5 +38,4 @@ button {
 input[type=checkbox]:checked{   background-color: $important-color !important; }
 
 
-//import bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
