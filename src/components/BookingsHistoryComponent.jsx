@@ -1,5 +1,5 @@
-import React from 'react'
-import { formatDateWithWeekday } from '../utils/formatDateWithWeekday'
+import React from 'react';
+import { formatDateWithWeekday } from '../utils/formatDateWithWeekday';
 
 
 export default function BookingsHistoryComponent({oldBookings, }) {
@@ -42,5 +42,5 @@ export default function BookingsHistoryComponent({oldBookings, }) {
           <p>Du har inga gamla bokningar.</p>
         )}
     </>
-  )
+  );
 }
