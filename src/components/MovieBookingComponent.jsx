@@ -151,9 +151,9 @@ function MovieBookingComponent() {
           <Accordion.Header>
             3. Välj platser{" "}
             {chosenSeats.length > 0 ? (
-              <button className="restart-button" onClick={() => resetBooking("seats", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
+              <div className="restart-button" onClick={() => resetBooking("seats", setScreening, setTotalTickets, setChosenSeats, setActiveItem)}>
                 Ändra
-              </button>
+              </div>
             ) : (
               ""
             )}

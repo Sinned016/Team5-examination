@@ -1,5 +1,4 @@
 export function resetBooking(identifier, setScreening, setTotalTickets, setChosenSeats, setActiveItem) {
-    console.log(identifier);
     if (identifier === "screening") {
       setScreening("");
       setTotalTickets(0);
