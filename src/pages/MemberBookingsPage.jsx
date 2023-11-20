@@ -85,7 +85,11 @@ function MemberBookingsPage() {
             <Modal.Title>Avbryt bokning</Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-body bg-secondary text-info">
-            Vill du ta bort denna bokning?
+            <p className="text-center">Vill du ta bort denna bokning? </p>
+            <p className="text-center">Film: {selectedBooking.movieTitle}</p>
+            <p className="text-center">
+              Datum: {selectedBooking.date} {selectedBooking.time}
+            </p>
           </Modal.Body>
           <Modal.Footer className="modal-footer bg-secondary">
             <Button className="modal-undo-btn btn cancel-btn" onClick={handleCloseModal}>
