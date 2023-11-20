@@ -15,7 +15,7 @@ import AboutUsPage from "./pages/AboutUs";
 
 export const pages = [
   { path: "/", label: "LandingPage", element: <LandingPage /> },
-  { path: "/filmer/:id", label: "LandingPage", element: <MovieDetailPage /> },
+  { path: "/film/:id", label: "LandingPage", element: <MovieDetailPage /> },
   { path: "/logga-in", element: <LoginPage /> },
   { path: "/registrera", element: <RegisterPage /> },
   { path: "/bokningar", element: <MemberBookingsPage /> },
