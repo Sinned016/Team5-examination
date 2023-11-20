@@ -35,7 +35,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="container-xl">
+    <div className="container-xl mb-0">
       <div className="row">
       <h2 className="text-center mb-4">På bio just nu</h2>
         <div className="col-lg-6 col-xl-7 col-xxl-8">
