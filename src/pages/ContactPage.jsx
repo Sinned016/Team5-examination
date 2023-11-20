@@ -29,7 +29,7 @@ export default function ContactPage() {
               <FormControl placeholder="Skriv ditt namn här" />
             </FormGroup>
             <FormGroup className="mb-3" controlId="formEmail">
-              <FormLabel>Email</FormLabel>
+              <FormLabel>E-post</FormLabel>
               <FormControl type="email" placeholder="namn@exempel.com" />
             </FormGroup>
             <FormGroup className="mb-3" controlId="formTextField">
