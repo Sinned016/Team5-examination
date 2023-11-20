@@ -9,7 +9,6 @@ export default function ScreeningList({ setScreening, setActiveItem, screeningSe
     const movieDetails = movieFetch.movieDetails[0];
 
     if (!movieDetails) {
-        console.log("Laddar...");
         return;
     }
 

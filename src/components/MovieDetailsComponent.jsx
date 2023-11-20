@@ -6,7 +6,6 @@ export default function MovieCard() {
   const movieDetails = movieFetch.movieDetails[0];
 
   if (!movieDetails) {
-    console.log("Laddar...");
     return;
   }
 
