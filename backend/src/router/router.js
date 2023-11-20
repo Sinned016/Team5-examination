@@ -211,10 +211,8 @@ router.put("/screening/:id", async (req, res) => {
         };
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
-            console.log(error);
             res.status(500).send("Lyckades inte skicka e-mail."); // 500 Internal Server Error
           } else {
-            console.log("Email skickat: " + info.response);
             res.status(200).send("Bokning och e-mail skickades.");
           }
         });

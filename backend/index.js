@@ -36,6 +36,7 @@ io.on("connection", (socket) => {
   clients.push({socket});
 
   socket.on("new-booking", (screeningId) => {
+    console.log("Hello there socket")
     clients
       .filter(client => client.screeningId === screeningId)
       .forEach(client => {
